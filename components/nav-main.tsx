@@ -1,6 +1,6 @@
 "use client"
 
-import { BookOpen, Bot, ChevronRight, Settings2, SquareTerminal, type LucideIcon } from "lucide-react"
+import { BookOpen, Bot, ChevronRight, Settings2, SquareTerminal } from "lucide-react"
 
 import {
   Collapsible,
