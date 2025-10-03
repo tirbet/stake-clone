@@ -1,70 +1,43 @@
 # Stake.com Clone - Next.js Project
 
-A clone of [Stake.com](https://stake.com) built using **Next.js 15+**. This project aims to replicate core functionalities of Stake.com including user registration, betting systems, wallet management, and real-time updates.
+A modern, feature-rich clone of [Stake.com](https://stake.com) built with **Next.js 15+**, TypeScript, and Tailwind CSS.
 
 ---
 
-## Table of Contents
 
-- [Overview](#overview)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Installation](#installation)
-- [TODO](#todo)
-- [Implemented](#implemented)
-- [Folder Structure](#folder-structure)
-- [Contributing](#contributing)
-- [License](#license)
+## 📋 TODO List
 
----
+### 🔴 High Priority
+- [ ] User authentication system (Login/Register)
+- [ ] Wallet deposit/withdrawal functionality
+- [ ] Basic casino game integration
+- [ ] Responsive layout components
+- [ ] Payment gateway integration
 
-## Overview
+### 🟡 Medium Priority
+- [ ] Sports betting interface
+- [ ] Live casino games
+- [ ] User profile management
+- [ ] Transaction history
+- [ ] Game favorites system
+- [ ] Search functionality
 
-This project is a work-in-progress clone of Stake.com, designed for educational purposes and testing Next.js capabilities with real-time betting functionalities. It includes a full-stack setup with API routes, Prisma database integration, authentication using Better-auth, and dynamic betting features.
+### 🟢 Low Priority
+- [ ] Two-factor authentication (2FA)
+- [ ] VIP/Rewards system
+- [ ] Affiliate program
+- [ ] Multi-language support
+- [ ] Advanced analytics
+- [ ] Push notifications
 
----
-
-## Features
-
-- User registration and login
-- Real-time betting dashboard
-- Multiple bet markets (1X2, Double Chance, Asian Handicap, Total Goals, Correct Score, etc.)
-- Wallet system for deposits and withdrawals
-- Transaction history
-- Dynamic bet settlement
-- Admin dashboard (future)
-
----
-
-## Tech Stack
-
-- **Frontend:** Next.js 15+, React, TailwindCSS, ShadCN UI
-- **Backend:** Next.js API routes with Hono (microservices)
-- **Database:** PostgreSQL + Prisma ORM
-- **Auth:** Better-auth
-- **State Management:** React Query / Zustand
-- **Validation:** Zod
-- **Testing / Load:** Autocannon
-
----
-
-## Installation
-
-```bash
-# Clone the repo
-git clone https://github.com/tirbet/stake-clone.git
-cd stake-clone
-
-# Install dependencies
-npm install
-# or
-bun i
-# or
-yarn install
-
-# Run development server
-npm run dev
-# or
-bun run dev
-# or
-yarn dev
+### 🛠 Technical Tasks
+- [x] Set up Next.js 15+ with App Router
+- [x] Configure TypeScript
+- [x] Set up Tailwind CSS
+- [x] Create component library
+- [ ] Implement API routes
+- [ ] Database schema design
+- [ ] State management setup
+- [ ] Error handling system
+- [ ] Testing framework setup
+- [ ] Deployment configuration
