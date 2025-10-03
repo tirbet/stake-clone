@@ -7,9 +7,24 @@ A modern, feature-rich clone of [Stake.com](https://stake.com) built with **Next
 
 ## 📋 TODO List
 
+### 🛠 Technical Tasks
+- [x] Set up Next.js 15+ with App Router
+- [x] Configure TypeScript
+- [x] Set up Tailwind CSS
+- [x] Set up Shadcn UI
+- [x] Create component library
+- [x] Implement next-intl
+- [ ] Implement API routes
+- [ ] Database schema design
+- [ ] State management setup
+- [ ] Error handling system
+- [ ] Testing framework setup
+- [x] Deployment configuration
+
 ### 🔴 High Priority
 - [ ] User authentication system (Login/Register)
 - [ ] Wallet deposit/withdrawal functionality
+- [ ] Sport integration
 - [ ] Basic casino game integration
 - [ ] Responsive layout components
 - [ ] Payment gateway integration
@@ -30,14 +45,3 @@ A modern, feature-rich clone of [Stake.com](https://stake.com) built with **Next
 - [ ] Advanced analytics
 - [ ] Push notifications
 
-### 🛠 Technical Tasks
-- [x] Set up Next.js 15+ with App Router
-- [x] Configure TypeScript
-- [x] Set up Tailwind CSS
-- [x] Create component library
-- [ ] Implement API routes
-- [ ] Database schema design
-- [ ] State management setup
-- [ ] Error handling system
-- [ ] Testing framework setup
-- [ ] Deployment configuration
