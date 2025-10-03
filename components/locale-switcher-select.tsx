@@ -18,7 +18,7 @@ export default function LocaleSwitcherSelect({ children, defaultValue, label }: 
         const nextLocale = event.target.value;
         startTransition(() => {
             router.replace(
-                // @ts-expect-error
+                // @ts-expect-error required: next/navigation params typing mismatch
                 { pathname, params },
                 { locale: nextLocale }
             )

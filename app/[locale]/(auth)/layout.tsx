@@ -1,8 +1,8 @@
 
 import { AppSidebar } from "@/components/app-sidebar";
-import { SidebarInfo, WelcomeNav } from "@/components/sidebar-item";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset } from "@/components/ui/sidebar";
+
 
 
 
@@ -10,17 +10,14 @@ type Props = {
     children: React.ReactNode;
 };
 
-export default async function HomeLayout({
+export default async function AuthLayout({
     children,
 }: Readonly<Props>) {
+
     return (
         <>
             <AppSidebar variant={'sidebar'} collapsible={'icon'} >
-                <WelcomeNav />
-                <SidebarInfo />
-                {/* <div className="mt-auto">
-                    
-                </div> */}
+                <></>
             </AppSidebar>
             <SidebarInset>
                 <SiteHeader />

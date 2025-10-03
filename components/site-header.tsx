@@ -1,15 +1,9 @@
 "use client"
 
-import { Menu } from "lucide-react"
-
-import { SearchForm } from "@/components/search-form"
-
-import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
-import { useSidebar } from "@/components/ui/sidebar"
-import { ThemeToggle } from "./theme-toggle"
-import LocaleSwitcher from "./locale-switcher"
 import { cn } from "@/lib/utils"
+import AppLogo from "./app-logo"
+import { Link } from "@/i18n/navigation"
+import { Button } from "./ui/button"
 
 export function SiteHeader() {
 
@@ -41,18 +35,25 @@ export function SiteHeader() {
       )
     }>
       <div className="max-w-screen-xl mx-auto flex w-full items-center justify-between px-4">
-
-
-        {/* Separator */}
-        <Separator orientation="vertical" className="mx-2 h-6 bg-[rgb(56,72,84)]" />
-
-        {/* Language Switcher */}
-        <div className="hidden sm:block">
-          <LocaleSwitcher />
+        <div className="relative flex items-center justify-between w-full max-h-15">
+          <div className="flex items-center">
+            <AppLogo isAdmin={false} />
+          </div>
+          <div className="flex items-center space-x-1">
+            <div className='flex flex-row gap-2'>
+                <Link href={'/login'}>
+                  <Button variant="outline" size="lg" className={''}>
+                   Login
+                  </Button>
+                </Link>
+                <Link href={'/register'}>
+                  <Button  size="lg" className={'bg-blue-400 hover:bg-blue-500 text-white'}>
+                    Register
+                  </Button>
+                </Link>
+              </div>
+          </div>
         </div>
-
-        {/* Search aligned to right */}
-        <SearchForm className="ml-auto w-full max-w-xs sm:max-w-md" />
       </div>
     </header>
 

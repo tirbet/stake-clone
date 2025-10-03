@@ -3,18 +3,22 @@ import * as React from "react"
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarHeader,
   SidebarRail,
   useSidebar,
 } from "@/components/ui/sidebar"
-import { Button } from "./ui/button"
+import { Button } from "@/components/ui/button"
 import { Menu } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { NavMain } from "./nav-main"
+import SidebarFooterNav from "@/components/sidebar-footer-nav"
+
+type AppSidebarProps = {
+  children: React.ReactNode
+} & React.ComponentProps<typeof Sidebar>;
 
 
-
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({ children, ...props }: AppSidebarProps) {
   const { toggleSidebar } = useSidebar()
   return (
     <Sidebar {...props}>
@@ -35,8 +39,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </Button>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain />
+        {children}
       </SidebarContent>
+      <SidebarFooter>
+        <SidebarFooterNav />
+      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   )
