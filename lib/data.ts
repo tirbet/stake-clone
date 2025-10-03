@@ -1,4 +1,4 @@
-import { AffiliateIcon, BlogIcon, ChatIcon, CouponIcon, GiftIcon, LanguageIcon, MoreIcon, RaceIcon, SecurityIcon, SupportIcon, TrophyIcon } from "@/components/icons";
+import { AffiliateIcon, BlogIcon, ChatIcon, CouponIcon, GiftIcon, MoreIcon, RaceIcon, SecurityIcon, SupportIcon, TrophyIcon } from "@/components/icons";
 import { NavItem } from "@/types/navigation";
 
 export const welcomeNav: NavItem[] = [
@@ -59,16 +59,4 @@ export const sideberInfo: NavItem[] = [
         icon: SupportIcon,
         url: "#"
     },
-    {
-        name: "Language: English",
-        icon: LanguageIcon,
-        url: "#",
-        items: [
-            {
-                name: "English",
-                icon: SupportIcon,
-                url: "#"
-            }
-        ]
-    }
 ] as const;

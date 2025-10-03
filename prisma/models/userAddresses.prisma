@@ -1,0 +1,17 @@
+model UserAddress {
+    id            String   @id @default(uuid())
+    userId        String   @unique
+    streetAddress String
+    city          String
+    stateProvince String
+    postalCode    String
+    country       String
+    isVerified    Boolean  @default(false)
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+
+    // Relations
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@map("user_address")
+}

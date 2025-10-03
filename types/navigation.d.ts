@@ -6,6 +6,7 @@ export interface NavItem {
     name: string;
     icon: IconType;
     url: string;
-    isExternal?: boolean 
+    onClick?: boolean;
+    isExternal?: boolean;
     items?: NavItem[];
 }

@@ -1,0 +1,68 @@
+enum TransactionType {
+    // Core money movement
+    DEPOSIT
+    WITHDRAWAL
+    TRANSFER
+    VAULT
+    ADJUSTMENT // Manual admin credit/debit
+    FEE // Transaction or service fee
+
+    // Betting
+    BET // Stake placed
+    BET_WIN // Winnings credited
+    BET_LOSS // Loss recorded
+    BET_REFUND // Cancelled/void bet refunded
+    BET_CASHOUT // Partial/early cashout
+
+    // Bonuses & Promotions
+    BONUS // General bonus
+    WELCOME_BONUS // Signup / first deposit
+    RELOAD_BONUS // Reload deposit bonus
+    FREE_SPINS // Free spin winnings
+    CASHBACK // Loss rebate / cashback
+    LOYALTY_REWARD // VIP / tier reward
+    COMP_POINTS // Comp/loyalty points
+    RAKEBACK // Rakeback for casino/poker
+    TOURNAMENT_REWARD // Prize from tournament/leaderboard
+    JACKPOT_WIN // Jackpot winnings
+
+    // Affiliate & External
+    AFFILIATE // Affiliate commission
+    REFERRAL_BONUS // Referral program credit
+    PARTNER_PAYOUT // Partner revenue share
+
+    // System/Internal
+    REVERSAL // Reversal of mistaken txn
+    CHARGEBACK // Payment dispute refund
+    SYSTEM_ADJUSTMENT // Internal system correction
+}
+
+enum TransactionStatus {
+    PENDING
+    COMPLETED
+    FAILED
+    CANCELLED
+}
+
+model Transaction {
+    id                  String            @id @default(uuid())
+    walletId            Int
+    userId              String
+    transactionableId   String
+    amount              Decimal           @db.Decimal(15, 2)
+    transactionableType TransactionType
+    description         String?
+    balanceBefore       Decimal           @db.Decimal(15, 2)
+    balanceAfter        Decimal           @db.Decimal(15, 2)
+    status              TransactionStatus @default(COMPLETED)
+    createdAt           DateTime          @default(now())
+    updatedAt           DateTime          @updatedAt
+
+    // relations
+    wallet Wallet @relation(fields: [walletId], references: [id], onDelete: Cascade)
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([transactionableType, createdAt])
+    @@index([walletId, createdAt])
+    @@map("transaction")
+}

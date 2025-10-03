@@ -1,0 +1,29 @@
+enum WithdrawalStatus {
+    PENDING
+    APPROVED
+    REJECTED
+    PROCESSING
+}
+
+model Withdrawal {
+    id              String           @id @default(uuid())
+    walletId        Int
+    userId          String
+    amount          Decimal          @db.Decimal(15, 2)
+    paymentMethod   String
+    accountDetails  String
+    status          WithdrawalStatus @default(PENDING)
+    rejectionReason String?
+    reference       String?          @unique
+    processedAt     DateTime?
+    createdAt       DateTime         @default(now())
+    updatedAt       DateTime         @updatedAt
+
+    // relations
+    wallet Wallet @relation(fields: [walletId], references: [id], onDelete: Cascade)
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([paymentMethod, reference])
+    @@index([status, createdAt])
+    @@map("withdrawal")
+}

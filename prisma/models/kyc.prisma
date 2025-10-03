@@ -1,0 +1,55 @@
+enum VerificationStatus {
+    UNVERIFIED
+    SUBMITTED
+    VERIFIED
+    REJECTED
+}
+
+enum IdType {
+    PASSPORT
+    DRIVER_LICENSE
+    NATIONAL_ID
+}
+
+enum PaymentMethod {
+    BANK_TRANSFER
+    CREDIT_CARD
+}
+
+model Kyc {
+    id     String @id @default(uuid())
+    userId String @unique
+
+    // Level 1: Basic Info
+    firstName        String?
+    lastName         String?
+    birthDate        DateTime?
+    country          String?
+    level1Status     VerificationStatus? @default(UNVERIFIED)
+    level1VerifiedAt DateTime?
+
+    // Level 2: ID Verification
+    idType           IdType?
+    idNumber         String?
+    idFrontPath      String?
+    idBackPath       String?
+    selfieWithIdPath String?
+    level2Status     VerificationStatus? @default(UNVERIFIED)
+    level2VerifiedAt DateTime?
+
+    // Level 3: Payment Verification
+    paymentMethod     PaymentMethod?
+    paymentProofPath  String?
+    bankStatementPath String?
+    level3Status      VerificationStatus? @default(UNVERIFIED)
+    level3VerifiedAt  DateTime?
+
+    adminNotes String?
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+
+    // Relation
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@map("kyc")
+}

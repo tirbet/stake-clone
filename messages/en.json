@@ -38174,7 +38174,7 @@
     }
   },
   "LocaleSwitcher": {
-    "label": "Change Language",
+    "label": "Language",
    "locale": "{locale, select, en {English} bn {Bangla} other {Unknown}}"
   }
 }

@@ -1,0 +1,39 @@
+enum UserType {
+  SUPER_ADMIN
+  ADMIN
+  STAFF
+  AFFILIATE
+  AGENT
+  PLAYER
+}
+
+model User {
+  id            String   @id
+  name          String
+  email         String
+  emailVerified Boolean  @default(false)
+  userType      UserType @default(PLAYER)
+  image         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now()) @updatedAt
+
+  // relations
+  roleId       String?
+  role         Role?         @relation(fields: [roleId], references: [id])
+  address      UserAddress?
+  kyc          Kyc?
+  sessions     Session[]
+  accounts     Account[]
+  wallets      Wallet[]
+  withdrawals  Withdrawal[]
+  deposits     Deposit[]
+  vaults       Vault[]
+  transactions Transaction[]
+
+  referredByUserId String? // nullable, user who referred this user
+  referredBy       User?   @relation("Referrals", fields: [referredByUserId], references: [id], onDelete: SetNull)
+  referrals        User[]  @relation("Referrals") // users referred by this user
+
+  @@unique([email, userType])
+  @@map("user")
+}
