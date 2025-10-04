@@ -1,8 +1,6 @@
 model Role {
-    id          String       @id @default(uuid())
-    name        String
-    permissions Permission[]
-    users       User[]
-
-    @@unique([name])
+  id          String       @id @default(uuid())
+  name        String       @unique
+  permissions Permission[]
+  users       User[]
 }

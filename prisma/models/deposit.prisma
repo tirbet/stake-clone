@@ -1,28 +1,26 @@
-enum DepositStatus {
-    PENDING
-    COMPLETED
-    FAILED
-    PROCESSING
+model Deposit {
+  id            String        @id @default(uuid())
+  walletId      Int
+  userId        String
+  amount        Decimal       @db.Decimal(15, 2)
+  paymentMethod String
+  reference     String
+  status        DepositStatus @default(PENDING)
+  metadata      String?
+  completedAt   DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  wallet        Wallet        @relation(fields: [walletId], references: [id], onDelete: Cascade)
+
+  @@unique([paymentMethod, reference])
+  @@index([status, createdAt])
+  @@map("deposits")
 }
 
-model Deposit {
-    id            String        @id @default(uuid())
-    walletId      Int
-    userId        String
-    amount        Decimal       @db.Decimal(15, 2)
-    paymentMethod String
-    reference     String
-    status        DepositStatus @default(PENDING)
-    metadata      String?
-    completedAt   DateTime?
-    createdAt     DateTime      @default(now())
-    updatedAt     DateTime      @updatedAt
-
-    // relations
-    wallet Wallet @relation(fields: [walletId], references: [id], onDelete: Cascade)
-    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-    @@unique([paymentMethod, reference])
-    @@index([status, createdAt])
-    @@map("deposits")
+enum DepositStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  PROCESSING
 }

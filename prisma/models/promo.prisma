@@ -1,0 +1,6 @@
+model Promo {
+  id     String @id @default(uuid())
+  userId String
+  code   String @unique
+  user   User   @relation(fields: [userId], references: [id])
+}

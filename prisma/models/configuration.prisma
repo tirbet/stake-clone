@@ -1,3 +1,14 @@
+model Configuration {
+  id        String            @id @default(uuid())
+  type      ConfigurationType
+  value     Json
+  isActive  Boolean           @default(true)
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+
+  @@map("configuration")
+}
+
 enum ConfigurationType {
   Jwt
   ApiKey
@@ -6,15 +17,4 @@ enum ConfigurationType {
   Payment
   Smtp
   AuthAttempt
-}
-
-model Configuration {
-  id        String            @id @default(uuid())
-  type      ConfigurationType 
-  value     Json
-  isActive  Boolean           @default(true)
-  createdAt DateTime          @default(now())
-  updatedAt DateTime          @updatedAt
-
-  @@map("configuration")
 }

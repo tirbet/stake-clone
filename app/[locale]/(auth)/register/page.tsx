@@ -1,4 +1,5 @@
-import RegisterForm from "@/components/register-from";
+import { RegisterForm } from "@/components/register-from";
+import { GalleryVerticalEnd } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,7 +7,7 @@ export const metadata: Metadata = {
   description: "Create a new account",
 };
 
-export default function RegisterPage() {
+export default async function RegisterPage() {
 
   return (
     <RegisterForm />

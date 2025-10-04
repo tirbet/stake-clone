@@ -20,40 +20,36 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { register } from "@/server/actions/auth-action"
+import { login } from "@/server/actions/auth-action"
 import { toast } from "sonner"
 import { useRouter } from "@/i18n/navigation"
 
 // Zod schema
-const registerSchema = z.object({
-  name: z.string().min(2),
+const loginSchema = z.object({
   email: z.email(),
-  password: z.string().min(6),
-  code: z.string().optional(),
+  password: z.string(),
 })
 
-type RegisterFormValues = z.infer<typeof registerSchema>
+type LoginFormValues = z.infer<typeof loginSchema>
 
-export function RegisterForm() {
+export function LoginForm() {
 
   const router = useRouter();
 
-  const form = useForm<RegisterFormValues>({
-    resolver: zodResolver(registerSchema),
+  const form = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
-      name: "",
       email: "",
       password: "",
-      code: "",
     },
   })
 
-  const onSubmit = async (values: RegisterFormValues) => {
+  const onSubmit = async (values: LoginFormValues) => {
 
-    const res = await register({ data: { authData: values, code: values.code } })
+    const res = await login({ data: values })
     if (res.success) {
-      toast.success(res.message);
       router.push('/');
+      toast.success(res.message);
     } else {
       toast.error(res.message || "Something went wrong")
     }
@@ -62,33 +58,14 @@ export function RegisterForm() {
   return (
     <Card>
       <CardHeader className="text-center">
-        <CardTitle className="text-xl">Create your account</CardTitle>
+        <CardTitle className="text-xl">Login your account</CardTitle>
         <CardDescription>
-          Enter your email below to create your account
+          Enter your login details below.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-
-            {/* Name */}
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="John Doe"
-                      autoComplete="name"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
 
             {/* Email */}
             <FormField
@@ -120,26 +97,7 @@ export function RegisterForm() {
                   <FormControl>
                     <Input
                       type="password"
-                      autoComplete="new-password"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            {/* Promo Code */}
-            <FormField
-              control={form.control}
-              name="code"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Promo Code</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Optional promo code"
-                      autoComplete="off"
+                      autoComplete="password"
                       {...field}
                     />
                   </FormControl>
@@ -149,7 +107,7 @@ export function RegisterForm() {
             />
 
             <Button type="submit" className="w-full">
-              Register
+              Login
             </Button>
           </form>
         </Form>

@@ -1,13 +1,12 @@
 model Currency {
   id        String   @id @default(uuid())
-  code      String   @unique // e.g. "USD", "BTC", "XRP"
-  name      String // e.g. "US Dollar", "Bitcoin", "XRP"
-  symbol    String? // e.g. "$", "₿", "Ξ"
-  decimals  Int      @default(2) // number of decimals, e.g. 2 for USD, 8 for BTC
+  code      String   @unique
+  name      String
+  symbol    String?
+  decimals  Int      @default(2)
   isActive  Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  // relations
   wallets   Wallet[]
 
   @@map("currency")

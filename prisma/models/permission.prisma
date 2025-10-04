@@ -1,91 +1,77 @@
 model Permission {
-    id       String             @id @default(uuid())
-    resource PermissionResource
-    actions  PermissionAction[]
-    roleId   String
-    role     Role               @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  id       String             @id @default(uuid())
+  resource PermissionResource
+  actions  PermissionAction[]
+  roleId   String
+  role     Role               @relation(fields: [roleId], references: [id], onDelete: Cascade)
 }
 
 enum PermissionAction {
-    //  CRUD
-    READ
-    CREATE
-    UPDATE
-    DELETE
+  READ
+  CREATE
+  UPDATE
+  DELETE
 }
 
 enum PermissionResource {
-    //  Core
-    API_KEY
-    SETTINGS
-    MANAGE_ROLE
-    PERMISSIONS
-    LICENSE
-    PARTNER
-    CMS
-    MARKETING
-
-    //  Users
-    PLAYER
-    PLAYER_PROFILE
-    PLAYER_VERIFICATION
-    PLAYER_SESSION
-    AFFILIATE
-    VIP_MANAGEMENT
-    REFERRAL
-    LOYALTY
-    CHAT_MODERATION
-
-    //  Finance
-    WALLET
-    TRANSACTION
-    DEPOSIT
-    WITHDRAWAL
-    BONUS
-    PROMOTION
-    CURRENCY
-    PAYMENT_PROVIDER
-    PAYMENT_GATEWAY
-    FEE_MANAGEMENT
-    CHARGEBACK
-
-    //  Betting & Games
-    SPORTSBOOK
-    BET
-    BET_SETTLEMENT
-    CASINO_GAME
-    CASINO_PROVIDER
-    GAME_CATEGORY
-    GAME_CONFIG
-    JACKPOT
-    TOURNAMENT
-    LOTTERY
-    ESPORTS
-
-    //  Risk & Compliance
-    KYC
-    AML
-    FRAUD_MONITORING
-    RESPONSIBLE_GAMBLING
-    LIMITS
-    RISK_MANAGEMENT
-    AUDIT
-
-    //  Communication
-    SUPPORT_TICKET
-    LIVE_CHAT
-    ANNOUNCEMENT
-    EMAIL_CAMPAIGN
-    NOTIFICATION
-
-    //  Reporting & Monitoring
-    REPORTS
-    ANALYTICS
-    DASHBOARD
-    LOGS
-    MONITORING
-    CRONJOB
-    CACHE
-    WEBHOOK
-    DEV_TOOLS
+  API_KEY
+  SETTINGS
+  MANAGE_ROLE
+  PERMISSIONS
+  LICENSE
+  PARTNER
+  CMS
+  MARKETING
+  PLAYER
+  PLAYER_PROFILE
+  PLAYER_VERIFICATION
+  PLAYER_SESSION
+  AFFILIATE
+  VIP_MANAGEMENT
+  REFERRAL
+  LOYALTY
+  CHAT_MODERATION
+  WALLET
+  TRANSACTION
+  DEPOSIT
+  WITHDRAWAL
+  BONUS
+  PROMOTION
+  CURRENCY
+  PAYMENT_PROVIDER
+  PAYMENT_GATEWAY
+  FEE_MANAGEMENT
+  CHARGEBACK
+  SPORTSBOOK
+  BET
+  BET_SETTLEMENT
+  CASINO_GAME
+  CASINO_PROVIDER
+  GAME_CATEGORY
+  GAME_CONFIG
+  JACKPOT
+  TOURNAMENT
+  LOTTERY
+  ESPORTS
+  KYC
+  AML
+  FRAUD_MONITORING
+  RESPONSIBLE_GAMBLING
+  LIMITS
+  RISK_MANAGEMENT
+  AUDIT
+  SUPPORT_TICKET
+  LIVE_CHAT
+  ANNOUNCEMENT
+  EMAIL_CAMPAIGN
+  NOTIFICATION
+  REPORTS
+  ANALYTICS
+  DASHBOARD
+  LOGS
+  MONITORING
+  CRONJOB
+  CACHE
+  WEBHOOK
+  DEV_TOOLS
 }
