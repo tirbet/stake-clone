@@ -2,6 +2,9 @@ model Wallet {
   id           Int           @id @default(autoincrement())
   userId       String
   currencyId   String
+  isActive     Boolean       @default(true)
+  isBonus      Boolean       @default(false)
+  isFrozen     Boolean       @default(false)
   balance      Decimal       @default(0.0)
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
@@ -9,8 +12,13 @@ model Wallet {
   transactions Transaction[]
   vaults       Vault[]
   currency     Currency      @relation(fields: [currencyId], references: [id])
-  user         User          @relation(fields: [userId], references: [id])
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   withdrawals  Withdrawal[]
 
+  @@unique([userId, currencyId, isBonus])
+  @@index([userId])
+  @@index([currencyId])
+  @@index([userId, isActive])
+  @@index([isBonus])
   @@map("wallet")
 }

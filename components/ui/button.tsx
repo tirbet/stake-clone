@@ -19,6 +19,10 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
+        login:
+          "inline-flex relative items-center gap-2 justify-center rounded-sm font-semibold whitespace-nowrap transition disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] bg-[rgb(61,85,100)] text-white hover:bg-[rgb(85,112,134)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 text-sm leading-none shadow-md py-3 px-5",
+        register:
+          "inline-flex relative items-center gap-2 justify-center rounded-sm font-semibold whitespace-nowrap transition disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] bg-[rgb(20,117,225)] text-white hover:bg-[rgb(16,94,180)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 text-sm leading-none shadow-md py-3 px-5",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

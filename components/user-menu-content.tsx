@@ -21,7 +21,7 @@ export function UserMenuContent({ showUserInfo, user }: Props) {
         const res = await logOut();
         if (res.success) {
             router.refresh();
-            router.push('/');
+            router.push('/login');
             toast.info(res.message);
         } else {
             toast.error(res.message || "Something went wrong")
@@ -29,10 +29,7 @@ export function UserMenuContent({ showUserInfo, user }: Props) {
         return null;
     };
 
-    const handleClick = async (id: number) => {
-        // console.log(id);
-        return null;
-    };
+
 
     return (
         <>

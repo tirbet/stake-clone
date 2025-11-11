@@ -1,5 +1,5 @@
 import { RegisterForm } from "@/components/register-from";
-import { GalleryVerticalEnd } from "lucide-react";
+import { currencies } from "@/server/actions/currency.action";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 };
 
 export default async function RegisterPage() {
-
+  const items = await currencies(true);
   return (
-    <RegisterForm />
+    <RegisterForm currencies={items}/>
   );
 }

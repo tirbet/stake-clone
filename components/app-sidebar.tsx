@@ -1,50 +1,75 @@
-"use client"
-import * as React from "react"
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarRail,
-  useSidebar,
-} from "@/components/ui/sidebar"
-import { Button } from "@/components/ui/button"
-import { Menu } from "lucide-react"
-import { cn } from "@/lib/utils"
-import SidebarFooterNav from "@/components/sidebar-footer-nav"
+"use client";
+import React from 'react';
+import { cn } from '@/lib/utils';
 
-type AppSidebarProps = {
-  children: React.ReactNode
-} & React.ComponentProps<typeof Sidebar>;
+import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarRail, SidebarTrigger } from '@/components/ui/sidebar';
+import { useSidebar } from "@/components/ui/sidebar"
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Link } from '@/i18n/navigation';
 
 
-export function AppSidebar({ children, ...props }: AppSidebarProps) {
-  const { toggleSidebar } = useSidebar()
-  return (
-    <Sidebar {...props}>
-      <SidebarHeader className={
-        cn(
-          'bg-sidebar border-b border-sidebar-border/50 h-15',
-          "backdrop-blur-lg supports-[backdrop-filter]:bg-sidebar/80",
-          'group-has-data-[collapsible=icon]/sidebar-wrapper:h-15'
-        )
-      }>
-        <Button
-          className="h-9 w-9 rounded-md hover:bg-[rgb(38,57,72)]"
-          variant="ghost"
-          size="icon"
-          onClick={toggleSidebar}
-        >
-          <Menu className="h-5 w-5 text-white" />
-        </Button>
-      </SidebarHeader>
-      <SidebarContent>
-        {children}
-      </SidebarContent>
-      <SidebarFooter>
-        <SidebarFooterNav />
-      </SidebarFooter>
-      <SidebarRail />
-    </Sidebar>
-  )
+
+
+interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
+    children: React.ReactNode;
+    show?: boolean;
+}
+
+export function AppSidebar({ children, show = true, ...props }: AppSidebarProps) {
+    const { open } = useSidebar();
+    return (
+        <Sidebar {...props}>
+            <SidebarHeader className={cn('')}>
+                <SidebarMenu>
+                    <SidebarMenuItem>
+                        <div className="flex items-center gap-0 h-full">
+                            <SidebarTrigger className="w-10 h-10" />
+                            {open && show && (
+                                <div className="flex items-center gap-1 h-full">
+                                    <Link
+                                        href={'/sport'}
+                                        className={cn(
+                                            "inline-flex items-center justify-center",
+                                            "bg-transparent text-sidebar-foreground",
+                                            "border border-sidebar-border",
+                                            "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                                            "active:bg-sidebar-primary active:text-sidebar-primary-foreground",
+                                            "w-22 h-10 text-sm font-medium",
+                                            "rounded-[var(--radius-sm)]",
+                                            "transition-colors",
+                                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring",
+                                        )}
+                                    >
+                                        Sport
+                                    </Link>
+                                    <Link
+                                        href={'/casino'}
+                                        className={cn(
+                                            "inline-flex items-center justify-center",
+                                            "bg-transparent text-sidebar-foreground",
+                                            "border border-sidebar-border",
+                                            "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                                            "active:bg-sidebar-primary active:text-sidebar-primary-foreground",
+                                            "w-24 h-10 text-sm font-medium",
+                                            "rounded-[var(--radius-sm)]",
+                                            "transition-colors",
+                                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring",
+                                        )}
+                                    >
+                                        Casino
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
+                    </SidebarMenuItem>
+                </SidebarMenu>
+            </SidebarHeader>
+
+            <SidebarContent className={cn(open ? 'bg-muted' : 'bg-sidebar')}>
+                <ScrollArea className="h-full w-full">
+                    {children}
+                </ScrollArea>
+            </SidebarContent>
+        </Sidebar>
+    );
 }

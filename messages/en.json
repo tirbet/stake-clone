@@ -21,8 +21,8 @@
     },
     "2": {
       "M": {
-        "7": "1 ({score})",
-        "8": "2 ({score})",
+        "7": "1 ({point})",
+        "8": "2 ({point})",
         "13738": "[] - 1 ()",
         "137339": "[] - 2 ()"
       },
@@ -30,8 +30,8 @@
     },
     "17": {
       "M": {
-        "9": "Over ()",
-        "10": "Under ()",
+        "9": "Over {point}",
+        "10": "Under {point}",
         "13740": "[] TO ()",
         "13741": "[] TU ()"
       },
@@ -39,22 +39,22 @@
     },
     "15": {
       "M": {
-        "11": "() Over",
-        "12": "() Under"
+        "11": "{point} Over",
+        "12": "{point} Under"
       },
       "N": "Total 1"
     },
     "62": {
       "M": {
-        "13": "() Over",
-        "14": "() Under"
+        "13": "{point} Over",
+        "14": "{point} Under"
       },
       "N": "Total 2"
     },
     "22": {
       "M": {
-        "50": "Game () - W1",
-        "51": "Game () - W2"
+        "50": "Game {point} - W1",
+        "51": "Game {point} - W2"
       },
       "N": "Win In The Game"
     },
@@ -62,8 +62,8 @@
       "M": {
         "180": "Yes",
         "181": "No",
-        "11273": "Each Team To Score () Or More - Yes",
-        "11274": "Each Team To Score () Or More - No"
+        "11273": "Each Team To Score {point} Or More - Yes",
+        "11274": "Each Team To Score {point} Or More - No"
       },
       "N": "Both Teams To Score"
     },
@@ -97,8 +97,8 @@
     },
     "109": {
       "M": {
-        "732": "1 ()",
-        "733": "2 ()"
+        "732": "1 ({point})",
+        "733": "2 ({point})"
       },
       "N": "Sets Handicap"
     },
@@ -124,31 +124,31 @@
     },
     "10694": {
       "M": {
-        "2068": "() - Over, Over ()",
-        "2069": "() - Over, Under ()",
+        "2068": "{point} - Over, Over {pointB}",
+        "2069": "{point} - Over, Under {pointB}",
         "6089": "Over Number (), ()-()"
       },
       "N": "Over, Total Runs Team 1"
     },
     "10695": {
       "M": {
-        "2070": "() - Over, Over ()",
-        "2071": "() - Over, Under ()",
+        "2070": "{point} - Over, Over {pointB}",
+        "2071": "{point} - Over, Under {pointB}",
         "6090": "Over Number (), ()-()"
       },
       "N": "Over, Total Runs Team 2"
     },
     "10696": {
       "M": {
-        "2072": "() - Over, Even",
-        "2073": "() - Over, Odd"
+        "2072": "({point}) - Over, Even",
+        "2073": "({point}) - Over, Odd"
       },
       "N": "Over, Total Runs Team 1 Even\/Odd"
     },
     "10697": {
       "M": {
-        "2074": "() - Over, Even",
-        "2075": "() - Over, Odd"
+        "2074": "({point}) - Over, Even",
+        "2075": "({point}) - Over, Odd"
       },
       "N": "Over, Total Runs Team 2 Even\/Odd"
     },
@@ -177,48 +177,48 @@
     },
     "2508": {
       "M": {
-        "3014": "() Over",
-        "3015": "() Under",
-        "3016": "() Over",
-        "3017": "() Under",
-        "3018": "() Over",
-        "3019": "() Under",
-        "3020": "() Over",
-        "3021": "() Under",
-        "4948": "() Over",
-        "4949": "() Under",
-        "4950": "() Over",
-        "4951": "() Under",
-        "4969": "() Over",
-        "4970": "() Under",
-        "5132": "() Over",
-        "5133": "() Under",
-        "5134": "() Over",
-        "5135": "() Under",
-        "5136": "() Over",
-        "5137": "() Under",
-        "5138": "() Over",
-        "5139": "() Under",
-        "8161": "() Over",
-        "8162": "() Under",
-        "8159": "() Over",
-        "8160": "() Under",
-        "8163": "() Over",
-        "8164": "() Under",
-        "8165": "() Over",
-        "8166": "() Under",
-        "8806": "() Over",
-        "8807": "() Under",
-        "8808": "() Over",
-        "8809": "() Under",
-        "9221": "Over ()",
-        "9222": "Under ()",
-        "12165": "Total Runs Over ()",
-        "12166": "Total Runs Under ()",
-        "15084": "Over ()",
-        "15085": "Under ()",
-        "15937": "Over ()",
-        "15938": "Under ()"
+        "3014": "({point}) Over",
+        "3015": "({point}) Under",
+        "3016": "({point}) Over",
+        "3017": "({point}) Under",
+        "3018": "({point}) Over",
+        "3019": "({point}) Under",
+        "3020": "({point}) Over",
+        "3021": "({point}) Under",
+        "4948": "({point}) Over",
+        "4949": "({point}) Under",
+        "4950": "({point}) Over",
+        "4951": "({point}) Under",
+        "4969": "({point}) Over",
+        "4970": "({point}) Under",
+        "5132": "({point}) Over",
+        "5133": "({point}) Under",
+        "5134": "({point}) Over",
+        "5135": "({point}) Under",
+        "5136": "({point}) Over",
+        "5137": "({point}) Under",
+        "5138": "({point}) Over",
+        "5139": "({point}) Under",
+        "8161": "({point}) Over",
+        "8162": "({point}) Under",
+        "8159": "({point}) Over",
+        "8160": "({point}) Under",
+        "8163": "({point}) Over",
+        "8164": "({point}) Under",
+        "8165": "({point}) Over",
+        "8166": "({point}) Under",
+        "8806": "({point}) Over",
+        "8807": "({point}) Under",
+        "8808": "({point}) Over",
+        "8809": "({point}) Under",
+        "9221": "Over ({point})",
+        "9222": "Under ({point})",
+        "12165": "Total Runs Over ({point})",
+        "12166": "Total Runs Under ({point})",
+        "15084": "Over ({point})",
+        "15085": "Under ({point})",
+        "15937": "Over ({point})",
+        "15938": "Under ({point})"
       },
       "N": "Total Wides"
     },
@@ -240,8 +240,8 @@
     },
     "99": {
       "M": {
-        "3827": "Over ()",
-        "3828": "Under ()",
+        "3827": "Over {point}",
+        "3828": "Under {point}",
         "13729": "[] Asian Total Over ()",
         "13730": "[] Asian Total Under ()"
       },
@@ -249,8 +249,8 @@
     },
     "2854": {
       "M": {
-        "3829": "1 ()",
-        "3830": "2 ()",
+        "3829": "1 ({point})",
+        "3830": "2 ({point})",
         "13733": "[] Asian Handicap 1 ()",
         "13734": "[] Asian Handicap 2 ()"
       },
@@ -279,15 +279,15 @@
     },
     "6831": {
       "M": {
-        "5390": "Over ()",
-        "5391": "Under ()"
+        "5390": "Over ({point})",
+        "5391": "Under ({point})"
       },
       "N": "The Lowest Drawn Number. Value"
     },
     "6833": {
       "M": {
-        "5392": "Over ()",
-        "5393": "Under ()"
+        "5392": "Over ({point})",
+        "5393": "Under ({point})"
       },
       "N": "The Highest Drawn Number. Value"
     },
@@ -307,10 +307,10 @@
     },
     "7079": {
       "M": {
-        "5719": "() Over",
-        "5720": "() Under",
-        "13195": "() Under",
-        "13196": "() Over"
+        "5719": "({point}) Over",
+        "5720": "({point}) Under",
+        "13195": "({point}) Under",
+        "13196": "({point}) Over"
       },
       "N": "Total Moves"
     },
@@ -412,8 +412,8 @@
     },
     "9710": {
       "M": {
-        "11498": "Over ()",
-        "11499": "Under ()"
+        "11498": "Over ({point})",
+        "11499": "Under ({point})"
       },
       "N": "Sum Total Of First 5 Drawn Numbers"
     },
@@ -448,43 +448,43 @@
     },
     "10238": {
       "M": {
-        "13197": "Whites ()",
-        "13198": "Blacks ()"
+        "13197": "Whites ({point})",
+        "13198": "Blacks ({point})"
       },
       "N": "Game Handicap"
     },
     "10318": {
       "M": {
-        "13409": "Over ()",
-        "13410": "Under ()"
+        "13409": "Over ({point})",
+        "13410": "Under ({point})"
       },
       "N": "Total Shots"
     },
     "10316": {
       "M": {
-        "13411": "Over ()",
-        "13412": "Under ()"
+        "13411": "Over ({point})",
+        "13412": "Under ({point})"
       },
       "N": "Player 1 Total Shots"
     },
     "10317": {
       "M": {
-        "13413": "Over ()",
-        "13414": "Under ()"
+        "13413": "Over ({point})",
+        "13414": "Under ({point})"
       },
       "N": "Player 2 Total Shots"
     },
     "10393": {
       "M": {
-        "13643": "Over ()",
-        "13644": "Under ()"
+        "13643": "Over ({point})",
+        "13644": "Under ({point})"
       },
       "N": "First Drawn Number. Value"
     },
     "10394": {
       "M": {
-        "13645": "Over ()",
-        "13646": "Under ()"
+        "13645": "Over ({point})",
+        "13646": "Under ({point})"
       },
       "N": "Last Drawn Number. Value"
     },
@@ -501,15 +501,15 @@
     },
     "10784": {
       "M": {
-        "14716": "Over ()",
-        "14717": "Under ()"
+        "14716": "Over ({point})",
+        "14717": "Under ({point})"
       },
       "N": "Sum Of All White Drawn Numbers"
     },
     "10785": {
       "M": {
-        "14718": "Over ()",
-        "14719": "Under ()"
+        "14718": "Over ({point})",
+        "14719": "Under ({point})"
       },
       "N": "Sum Of All Pink Drawn Numbers"
     },
@@ -567,35 +567,35 @@
     },
     "21": {
       "M": {
-        "44": "The Receiver To Win Game () With Any Score",
-        "49": "The Receiver To Win Game () With Any Score",
-        "542": "Game () 40+:0, Player 1",
-        "543": "Game () 40+:15, Player 1",
-        "544": "Game () 40+:30, Player 1",
-        "545": "Game () +:40, Player 1",
-        "546": "Game () 0:40+, Player 2",
-        "547": "Game () 15:40+, Player 2",
-        "548": "Game () 30:40+, Player 2",
-        "549": "Game () 40:+, Player 2"
+        "44": "The Receiver To Win Game ({point}) With Any Score",
+        "49": "The Receiver To Win Game ({point}) With Any Score",
+        "542": "Game ({point}) 40+:0, Player 1",
+        "543": "Game ({point}) 40+:15, Player 1",
+        "544": "Game ({point}) 40+:30, Player 1",
+        "545": "Game ({point}) +:40, Player 1",
+        "546": "Game ({point}) 0:40+, Player 2",
+        "547": "Game ({point}) 15:40+, Player 2",
+        "548": "Game ({point}) 30:40+, Player 2",
+        "549": "Game ({point}) 40:+, Player 2"
       },
       "N": "Game Scoreline"
     },
     "23": {
       "M": {
-        "58": "Set () W1",
-        "59": "Set () W2"
+        "58": "Set {point} W1",
+        "59": "Set {point} W2"
       },
       "N": "Win In The Set"
     },
     "20": {
       "M": {
-        "388": "Team 1 To Score Goal ()",
-        "389": "Team 2 To Score Goal ()",
-        "390": "No Goal ()",
-        "13885": "Team 3 To Score Goal ()",
-        "13892": "Player 1 To Score Goal ()",
-        "13893": "Player 2 To Score Goal ()",
-        "13894": "Player 3 To Score Goal ()"
+        "388": "Team 1 To Score Goal {point}",
+        "389": "Team 2 To Score Goal {point}",
+        "390": "No Goal ({point})",
+        "13885": "Team 3 To Score Goal {point}",
+        "13892": "Player 1 To Score Goal {point}",
+        "13893": "Player 2 To Score Goal {point}",
+        "13894": "Player 3 To Score Goal {point}"
       },
       "N": "Next Goal"
     },
@@ -622,13 +622,13 @@
         "382": "6-10 Mins",
         "384": "11-15 Mins",
         "386": "16-20 Mins",
-        "630": "Goal () In 0-15 Mins",
-        "631": "Goal () In 16-30 Mins",
-        "632": "Goal () In 31-45 Mins",
-        "633": "Goal () In 46-60 Mins",
-        "634": "Goal () In 61-75 Mins",
-        "635": "Goal () in 76+ Mins",
-        "636": "No Goal ()",
+        "630": "Goal ({point}) In 0-15 Mins",
+        "631": "Goal ({point}) In 16-30 Mins",
+        "632": "Goal ({point}) In 31-45 Mins",
+        "633": "Goal ({point}) In 46-60 Mins",
+        "634": "Goal ({point}) In 61-75 Mins",
+        "635": "Goal ({point}) in 76+ Mins",
+        "636": "No Goal ({point})",
         "2951": "Team 1: ()-() Minutes",
         "2952": "Team 2: ()-() Minutes",
         "4399": "Goal () ()-() Min",
@@ -638,11 +638,11 @@
     },
     "13": {
       "M": {
-        "67": "Goal () In 0-15 Mins",
-        "69": "Goal () In 16-30 Mins",
-        "71": "Goal () In 31-45 Mins",
-        "73": "Goal () In 46-60 Mins",
-        "75": "Goal () In 61-75 Mins",
+        "67": "Goal ({point}) In 0-15 Mins",
+        "69": "Goal ({point}) In 16-30 Mins",
+        "71": "Goal ({point}) In 31-45 Mins",
+        "73": "Goal ({point}) In 46-60 Mins",
+        "75": "Goal ({point}) In 61-75 Mins",
         "351": "Team 1: 1-15 Mins",
         "353": "Team 1: 16-30 Mins",
         "355": "Team 1: 31-45 Mins",
@@ -677,8 +677,8 @@
     },
     "6": {
       "M": {
-        "83": "() Over",
-        "84": "() Under"
+        "83": "({point}) Over",
+        "84": "({point}) Under"
       },
       "N": "First Half Total"
     },
@@ -735,9 +735,9 @@
     },
     "27": {
       "M": {
-        "424": "() W1",
-        "425": "() X",
-        "426": "() W2"
+        "424": "{point} W1",
+        "425": "{point} X",
+        "426": "{point} W2"
       },
       "N": "European Handicap"
     },
@@ -1147,9 +1147,9 @@
     },
     "87": {
       "M": {
-        "739": "Over ()",
-        "741": "Exactly ()",
-        "743": "Under ()"
+        "739": "Over {point}",
+        "741": "Exactly {point}",
+        "743": "Under {point}"
       },
       "N": "3Way Total"
     },
@@ -1162,17 +1162,17 @@
     },
     "88": {
       "M": {
-        "749": "Over ()",
-        "751": "Exactly ()",
-        "753": "Under ()"
+        "749": "Over {point}",
+        "751": "Exactly {point}",
+        "753": "Under {point}"
       },
       "N": "Individual 3Way Total 1"
     },
     "89": {
       "M": {
-        "763": "Over ()",
-        "764": "Exact ()",
-        "765": "Under ()"
+        "763": "Over {point}",
+        "764": "Exact {point}",
+        "765": "Under {point}"
       },
       "N": "Individual 3Way Total 2"
     },
@@ -1230,26 +1230,26 @@
     },
     "136": {
       "M": {
-        "731": "()-()",
-        "1757": "1 Will Score () Or Fewer",
-        "1758": "2 Will Score () Or Fewer",
-        "1759": "1 Wins After ()",
-        "1760": "2 Wins After ()",
-        "2060": "()-() Or Better 1",
-        "2063": "()-() Or Better 2",
-        "3044": "()-() - Yes",
-        "3045": "()-() - No",
+        "731": "{point}-{pointB}",
+        "1757": "1 Will Score {point} Or Fewer",
+        "1758": "2 Will Score {point} Or Fewer",
+        "1759": "1 Wins After {point}",
+        "1760": "2 Wins After {point}",
+        "2060": "{point}-{pointB} Or Better 1",
+        "2063": "{point}-{pointB} Or Better 2",
+        "3044": "{point}-{pointB} - Yes",
+        "3045": "{point}-{pointB} - No",
         "3506": "Any Other Score - W1",
         "3507": "Any Other Score - W2",
         "3786": "Correct Score - Any Other",
         "4310": "Any Other Score - W1",
         "4311": "Any Other Score - W2",
         "4312": "Any Other Score - Neither",
-        "8135": "()-() Or Less",
-        "8136": "() Or Less - ()",
+        "8135": "{point}-{pointB} Or Less",
+        "8136": "{point} Or Less - {pointB}",
         "8137": "W1 After Score 10-10",
         "8138": "W2 After Score 10-10",
-        "4784": "Any Team To Score () Or More Runs",
+        "4784": "Any Team To Score {point} Or More Runs",
         "5563": "W1",
         "5564": "X",
         "5565": "W2"
@@ -1344,14 +1344,14 @@
     },
     "104": {
       "M": {
-        "818": "Goal Number () - Scored By Kicking",
-        "819": "Goal Number () - Header",
-        "820": "Goal Number () - To Be Scored From A Direct Free Kick",
-        "821": "Goal Number () - Penalty",
-        "822": "Goal Number () - Own Goal",
-        "2488": "No Goal Number ()",
-        "10422": "Goal Number () To Be Scored From Open Play From Inside The Penalty Area",
-        "10423": "Goal Number () To Be Scored From Open Play From Outside The Penalty Area",
+        "818": "Goal Number {point} - Scored By Kicking",
+        "819": "Goal Number {point} - Header",
+        "820": "Goal Number {point} - To Be Scored From A Direct Free Kick",
+        "821": "Goal Number {point} - Penalty",
+        "822": "Goal Number {point} - Own Goal",
+        "2488": "No Goal Number {point}",
+        "10422": "Goal Number {point} To Be Scored From Open Play From Inside The Penalty Area",
+        "10423": "Goal Number {point} To Be Scored From Open Play From Outside The Penalty Area",
         "5909": "Header And A Free Kick To Be Scored",
         "6142": "A Header And A Direct Free Kick From Outside The Box To Be Scored"
       },
@@ -1410,26 +1410,26 @@
     },
     "119": {
       "M": {
-        "832": "[]",
-        "5869": "[] - Yes",
-        "5870": "[] - No"
+        "832": "{point}",
+        "5869": "{point} - Yes",
+        "5870": "{point} - No"
       },
       "N": "Player To Score A Goal"
     },
     "117": {
       "M": {
-        "833": "[]",
+        "833": "{point}",
         "2960": "No Goals",
-        "4874": "[] - Yes",
-        "4875": "[] - No",
-        "5447": "Russian Player To Score []'s First Goal In Champions League - Yes",
-        "5448": "Russian Player To Score []'s First Goal In Champions League - No"
+        "4874": "{point} - Yes",
+        "4875": "{point} - No",
+        "5447": "Russian Player To Score {point}'s First Goal In Champions League - Yes",
+        "5448": "Russian Player To Score {point}'s First Goal In Champions League - No"
       },
       "N": "Player To Score First Goal"
     },
     "118": {
       "M": {
-        "834": "[]",
+        "834": "{point}",
         "2961": "No Goals"
       },
       "N": "Player To Score Last Goal"
@@ -1641,8 +1641,8 @@
     },
     "182": {
       "M": {
-        "971": "() Over",
-        "972": "() Under"
+        "971": "{point} Over",
+        "972": "{point} Under"
       },
       "N": "Total Sets"
     },
@@ -1848,16 +1848,16 @@
     },
     "260": {
       "M": {
-        "1100": "Break Number () - Player 1",
-        "1101": "Break Number () - Player 2",
-        "1102": "Break Number () - Neither"
+        "1100": "Break Number {point} - Player 1",
+        "1101": "Break Number {point} - Player 2",
+        "1102": "Break Number {point} - Neither"
       },
       "N": "Next Break"
     },
     "262": {
       "M": {
-        "1103": "() Over",
-        "1104": "() Under"
+        "1103": "{point} Over",
+        "1104": "{point} Under"
       },
       "N": "Match Point Total"
     },
@@ -1888,31 +1888,31 @@
     },
     "270": {
       "M": {
-        "1115": "() Over",
-        "1116": "() Under"
+        "1115": "{point} Over",
+        "1116": "{point} Under"
       },
       "N": "Number Of Set Points"
     },
     "272": {
       "M": {
-        "1117": "() Over",
-        "1118": "() Under"
+        "1117": "{point} Over",
+        "1118": "{point} Under"
       },
       "N": "Number Of Points In First Game"
     },
     "274": {
       "M": {
-        "1119": "() Over",
-        "1120": "() Under",
-        "1121": "() Over",
-        "1122": "() Under"
+        "1119": "{point} Over",
+        "1120": "{point} Under",
+        "1121": "{point} Over",
+        "1122": "{point} Under"
       },
       "N": "Player 1 First Serve Percentage"
     },
     "279": {
       "M": {
-        "1129": "()-() Min - Yes",
-        "1130": "()-() Min - No"
+        "1129": "{point}-{pointB} Min - Yes",
+        "1130": "{point}-{pointB} Min - No"
       },
       "N": "First Corner Time"
     },
@@ -2932,18 +2932,18 @@
     },
     "809": {
       "M": {
-        "1572": "() Under",
-        "1573": "() Over",
+        "1572": "{point} Under",
+        "1573": "{point} Over",
         "2981": "1st Set > 2nd",
         "2982": "1st Set = 2nd",
         "2983": "1st Set < 2nd",
-        "5078": "Set () > Set () - Yes",
-        "5079": "Set () > Set () - No",
+        "5078": "Set {point} > Set {pointB} - Yes",
+        "5079": "Set {point} > Set {pointB} - No",
         "5247": "1st Set < 2nd - Yes",
         "5248": "1st Set < 2nd - No",
-        "8770": "Set () > Set ()",
-        "8771": "Set () = Set ()",
-        "8772": "Set () < Set ()"
+        "8770": "Set {point} > Set {pointB}",
+        "8771": "Set {point} = Set {pointB}",
+        "8772": "Set {point} < Set {pointB}"
       },
       "N": "Highest Scoring Set Total"
     },
@@ -3042,15 +3042,15 @@
     },
     "818": {
       "M": {
-        "1604": "() Under",
-        "1605": "() Over"
+        "1604": "{point} Under",
+        "1605": "{point} Over"
       },
       "N": "Duration Of The Match"
     },
     "819": {
       "M": {
-        "1606": "() Under",
-        "1607": "() Over"
+        "1606": "{point} Under",
+        "1607": "{point} Over"
       },
       "N": "Duration Of The First Set"
     },
@@ -4220,12 +4220,16 @@
     },
     "998": {
       "M": {
-        "2037": "First () Overs Over ()",
-        "2038": "First () Overs Under ()",
-        "2039": "First () Overs Over ()",
-        "2040": "First () Overs Under ()"
+        "2037": "First {point} Overs Over {pointB}",
+        "2038": "First {point} Overs Under {pointB}",
+        "2039": "First {point} Overs Over {pointB}",
+        "2040": "First {point} Overs Under {pointB}"
       },
-      "N": "Total Runs 1"
+      "N": "Total Runs 1",
+      "GN": {
+        "525": "Total Runs 1",
+        "526": "Total Runs 2"
+      }
     },
     "1000": {
       "M": {
@@ -4388,14 +4392,18 @@
     },
     "1044": {
       "M": {
-        "2119": "Over (), Will A Wicket Be Taken - Yes",
-        "2120": "Over (), Will A Wicket Be Taken - No",
-        "2121": "Over (), Will A Wicket Be Taken - Yes",
-        "2122": "Over (), Will A Wicket Be Taken - No",
-        "14873": "Over () - Yes",
-        "14874": "Over () - No"
+        "2119": "Over {point}, Will A Wicket Be Taken - Yes",
+        "2120": "Over {point}, Will A Wicket Be Taken - No",
+        "2121": "Over {point}, Will A Wicket Be Taken - Yes",
+        "2122": "Over {point}, Will A Wicket Be Taken - No",
+        "14873": "Over {point} - Yes",
+        "14874": "Over {point} - No"
       },
-      "N": "Team 1, Will A Wicket Fall In Over"
+      "N": "Team 1, Will A Wicket Fall In Over",
+      "GN": {
+        "557": "Team 1, Will A Wicket Fall In Over",
+        "558": "Team 2, Will A Wicket Fall In Over"
+      }
     },
     "1046": {
       "M": {
@@ -6222,18 +6230,18 @@
     },
     "2502": {
       "M": {
-        "2993": "() Or More - Yes",
-        "2994": "() Or More  - No",
+        "2993": "{point} Or More - Yes",
+        "2994": "{point} Or More  - No",
         "2995": "Yes",
         "2996": "No",
         "3038": "Yes",
         "3039": "No",
         "3679": "()-() After First () Games - Yes",
         "3680": "()-() After First () Games - No",
-        "3681": "()-() - Yes",
-        "3682": "()-() - No",
-        "3683": "()-() - Yes",
-        "3684": "()-() - No",
+        "3681": "{point}-{pointB} - Yes",
+        "3682": "{point}-{pointB} - No",
+        "3683": "{point}-{pointB} - Yes",
+        "3684": "{point}-{pointB} - No",
         "11133": "[] To Win The Race, [] And [] Both To Finish In Top ()",
         "11134": "[] To Win The Race And [] To Have Fastest Lap",
         "11135": "[] Race Winner, [] First Constructor Retirement",
@@ -6245,7 +6253,17 @@
         "11141": "[] Not To Finish In Top () And [] To Finish In Top ()",
         "11874": "[], [], [] And [] To Finish In Top ()"
       },
-      "N": "Any Player To Score A Specific Number Of Runs"
+      "N": "Any Player To Score A Specific Number Of Runs",
+      "GN": {
+        "785": "Any Player To Score A Specific Number Of Runs",
+        "786": "First Dismissal Will Be Through A Catch In The Match",
+        "787": "First Ball To Be A Dot Ball With No Runs Scored",
+        "788": "Score After First Games",
+        "789": "Player To Win Their Serve After Score",
+        "790": "Player To Lose Their Serve After Score",
+        "3494": "Special Bets",
+        "3739": "Special Bets"
+      }
     },
     "2444": {
       "M": {
@@ -6744,64 +6762,64 @@
     },
     "2665": {
       "M": {
-        "191": "W2 And TU () - Yes",
-        "192": "W2 And TO () - Yes",
-        "193": "2X And TU () - Yes",
-        "194": "2X And TO () - Yes",
-        "211": "W2 And TU () - No",
-        "212": "W2 And TO () - No",
-        "213": "2X And TU () - No",
-        "214": "2X And TO () - No",
-        "2867": "W2 And Total () Or More",
-        "3912": "W2 And TU () - Yes",
-        "3913": "W2 And TU () - No",
-        "3914": "W2 And TO () - Yes",
-        "3915": "W2 And TO () - No"
+        "191": "W2 And TU {point} - Yes",
+        "192": "W2 And TO {point} - Yes",
+        "193": "2X And TU {point} - Yes",
+        "194": "2X And TO {point} - Yes",
+        "211": "W2 And TU {point} - No",
+        "212": "W2 And TO {point} - No",
+        "213": "2X And TU {point} - No",
+        "214": "2X And TO {point} - No",
+        "2867": "W2 And Total {point} Or More",
+        "3912": "W2 And TU {point} - Yes",
+        "3913": "W2 And TU {point} - No",
+        "3914": "W2 And TO {point} - Yes",
+        "3915": "W2 And TO {point} - No"
       },
       "N": "2, Result + Total"
     },
     "2663": {
       "M": {
-        "196": "W1 And TU () - Yes",
-        "197": "W1 And TO () - Yes",
-        "198": "1X And TU () - Yes",
-        "199": "1X And TO () - Yes",
-        "206": "W1 And TU () - No",
-        "207": "W1 And TO () - No",
-        "208": "1X And TU () - No",
-        "209": "1X And TO () - No",
-        "2866": "W1 And Total () Or More",
-        "3908": "W1 And TU () - Yes",
-        "3909": "W1 And TU () - No",
-        "3910": "W1 And TO () - Yes",
-        "3911": "W1 And TO () - No"
+        "196": "W1 And TU {point} - Yes",
+        "197": "W1 And TO {point} - Yes",
+        "198": "1X And TU {point} - Yes",
+        "199": "1X And TO {point} - Yes",
+        "206": "W1 And TU {point} - No",
+        "207": "W1 And TO {point} - No",
+        "208": "1X And TU {point} - No",
+        "209": "1X And TO {point} - No",
+        "2866": "W1 And Total {point} Or More",
+        "3908": "W1 And TU {point} - Yes",
+        "3909": "W1 And TU {point} - No",
+        "3910": "W1 And TO {point} - Yes",
+        "3911": "W1 And TO {point} - No"
       },
       "N": "1, Result + Total"
     },
     "2667": {
       "M": {
-        "201": "X And TU () - Yes",
-        "202": "X And TU () - No",
-        "203": "X And TO () - Yes",
-        "204": "X And TO () - No",
-        "2868": "X And Total () Or More"
+        "201": "X And TU {point} - Yes",
+        "202": "X And TU {point} - No",
+        "203": "X And TO {point} - Yes",
+        "204": "X And TO {point} - No",
+        "2868": "X And Total {point} Or More"
       },
       "N": "Draw + Total"
     },
     "2668": {
       "M": {
-        "1554": "1X + TU () - Yes",
-        "1555": "1X + TO () - Yes",
-        "1556": "2X + TU () - Yes",
-        "1557": "2X + TO () - Yes",
-        "1558": "12 + TU () - Yes",
-        "1559": "12 + TO () - Yes",
-        "1631": "1X + TU () - No",
-        "1632": "1X + TO () - No",
-        "1633": "2X + TU () - No",
-        "1634": "2X + TO () - No",
-        "1635": "12 + TU () - No",
-        "1636": "12 + TO () - No"
+        "1554": "1X + TU {point} - Yes",
+        "1555": "1X + TO {point} - Yes",
+        "1556": "2X + TU {point} - Yes",
+        "1557": "2X + TO {point} - Yes",
+        "1558": "12 + TU {point} - Yes",
+        "1559": "12 + TO {point} - Yes",
+        "1631": "1X + TU {point} - No",
+        "1632": "1X + TO {point} - No",
+        "1633": "2X + TU {point} - No",
+        "1634": "2X + TO {point} - No",
+        "1635": "12 + TU {point} - No",
+        "1636": "12 + TO {point} - No"
       },
       "N": "Double Chance + Total"
     },
@@ -7163,10 +7181,10 @@
     },
     "2732": {
       "M": {
-        "3545": "[] - Yes",
-        "3546": "[] - No",
-        "5591": "[] - Yes",
-        "5592": "[] - No"
+        "3545": "{point} - Yes",
+        "3546": "{point} - No",
+        "5591": "{point} - Yes",
+        "5592": "{point} - No"
       },
       "N": "To Provide An Assist"
     },
@@ -7464,19 +7482,19 @@
     },
     "2798": {
       "M": {
-        "3742": "() Over",
-        "3743": "() Under",
-        "3744": "() Over",
-        "3745": "() Under",
-        "3746": "() Over",
-        "3747": "() Under"
+        "3742": "{point} Over",
+        "3743": "{point} Under",
+        "3744": "{point} Over",
+        "3745": "{point} Under",
+        "3746": "{point} Over",
+        "3747": "{point} Under"
       },
       "N": "Longest Game (Number Of Minutes)"
     },
     "2800": {
       "M": {
-        "3748": "() Over",
-        "3749": "() Under"
+        "3748": "{point} Over",
+        "3749": "{point} Under"
       },
       "N": "Total Tie-Breaks In The Match"
     },
@@ -8098,19 +8116,19 @@
     },
     "2945": {
       "M": {
-        "3934": "()-()"
+        "3934": "{point}-{pointB}"
       },
       "N": "Score After 2 Games"
     },
     "2947": {
       "M": {
-        "3935": "()-()"
+        "3935": "{point}-{pointB}"
       },
       "N": "Score After 4 Games"
     },
     "2949": {
       "M": {
-        "3936": "()-()"
+        "3936": "{point}-{pointB}"
       },
       "N": "Score After 6 Games"
     },
@@ -8262,19 +8280,19 @@
     },
     "2987": {
       "M": {
-        "3973": "W1 And Total 1 Over () - Yes",
-        "3974": "W1 And Total 1 Over () - No",
-        "10334": "W1 And Total 1 Under () - Yes",
-        "10335": "W1 And Total 1 Under () - No"
+        "3973": "W1 And Total 1 Over {point} - Yes",
+        "3974": "W1 And Total 1 Over {point} - No",
+        "10334": "W1 And Total 1 Under {point} - Yes",
+        "10335": "W1 And Total 1 Under {point} - No"
       },
       "N": "W1 + Total 1"
     },
     "2989": {
       "M": {
-        "3975": "W2 And Total 2 Over () - Yes",
-        "3976": "W2 And Total 2 Over () - No",
-        "10336": "W2 And Total 2 Under () - Yes",
-        "10337": "W2 And Total 2 Under () - No"
+        "3975": "W2 And Total 2 Over {point} - Yes",
+        "3976": "W2 And Total 2 Over {point} - No",
+        "10336": "W2 And Total 2 Under {point} - Yes",
+        "10337": "W2 And Total 2 Under {point} - No"
       },
       "N": "W2 + Total 2"
     },
@@ -9652,31 +9670,31 @@
     },
     "3309": {
       "M": {
-        "4554": "() Or Fewer",
-        "4555": "()",
-        "4556": "Team 1 Total - () Or More Goals",
+        "4554": "{point} Or Fewer",
+        "4555": "{point}",
+        "4556": "Team 1 Total - {point} Or More Goals",
         "4557": "From () To ()",
-        "4558": "() - Yes",
-        "4559": "() - No",
+        "4558": "{point} - Yes",
+        "4559": "{point} - No",
         "4560": "From () To () - Yes",
         "4561": "From () To () - No",
-        "7199": "() Or More - Yes",
-        "7200": "() Or More - No"
+        "7199": "{point} Or More - Yes",
+        "7200": "{point} Or More - No"
       },
       "N": "Total 1 Exact Number Of Goals"
     },
     "3311": {
       "M": {
-        "4562": "() Or Fewer",
-        "4563": "()",
-        "4564": "Team 2 Total - () Or More Goals",
+        "4562": "{point} Or Fewer",
+        "4563": "{point}",
+        "4564": "Team 2 Total - {point} Or More Goals",
         "4565": "From () To ()",
-        "4566": "() - Yes",
-        "4567": "() - No",
+        "4566": "{point} - Yes",
+        "4567": "{point} - No",
         "4568": "From () To () - Yes",
         "4569": "From () To () - No",
-        "7201": "() Or More - Yes",
-        "7202": "() Or More - No"
+        "7201": "{point} Or More - Yes",
+        "7202": "{point} Or More - No"
       },
       "N": "Total 2 Exact Number Of Goals"
     },
@@ -15299,15 +15317,15 @@
     },
     "7771": {
       "M": {
-        "6708": "To Win ():()",
-        "6709": "To Lose ():()"
+        "6708": "To Win {point}:{pointB}",
+        "6709": "To Lose {point}:{pointB}"
       },
       "N": "Player 1, 1st Service Game Score"
     },
     "7773": {
       "M": {
-        "6710": "To Win ():()",
-        "6711": "To Lose ():()"
+        "6710": "To Win {point}:{pointB}",
+        "6711": "To Lose {point}:{pointB}"
       },
       "N": "Player 2, 1st Service Game Score"
     },
@@ -16584,15 +16602,15 @@
     },
     "8099": {
       "M": {
-        "7173": "By Exactly () Goal(s) - Yes",
-        "7174": "By Exactly () Goal(s) - No"
+        "7173": "By Exactly {point} Goal(s) - Yes",
+        "7174": "By Exactly {point} Goal(s) - No"
       },
       "N": "Team 1 To Win First Half With Difference"
     },
     "8101": {
       "M": {
-        "7175": "By Exactly () Goal(s) - Yes",
-        "7176": "By Exactly () Goal(s) - No"
+        "7175": "By Exactly {point} Goal(s) - Yes",
+        "7176": "By Exactly {point} Goal(s) - No"
       },
       "N": "Team 2 To Win First Half With Difference"
     },
@@ -17019,8 +17037,8 @@
     },
     "8219": {
       "M": {
-        "7438": "() Over",
-        "7439": "() Under"
+        "7438": "{point} Over",
+        "7439": "{point} Under"
       },
       "N": "Total Tie-Breaks"
     },
@@ -17791,15 +17809,15 @@
     },
     "8427": {
       "M": {
-        "7778": "() Over",
-        "7779": "() Under"
+        "7778": "{point} Over",
+        "7779": "{point} Under"
       },
       "N": "Asian Team Total 1"
     },
     "8429": {
       "M": {
-        "7780": "() Over",
-        "7781": "() Under"
+        "7780": "{point} Over",
+        "7781": "{point} Under"
       },
       "N": "Asian Team Total 2"
     },
@@ -19414,8 +19432,8 @@
     },
     "8863": {
       "M": {
-        "8617": "Correct Score ()-() (17Way)",
-        "8618": "Correct Score After ()-() - Any Other"
+        "8617": "Correct Score {point}-{pointB} (17Way)",
+        "8618": "Correct Score After {point}-{pointB} - Any Other"
       },
       "N": "Correct Score (17Way)"
     },
@@ -21952,8 +21970,8 @@
     },
     "9242": {
       "M": {
-        "1893": "[] - Yes",
-        "1894": "[] - No"
+        "1893": "{point} - Yes",
+        "1894": "{point} - No"
       },
       "N": "Event"
     },
@@ -23358,54 +23376,54 @@
     },
     "9429": {
       "M": {
-        "10342": "2X And Over () - Yes",
-        "10343": "2X And Over () - No",
-        "10344": "2X And Under () - Yes",
-        "10345": "2X And Under () - No",
-        "10370": "1X And Over () - Yes",
-        "10371": "1X And Over () - No",
-        "10372": "1X And Under () - Yes",
-        "10373": "1X And Under () - No",
-        "10386": "12 And Over () - Yes",
-        "10387": "12 And Over () - No",
-        "10388": "12 And Under () - Yes",
-        "10389": "12 And Under () - No"
+        "10342": "2X And Over {point} - Yes",
+        "10343": "2X And Over {point} - No",
+        "10344": "2X And Under {point} - Yes",
+        "10345": "2X And Under {point} - No",
+        "10370": "1X And Over {point} - Yes",
+        "10371": "1X And Over {point} - No",
+        "10372": "1X And Under {point} - Yes",
+        "10373": "1X And Under {point} - No",
+        "10386": "12 And Over {point} - Yes",
+        "10387": "12 And Over {point} - No",
+        "10388": "12 And Under {point} - Yes",
+        "10389": "12 And Under {point} - No"
       },
       "N": "2X + Team 2 Total"
     },
     "9430": {
       "M": {
-        "10346": "X And Over () - Yes",
-        "10347": "X And Over () - No",
-        "10348": "X And Under () - Yes",
-        "10349": "X And Under () - No"
+        "10346": "X And Over {point} - Yes",
+        "10347": "X And Over {point} - No",
+        "10348": "X And Under {point} - Yes",
+        "10349": "X And Under {point} - No"
       },
       "N": "X + Team 1 Total"
     },
     "9431": {
       "M": {
-        "10350": "X And Over () - Yes",
-        "10351": "X And Over () - No",
-        "10352": "X And Under () - Yes",
-        "10353": "X And Under () - No"
+        "10350": "X And Over {point} - Yes",
+        "10351": "X And Over {point} - No",
+        "10352": "X And Under {point} - Yes",
+        "10353": "X And Under {point} - No"
       },
       "N": "X + Team 2 Total"
     },
     "9432": {
       "M": {
-        "10358": "W1 And Over () - Yes",
-        "10359": "W1 And Over () - No",
-        "10360": "W1 And Under () - Yes",
-        "10361": "W1 And Under () - No"
+        "10358": "W1 And Over {point} - Yes",
+        "10359": "W1 And Over {point} - No",
+        "10360": "W1 And Under {point} - Yes",
+        "10361": "W1 And Under {point} - No"
       },
       "N": "W1 + Team 2 Total"
     },
     "9433": {
       "M": {
-        "10362": "W2 And Over () - Yes",
-        "10363": "W2 And Over () - No",
-        "10364": "W2 And Under () - Yes",
-        "10365": "W2 And Under () - No"
+        "10362": "W2 And Over {point} - Yes",
+        "10363": "W2 And Over {point} - No",
+        "10364": "W2 And Under {point} - Yes",
+        "10365": "W2 And Under {point} - No"
       },
       "N": "W2 + Team 1 Total"
     },
@@ -27283,8 +27301,8 @@
     },
     "9931": {
       "M": {
-        "12149": "W1 After First () Overs (2Way)",
-        "12150": "W2 After First () Overs (2Way)"
+        "12149": "W1 After First {point} Overs (2Way)",
+        "12150": "W2 After First {point} Overs (2Way)"
       },
       "N": "Result After First Overs (2Way)"
     },
@@ -27344,16 +27362,16 @@
     },
     "9939": {
       "M": {
-        "4546": "() Or Less - Yes",
-        "4547": "() Or Less - No",
-        "4548": "() - Yes",
-        "4549": "() - No",
-        "4550": "From () To () - Yes",
-        "4551": "From () To () - No",
-        "4552": "() Or More - Yes",
-        "4553": "() Or More - No",
-        "5298": "()",
-        "6164": "Total Goals - ()"
+        "4546": "{point} Or Less - Yes",
+        "4547": "{point} Or Less - No",
+        "4548": "{point} - Yes",
+        "4549": "{point} - No",
+        "4550": "From {point} To {pointB} - Yes",
+        "4551": "From {point} To {pointB} - No",
+        "4552": "{point} Or More - Yes",
+        "4553": "{point} Or More - No",
+        "5298": "{point}",
+        "6164": "Total Goals - {point}"
       },
       "N": "Exact Number"
     },
@@ -28496,35 +28514,35 @@
     },
     "10084": {
       "M": {
-        "10326": "() Over",
-        "10327": "() Under"
+        "10326": "{point} Over",
+        "10327": "{point} Under"
       },
       "N": "Team 2 Total Penalties"
     },
     "10106": {
       "M": {
-        "10338": "1X And Over () - Yes",
-        "10339": "1X And Over () - No",
-        "10340": "1X And Under () - Yes",
-        "10341": "1X And Under () - No"
+        "10338": "1X And Over {point} - Yes",
+        "10339": "1X And Over {point} - No",
+        "10340": "1X And Under {point} - Yes",
+        "10341": "1X And Under {point} - No"
       },
       "N": "1X + Team 1 Total"
     },
     "10107": {
       "M": {
-        "10366": "2X And Over () - Yes",
-        "10367": "2X And Over () - No",
-        "10368": "2X And Under () - Yes",
-        "10369": "2X And Under () - No"
+        "10366": "2X And Over {point} - Yes",
+        "10367": "2X And Over {point} - No",
+        "10368": "2X And Under {point} - Yes",
+        "10369": "2X And Under {point} - No"
       },
       "N": "2X + Team 1 Total"
     },
     "10108": {
       "M": {
-        "10382": "12 And Over () - Yes",
-        "10383": "12 And Over () - No",
-        "10384": "12 And Under () - Yes",
-        "10385": "12 And Under () - No"
+        "10382": "12 And Over {point} - Yes",
+        "10383": "12 And Over {point} - No",
+        "10384": "12 And Under {point} - Yes",
+        "10385": "12 And Under {point} - No"
       },
       "N": "12 + Team 1 Total"
     },
@@ -28565,38 +28583,38 @@
     },
     "10094": {
       "M": {
-        "12584": "() Goals - Yes",
-        "12585": "() Goals - No"
+        "12584": "{point} Goals - Yes",
+        "12585": "{point} Goals - No"
       },
       "N": "Either Team To Be Trailing By N Goals During The Match And Win"
     },
     "10095": {
       "M": {
-        "12586": "() Goals - Yes",
-        "12587": "() Goals - No"
+        "12586": "{point} Goals - Yes",
+        "12587": "{point} Goals - No"
       },
       "N": "Either Team To Be Trailing By N Goals During The Match And Not To Lose"
     },
     "10077": {
       "M": {
-        "12798": "Over ()",
-        "12799": "Under ()"
+        "12798": "Over {point}",
+        "12799": "Under {point}"
       },
       "N": "Total Passes"
     },
     "10074": {
       "M": {
-        "12808": "Over ()",
-        "12809": "Under ()"
+        "12808": "Over {point}",
+        "12809": "Under {point}"
       },
       "N": "Total Goalie Saves"
     },
     "10075": {
       "M": {
-        "12810": "Team 1 Over ()",
-        "12811": "Team 1 Under ()",
-        "12812": "Team 2 Over ()",
-        "12813": "Team 2 Under ()"
+        "12810": "Team 1 Over {point}",
+        "12811": "Team 1 Under {point}",
+        "12812": "Team 2 Over {point}",
+        "12813": "Team 2 Under {point}"
       },
       "N": "Team Total Goalie Saves"
     },
@@ -28610,53 +28628,53 @@
     },
     "10078": {
       "M": {
-        "12817": "() Over",
-        "12818": "() Under"
+        "12817": "{point} Over",
+        "12818": "{point} Under"
       },
       "N": "Individual Total 1"
     },
     "10080": {
       "M": {
-        "12209": "In Round () - W3",
-        "12210": "In Round () - W4",
-        "12821": "Round () - W1",
-        "12822": "Round () - W2"
+        "12209": "In Round {point} - W3",
+        "12210": "In Round {point} - W4",
+        "12821": "Round {point} - W1",
+        "12822": "Round {point} - W2"
       },
       "N": "Win In Round"
     },
     "10079": {
       "M": {
-        "12819": "() Over",
-        "12820": "() Under"
+        "12819": "{point} Over",
+        "12820": "{point} Under"
       },
       "N": "Individual Total 2"
     },
     "10081": {
       "M": {
-        "12823": "Handicap 1 ()",
-        "12824": "Handicap 2 ()",
-        "12825": "Handicap 3 ()",
-        "12826": "Handicap 4 ()"
+        "12823": "Handicap 1 {point}",
+        "12824": "Handicap 2 {point}",
+        "12825": "Handicap 3 {point}",
+        "12826": "Handicap 4 {point}"
       },
       "N": "Handicap"
     },
     "10109": {
       "M": {
-        "12827": "Barracks () - Team 1",
-        "12828": "Barracks () - Team 2"
+        "12827": "Barracks {point} - Team 1",
+        "12828": "Barracks {point} - Team 2"
       },
       "N": "Team To Destroy Barracks"
     },
     "10110": {
       "M": {
-        "12829": "W1 + TO () - Yes",
-        "12830": "W1 + TO () - No",
-        "12831": "W1 + TU () - Yes",
-        "12832": "W1 + TU () - No",
-        "12833": "W2 + TO () - Yes",
-        "12834": "W2 + TO () - No",
-        "12835": "W2 + TU () - Yes",
-        "12836": "W2 + TU () - No"
+        "12829": "W1 + TO {point} - Yes",
+        "12830": "W1 + TO {point} - No",
+        "12831": "W1 + TU {point} - Yes",
+        "12832": "W1 + TU {point} - No",
+        "12833": "W2 + TO {point} - Yes",
+        "12834": "W2 + TO {point} - No",
+        "12835": "W2 + TU {point} - Yes",
+        "12836": "W2 + TU {point} - No"
       },
       "N": "Match Result + Total Rounds"
     },
@@ -28669,23 +28687,23 @@
     },
     "10112": {
       "M": {
-        "12839": "Try () Team 1 (2Way)",
-        "12840": "Try () Team 2 (2Way)"
+        "12839": "Try {point} Team 1 (2Way)",
+        "12840": "Try {point} Team 2 (2Way)"
       },
       "N": "Next Try (2Way)"
     },
     "10113": {
       "M": {
-        "12841": "Round () - Yes",
-        "12842": "Round () - No"
+        "12841": "Round {point} - Yes",
+        "12842": "Round {point} - No"
       },
       "N": "Win On Time In Round"
     },
     "10114": {
       "M": {
-        "12846": "Over ()",
-        "12847": "Under ()",
-        "12848": "()-()"
+        "12846": "Over {point}",
+        "12847": "Under {point}",
+        "12848": "{point}-{pointB}"
       },
       "N": "Total Destroyed Pieces"
     },
@@ -31008,9 +31026,9 @@
     },
     "10422": {
       "M": {
-        "13718": "1 ()",
-        "13719": "2 ()",
-        "13720": "X ()"
+        "13718": "1 {point}",
+        "13719": "2 {point}",
+        "13720": "X {point}"
       },
       "N": "European Handicap"
     },
@@ -35224,10 +35242,10 @@
     },
     "10999": {
       "M": {
-        "15306": "() Or Fewer",
+        "15306": "{point} Or Fewer",
         "15307": "()-()",
-        "15308": "() Or More",
-        "15309": "Exactly ()"
+        "15308": "{point} Or More",
+        "15309": "Exactly {point}"
       },
       "N": "Tie-Breaks, Total"
     },
@@ -36144,15 +36162,15 @@
     },
     "11131": {
       "M": {
-        "15591": "Over ()",
-        "15592": "Under ()"
+        "15591": "Over {point}",
+        "15592": "Under {point}"
       },
       "N": "Losing Player To Finish Game On Which Step"
     },
     "11143": {
       "M": {
-        "15621": "[] - Yes",
-        "15622": "[] - No"
+        "15621": "{point} - Yes",
+        "15622": "{point} - No"
       },
       "N": "Player To Provide An Assist Including Substitutions"
     },
@@ -36223,8 +36241,8 @@
     },
     "11142": {
       "M": {
-        "15619": "[] - Yes",
-        "15620": "[] - No"
+        "15619": "{point} - Yes",
+        "15620": "{point} - No"
       },
       "N": "Player To Score A Goal Including Substitutions"
     },
@@ -36955,19 +36973,19 @@
     },
     "11245": {
       "M": {
-        "15857": "W1 And Team 1 Total In Over () - Over ()",
-        "15858": "W1 And Team 1 Total In Over () - Under ()",
-        "15859": "W2 And Team 1 Total In Over () - Over ()",
-        "15860": "W2 And Team 1 Total In Over () - Under ()"
+        "15857": "W1 And Team 1 Total In Over {point} - Over {pointB}",
+        "15858": "W1 And Team 1 Total In Over {point} - Under {pointB}",
+        "15859": "W2 And Team 1 Total In Over {point} - Over {pointB}",
+        "15860": "W2 And Team 1 Total In Over {point} - Under {pointB}"
       },
       "N": "Team To Win + Team 1 Total Runs In Over"
     },
     "11246": {
       "M": {
-        "15861": "W1 And Team 2 Total In Over () - Over ()",
-        "15862": "W1 And Team 2 Total In Over () - Under ()",
-        "15863": "W2 And Team 2 Total In Over () - Over ()",
-        "15864": "W2 And Team 2 Total In Over () - Under ()"
+        "15861": "W1 And Team 2 Total In Over {point} - Over {pointB}",
+        "15862": "W1 And Team 2 Total In Over {point} - Under {pointB}",
+        "15863": "W2 And Team 2 Total In Over {point} - Over {pointB}",
+        "15864": "W2 And Team 2 Total In Over {point} - Under {pointB}"
       },
       "N": "Team To Win + Team 2 Total Runs In Over"
     },
@@ -38175,6 +38193,6 @@
   },
   "LocaleSwitcher": {
     "label": "Language",
-   "locale": "{locale, select, en {English} bn {Bangla} other {Unknown}}"
+    "locale": "{locale, select, en {English} bn {Bangla} other {Unknown}}"
   }
 }

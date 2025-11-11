@@ -9,3 +9,5 @@ export * from "./chat-icon";
 export * from "./language-icon";
 export * from "./security-icon";
 export * from "./support-icon";
+export * from "./staff-icon";
+export * from "./agents-icon";

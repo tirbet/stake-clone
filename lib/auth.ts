@@ -12,7 +12,12 @@ export const auth = betterAuth({
       userType: {
         type: "string",
         input: false
-      }
+      },
+      roleId: {
+        type: "string",
+        input: false,
+        required: false,        
+      },
     }
   },
   advanced: {
@@ -26,9 +31,9 @@ export const auth = betterAuth({
     }
   },
   emailAndPassword: {
-    enabled: true
+    enabled: true,
+    autoSignIn: false
   },
-
   plugins: [
     nextCookies()
   ],

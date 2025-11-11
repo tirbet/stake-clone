@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button"
 import { register } from "@/server/actions/auth-action"
 import { toast } from "sonner"
 import { useRouter } from "@/i18n/navigation"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
 
 // Zod schema
 const registerSchema = z.object({
@@ -30,11 +31,19 @@ const registerSchema = z.object({
   email: z.email(),
   password: z.string().min(6),
   code: z.string().optional(),
+  currencyId: z.string(),
 })
 
 type RegisterFormValues = z.infer<typeof registerSchema>
 
-export function RegisterForm() {
+type Props = {
+  symbol: string | null;
+  id: string;
+  code: string;
+  name: string;
+}[]
+
+export function RegisterForm({ currencies }: { currencies: Props }) {
 
   const router = useRouter();
 
@@ -45,14 +54,16 @@ export function RegisterForm() {
       email: "",
       password: "",
       code: "",
+      currencyId: "",
     },
   })
 
   const onSubmit = async (values: RegisterFormValues) => {
 
-    const res = await register({ data: { authData: values, code: values.code } })
+    const res = await register({ data: { authData: values, code: values.code, currencyId: values.currencyId } })
     if (res.success) {
       toast.success(res.message);
+      router.refresh();
       router.push('/');
     } else {
       toast.error(res.message || "Something went wrong")
@@ -104,6 +115,41 @@ export function RegisterForm() {
                       autoComplete="email"
                       {...field}
                     />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Currency */}
+            <FormField
+              control={form.control}
+              name="currencyId"
+              render={() => (
+                <FormItem>
+                  <FormLabel>Currency</FormLabel>
+                  <FormControl>
+                    <Select
+                      onValueChange={(value) => form.setValue('currencyId', value)}
+                    >
+                      <SelectTrigger
+                        id="currencyId"
+                        className="w-full bg-gray-700 border-gray-600 text-white focus:ring-yellow-400 focus:border-yellow-400"
+                      >
+                        <SelectValue placeholder="Select currency" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-gray-800 border-gray-700 text-white">
+                        {currencies.map((currency) => (
+                          <SelectItem
+                            key={currency.id}
+                            value={String(currency.id)}
+                            className="hover:bg-gray-700 focus:bg-gray-700"
+                          >
+                            {currency.name} ({currency.code})
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

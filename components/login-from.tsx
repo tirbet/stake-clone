@@ -48,6 +48,7 @@ export function LoginForm() {
 
     const res = await login({ data: values })
     if (res.success) {
+      router.refresh();
       router.push('/');
       toast.success(res.message);
     } else {
