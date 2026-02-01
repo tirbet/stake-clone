@@ -1,33 +1,21 @@
-import { getIconComponent, IconName } from '@/lib/data';
 import { cn } from '@/lib/utils';
-import { HelpCircle, type LucideProps } from 'lucide-react';
+import { type LucideProps } from 'lucide-react';
 import { SVGProps, type ComponentType } from 'react';
+
+
 interface IconProps extends Omit<LucideProps, 'ref'> {
   iconNode: ComponentType<LucideProps>;
 }
+
 
 export function Icon({ iconNode: IconComponent, className, ...props }: IconProps) {
   return <IconComponent className={cn('h-4 w-4', className)} {...props} />;
 }
 
-interface RenderIconProps {
-  item: IconName
-  className?: string;
-}
 
-export function RenderIcon({ item, className }: RenderIconProps) {
-  const IconComponent = item ? getIconComponent(item) : null;
 
-  // Return the icon if found, otherwise return fallback
-  return IconComponent ? (
-    <IconComponent className={className ? className : 'h-5 w-5'} />
-  ) : (
-    <HelpCircle className="h-5 w-5" /> // Fallback icon
-  );
 
-}
-
-type SportIconProps = {
+type MyIconProps = {
   id: number | string;
   className?: string;
   width?: number | string;
@@ -41,7 +29,7 @@ export const SportIcon = ({
   width = 24,
   height = 24,
   fill = 'currentColor',
-}: SportIconProps) => (
+}: MyIconProps) => (
   <svg
     className={className}
     width={width}
@@ -51,6 +39,7 @@ export const SportIcon = ({
     <use xlinkHref={`/sports.svg#${id}`} />
   </svg>
 );
+
 
 
 

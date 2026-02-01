@@ -6,12 +6,10 @@ import { format, formatDistanceToNow } from "date-fns";
 import type { Locale } from "date-fns";
 import { enUS, hi, bn } from "date-fns/locale";
 import { ClockIcon } from "lucide-react";
-import type { SportEventItem } from "@/types/sport-type";
+import type { GetSportsResponse } from "@/features/sport/api/use-get-sport";
 import { cn } from "@/lib/utils";
 import { Link } from "@/i18n/navigation";
-import slugify from "slugify";
 import { Badge } from "@/components/ui/badge";
-import { useGameGroupStore } from "@/store/game-group-store";
 
 // Constants
 const LOCALE_MAP: { [key: string]: Locale } = {
@@ -21,8 +19,8 @@ const LOCALE_MAP: { [key: string]: Locale } = {
 } as const;
 
 const STATUS_CONFIG = {
-    1: { type: 'live', label: 'Live' as const },
-    3: { type: 'upcoming', label: 'Upcoming' as const },
+    'live': { type: 'live', label: 'Live' as const },
+    'upcoming': { type: 'upcoming', label: 'Upcoming' as const },
     // Add other status codes as needed
 } as const;
 
@@ -34,9 +32,9 @@ const LiveDot = () => (
     </span>
 );
 
-const StatusIndicator = ({ status }: { status: number }) => {
-    if (status === 1) return <LiveDot />;
-    if (status === 3) return <ClockIcon className="text-gray-500 w-4 h-4" />;
+const StatusIndicator = ({ status }: { status: 'live' | 'upcoming' }) => {
+    if (status === 'live') return <LiveDot />;
+    if (status === 'upcoming') return <ClockIcon className="text-gray-500 w-4 h-4" />;
     return null;
 };
 
@@ -126,7 +124,7 @@ const useFormattedStartTime = (startTime: number, locale: string) => {
     }, [startTime, locale]);
 };
 
-const useEventStatus = (status: number, startTime?: number) => {
+const useEventStatus = (status: 'live' | 'upcoming', startTime?: number) => {
     return useMemo(() => {
         const config = STATUS_CONFIG[status as keyof typeof STATUS_CONFIG];
 
@@ -134,8 +132,8 @@ const useEventStatus = (status: number, startTime?: number) => {
             return {
                 type: config.type,
                 label: config.label,
-                isLive: status === 1,
-                isUpcoming: status === 3,
+                isLive: status === 'live',
+                isUpcoming: status === 'upcoming',
             };
         }
 
@@ -151,7 +149,7 @@ const useEventStatus = (status: number, startTime?: number) => {
 
 // Main component
 interface EventInfoProps {
-    event: SportEventItem;
+    event: GetSportsResponse[number];
     showScores?: boolean;
     className?: string;
 }
@@ -161,9 +159,8 @@ export function EventInfo({
     showScores = false,
     className
 }: EventInfoProps) {
-    const { setSelectedGroup } = useGameGroupStore();
     const locale = useLocale();
-    const { status, startTime, team, ScoreContext } = event;
+    const { status, team, scoreContext, markets, startTime, slug } = event;
 
     // Use custom hooks for derived state
     const formattedStartTime = useFormattedStartTime(startTime, locale);
@@ -177,14 +174,14 @@ export function EventInfo({
 
     const getStatusText = () => {
         if (eventStatus.isLive) {
-            return ScoreContext.stageLiveStatus;
+            return scoreContext?.stageLiveStatus;
         }
         return formattedStartTime;
     };
 
     return (
         <div className={cn(
-            "w-full md:w-[45%] p-3 rounded-lg bg-gradient-to-r from-gray-900/50 to-gray-800/30",
+            "w-full md:w-[45%] p-3 rounded-lg bg-linear-to-r from-gray-900/50 to-gray-800/30",
             className
         )}>
             <div className="flex flex-col space-y-3">
@@ -197,14 +194,8 @@ export function EventInfo({
                         </span>
                     </div>
                     <div className="md:hidden">
-                        <Link onClick={() => setSelectedGroup(null)} href={`${event.status === 1 ? "/sport/live" : "/sport/upcoming"
-                            }/${slugify(event.sportEn, { lower: true, strict: true })}/${event.leagueId
-                            }-${slugify(event.leagueEn, { lower: true, strict: true })}/${event.Id
-                            }-${slugify(event.team.home.nameEn, { lower: true, strict: true })}-vs-${slugify(
-                                event.team.away.nameEn,
-                                { lower: true, strict: true }
-                            )}`} className="grid place-items-center w-full h-full">
-                            <Badge variant={"verified"}>{event.EC > 0 ? `+` : ''}{event.EC}</Badge>
+                        <Link onClick={() => {}} href={slug} className="grid place-items-center w-full h-full">
+                            {markets && (<Badge variant={"verified"}>{markets.length > 0 ? `+` : ''}{markets.length}</Badge>) }
                         </Link>
                     </div>
                 </div>
@@ -213,12 +204,12 @@ export function EventInfo({
                 <div className="flex flex-col">
                     <TeamScore
                         team={homeTeam}
-                        score={showScores ? ScoreContext.fullScore.home : undefined}
+                        score={showScores ? scoreContext?.fullScore?.home : undefined}
                         isHome
                     />
                     <TeamScore
                         team={awayTeam}
-                        score={showScores ? ScoreContext.fullScore.away : undefined}
+                        score={showScores ? scoreContext?.fullScore?.away : undefined}
                     />
                 </div>
 
@@ -228,10 +219,10 @@ export function EventInfo({
 }
 
 // Additional helper component for compact view
-export function CompactEventInfo({ event }: { event: SportEventItem }) {
+export function CompactEventInfo({ event }: { event: GetSportsResponse[number] }) {
     const locale = useLocale();
-    const { status, team } = event;
-    const formattedStartTime = useFormattedStartTime(event.startTime, locale);
+    const { status, team, } = event;
+    const formattedStartTime = useFormattedStartTime(new Date().getUTCDate(), locale);
     const eventStatus = useEventStatus(status);
 
     return (

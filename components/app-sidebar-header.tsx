@@ -1,38 +1,32 @@
-
+"use client";
 import { cn } from '@/lib/utils';
 import AppLogo from './app-logo';
 
 import { Button } from './ui/button';
-import { User } from '@/types/auth';
 import { Link } from '@/i18n/navigation';
+import { NavUser } from './nav-user';
+import { User } from '@/types/auth';
+import { useUserStore } from '@/store/user-store';
+import { useEffect } from 'react';
 
 
 
-interface AppSidebarHeaderProps {
-    user?: User
-    className?: string;
-    showSearch?: boolean;
-    showUserNav?: boolean;
-}
-
-export function AppSidebarHeader({
-    className,
-    user,
-}: AppSidebarHeaderProps) {
-
-
-
+export function AppSidebarHeader({ user }: { user?: User }) {
+    const { setUser } = useUserStore()
+    useEffect(() => {
+        setUser(user);
+    }, [user]);
     return (
         <header
             className={cn(
                 // positioning and layout
-                'sticky top-0 z-[10] flex h-15 shrink-0 items-center justify-between gap-4',
+                'sticky top-0 z-10 flex h-15 shrink-0 items-center justify-between gap-4',
 
                 // background and border
                 'bg-background border-b border-sidebar-border/50',
 
                 // backdrop blur and support check
-                'backdrop-blur-lg supports-[backdrop-filter]:bg-background/80',
+                'backdrop-blur-lg supports-backdrop-filter:bg-background/80',
 
                 // padding and transition
                 'px-4 transition-all duration-200 ease-in-out',
@@ -44,12 +38,9 @@ export function AppSidebarHeader({
                 'md:px-4',
 
                 'shadow-[0_4px_6px_-1px_#0003,0_2px_4px_-1px_#0000001f]',
-
-                // additional className prop
-                className
             )}
         >
-            <div className="max-w-screen-xl mx-auto flex w-full items-center justify-between px-4">
+            <div className="max-w-7xl mx-auto flex w-full items-center justify-between px-4">
                 <div className="relative flex items-center justify-between w-full max-h-15">
                     <div className="flex items-center">
                         <AppLogo />
@@ -66,7 +57,6 @@ export function AppSidebarHeader({
                                 </div>
                                 {/* Smaller button on mobile */}
                                 <button
-                                    onClick={() => { }}
                                     className={cn(
                                         'ml-2 sm:ml-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1 px-2 sm:px-3 rounded-md text-sm sm:text-base')}
                                 >
@@ -78,16 +68,16 @@ export function AppSidebarHeader({
 
                     <div className="flex items-center space-x-1">
                         {user ? (<>
-                            <>User Icone</>
+                            <NavUser />
                         </>) : (
                             <div className='flex flex-row gap-2'>
-                                <Link href={'login'}>
-                                    <Button variant="login" size="lg" className={''}>
+                                <Link href={'/login'}>
+                                    <Button size="lg" className={''}>
                                         Login
                                     </Button>
                                 </Link>
-                                <Link href={'register'}>
-                                    <Button variant="register" size="lg" className={''}>
+                                <Link href={'/register'}>
+                                    <Button size="lg" className={''}>
                                         Register
                                     </Button>
                                 </Link>

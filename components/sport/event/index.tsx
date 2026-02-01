@@ -1,106 +1,64 @@
 "use client";
-import React from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
-import { useGetSport } from "@/features/sport/api/use-get-sport";
-import { BreadcrumbSkeleton } from "@/components/skeleton/BreadcrumbSkeleton";
-import { NoEventsMessage } from "@/components/sport/event/no-events-message";
-import { EventListContent } from "@/components/sport/event/event-list-content";
-import { useGetLeague } from "@/features/sport/api/use-get-league";
-import { getDisplayName } from "@/lib/sport/sport-helper";
+import { GetSportsResponse } from "@/features/sport/api/use-get-sport";
 import SportBreadcrumb from "../sport-breadcrumb";
-import slugify from "slugify";
-
-type Props = {
-    id: number;
-    type: "live" | "upcoming";
-};
+import { useTranslations } from "next-intl";
+import { useGetLeague, useGetSport } from "@/features/sport/api/use-get-game";
+import { CountrySection } from "./country-section";
 
 
 
+export function EventList({ iniData }: Readonly<{ iniData: GetSportsResponse }>) {
+    const t = useTranslations('status');
 
-export function EventList({ id, type }: Readonly<Props>) {
-
-    const { data: items, isLoading, isPending } = useGetSport({
-        type,
-        id
-    });
-    const displayName = getDisplayName(type);
-    if (isLoading || isPending) {
-        return (
-            <React.Fragment>
-                <BreadcrumbSkeleton count={2} />
-                <EventListSkeleton />
-            </React.Fragment>
-        );
-    }
-
-    if (!items || items.length === 0) {
-        return <NoEventsMessage type={type} />;
-    }
+    const { data } = useGetSport();
 
     return (
         <>
             <SportBreadcrumb
-                back={`/sport`}
+                back={`/sports`}
                 items={[
                     {
-                        name: displayName,
-                        url: `/sport/${type}`,
+                        name: t(`${data[0].leagues[0].items[0].status}`),
+                        url: `/sports/${data[0].leagues[0].items[0].status}`,
                     },
                     {
-                        name: items[0]?.sport || 'Sport',
-                        url: '#'
-                    },
+                        name: data[0].leagues[0].items[0].sport.name,
+                        url: data[0].leagues[0].items[0].sport.slug,
+                    }
                 ]}
             />
-            <EventListContent items={items} type={type} />
+            <CountrySection data={data} />
         </>
     )
 }
 
 
-export function LeagueList({ id, type, leagueId }: Readonly<Props & { leagueId: number }>) {
-
-    const { data: items, isLoading, isPending } = useGetLeague({
-        type,
-        id,
-        leagueId
-    });
-    const displayName = getDisplayName(type);
-    if (isLoading || isPending) {
-        return (
-            <React.Fragment>
-                <BreadcrumbSkeleton count={3} />
-                <EventListSkeleton />
-            </React.Fragment>
-        );
-    }
-
-    if (!items || items.length === 0) {
-        return <NoEventsMessage type={type} />;
-    }
-
-    return <>
+export function LeagueList({ iniData }: Readonly<{ iniData: GetSportsResponse }>) {
+    const t = useTranslations('status');
+    const { data } = useGetLeague();
+    return (<>
         <SportBreadcrumb
             back={`/sport`}
             items={[
                 {
-                    name: displayName,
-                    url: `/sport/${type}`,
+                    name: t(`${iniData[0].status}`),
+                    url: `/sports/${iniData[0].status}`,
                 },
                 {
-                    name: items[0]?.sport || 'Sport',
-                    url: `/sport/${type}/${slugify(items[0]?.sport || 'sport', { lower: true, strict: true })}`,
+                    name: iniData[0].sport.name,
+                    url: iniData[0].sport.slug,
                 },
                 {
-                    name: items[0]?.league || 'league',
-                    url: '#'
-                },
+                    name: iniData[0].league.name,
+                    url: iniData[0].league.slug,
+                }
             ]}
         />
-        <EventListContent items={items} type={type} />
-    </>;
+
+        <CountrySection data={data} />
+    </>);
 }
 
 

@@ -6,6 +6,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { Home, Activity, PlayCircle, User } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
+import { useTranslations } from 'next-intl';
 
 interface NavItem {
   label: string;
@@ -18,6 +19,7 @@ interface MobileBottomNavProps {
 }
 
 export function MobileBottomNav({ onItemClick }: MobileBottomNavProps) {
+  const navT = useTranslations("navigation.root")
   const isMobile = useIsMobile();
   const pathname = usePathname();
   const [activeItem, setActiveItem] = useState(pathname);
@@ -30,8 +32,8 @@ export function MobileBottomNav({ onItemClick }: MobileBottomNavProps) {
 
   const navItems: NavItem[] = [
     { label: 'Home', icon: <Home size={24} />, href: '/' },
-    { label: 'Sports', icon: <Activity size={24} />, href: '/sport' },
-    { label: 'Casino', icon: <PlayCircle size={24} />, href: '/casino' },
+    { label: navT('sport'), icon: <Activity size={24} />, href: '/sport' },
+    { label: navT('casino'), icon: <PlayCircle size={24} />, href: '/casino' },
     { label: 'Account', icon: <User size={24} />, href: '/account' },
   ];
 

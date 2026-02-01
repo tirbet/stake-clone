@@ -1,20 +1,20 @@
 "use client";
-import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 type MarketNameProps = {
-    id: number;
+    name: string
     isCenter?: boolean;
 }
 
-export default function MarketName({ id, isCenter = true }: Readonly<MarketNameProps>) {
-    const t = useTranslations('market');
+export default function MarketName({ name, isCenter = true }: Readonly<MarketNameProps>) {
+
     return (
         <div className={cn(
             "flex gap-1 p-3",
             isCenter ? "items-center justify-center" : ""
         )}>
-            <span className="text-xs text-gray-300">{t(`${id}.N`)}</span>
+            <span className="text-xs text-gray-300">{name}</span>
+
         </div>
     )
 }

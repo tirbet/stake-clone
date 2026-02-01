@@ -20,18 +20,17 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { register } from "@/server/actions/auth-action"
 import { toast } from "sonner"
 import { useRouter } from "@/i18n/navigation"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
-
+import { signUp } from "@/lib/auth-client"
 // Zod schema
 const registerSchema = z.object({
   name: z.string().min(2),
   email: z.email(),
   password: z.string().min(6),
   code: z.string().optional(),
-  currencyId: z.string(),
+  currency: z.string(),
 })
 
 type RegisterFormValues = z.infer<typeof registerSchema>
@@ -54,20 +53,22 @@ export function RegisterForm({ currencies }: { currencies: Props }) {
       email: "",
       password: "",
       code: "",
-      currencyId: "",
+      currency: "",
     },
   })
 
   const onSubmit = async (values: RegisterFormValues) => {
-
-    const res = await register({ data: { authData: values, code: values.code, currencyId: values.currencyId } })
-    if (res.success) {
-      toast.success(res.message);
-      router.refresh();
-      router.push('/');
+    const { data, error: signUpError } = await signUp.email({...values});
+    if (signUpError) {
+      toast.error(signUpError?.message || "Something went wrong");
+      return;
     } else {
-      toast.error(res.message || "Something went wrong")
+      toast.success("Registration successful!");
+      router.push('/');
+      router.refresh();
     }
+
+
   }
 
   return (
@@ -124,16 +125,16 @@ export function RegisterForm({ currencies }: { currencies: Props }) {
             {/* Currency */}
             <FormField
               control={form.control}
-              name="currencyId"
+              name="currency"
               render={() => (
                 <FormItem>
                   <FormLabel>Currency</FormLabel>
                   <FormControl>
                     <Select
-                      onValueChange={(value) => form.setValue('currencyId', value)}
+                      onValueChange={(value) => form.setValue('currency', value)}
                     >
                       <SelectTrigger
-                        id="currencyId"
+                        id="currency"
                         className="w-full bg-gray-700 border-gray-600 text-white focus:ring-yellow-400 focus:border-yellow-400"
                       >
                         <SelectValue placeholder="Select currency" />

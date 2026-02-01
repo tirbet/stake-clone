@@ -41,7 +41,7 @@ export const topSports = async (
   const liveUrl = `LiveFeed/Get1x2_VZip?count=10&lng=${lng}&mode=4&country=19&top=true&partner=152&virtualSports=true&noFilterBlockEvent=true`;
 
   const url = `${API_URL}/${status === "live" ? liveUrl : preUrl}`;
-  const req = await fetch(url, { next: { revalidate: 10 } });
+  const req = await fetch(url, {cache: 'no-store'});
   const data: TopSportsResponse = await req.json();
   const items = data?.Value || [];
 

@@ -1,39 +1,35 @@
 "use client";
 import { useState } from "react";
-import { useTranslations } from "next-intl";
 import FlyingChip from "./flying-chip";
 import { MarketOutcomeButton } from "./market-outcome-button";
-import type { MarketItem, SportEventItem } from "@/types/sport-type";
-import { cn } from "@/lib/utils";
-import MarketName from "./market-name";
 
+import MarketName from "./market-name";
+import { GetSportsResponse } from "@/features/sport/api/use-get-sport";
 type MarketGroupProps = {
-    event: SportEventItem;
-    allowedGroups: number[];
+    event: GetSportsResponse[number];
+    allowedGroups?: number[];
 };
 
 
-
+export type Market = NonNullable<GetSportsResponse[number]['markets']>[number];
+export type OutcomesMatrix = Market['outcomes'];
+export type Outcome = Market['outcomes'][number][number];
 
 const MarketGroup = ({ event, allowedGroups }: MarketGroupProps) => {
-    const t = useTranslations("market");
-    const group = event.markets?.find((d) => allowedGroups.includes(d.id));
+    const { markets } = event;
+    if(!markets) return null;
     const [flyItem, setFlyItem] = useState<{
         cursor: { x: number; y: number };
         label: string;
         coefficient: number;
     } | null>(null);
 
-    if (!group) return null;
 
-    const handleOutcomeClick = (outcome: MarketItem, cursor: { x: number; y: number }) => {
-        const label = outcome.point
-            ? t(`${group.id}.M.${outcome.id}`, { point: outcome.point })
-            : t(`${group.id}.M.${outcome.id}`);
-
+    const handleOutcomeClick = (outcome: Outcome, cursor: { x: number; y: number }) => {
+     
         setFlyItem({
             cursor,
-            label,
+            label: outcome.name,
             coefficient: outcome.coefficient
         });
     };
@@ -42,16 +38,14 @@ const MarketGroup = ({ event, allowedGroups }: MarketGroupProps) => {
         <>
             <div className="w-full md:w-[45%]">
                 <div className="flex flex-col">
-                    <MarketName id={group.id} />
+                    <MarketName name={markets[0]?.name} />
 
                     <div className="flex items-center space-x-2">
-                        {group.outcomes.map((items, index) =>
+                        {markets[0].outcomes.map((items, index) =>
                             items.map((item) => (
                                 <MarketOutcomeButton
-                                    key={`${group.id}-${item.id}-${index}`}
+                                    key={`${markets[0].id}-${item.id}-${index}`}
                                     item={item}
-                                    group={group}
-                                    eventId={event.CI}
                                     onClick={handleOutcomeClick}
                                 />
                             ))

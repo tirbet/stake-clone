@@ -1,0 +1,51 @@
+{
+    "auth": {
+        "login": "Login",
+        "register": "Register"
+    },
+    "user": {
+        "wallet": "Wallet",
+        "vault": "Vault",
+        "vip": "VIP",
+        "affiliate": "Affiliate",
+        "statistics": "Statistics",
+        "transactions": "Transactions",
+        "my_bets": "My Bets",
+        "settings": "Settings",
+        "live_support": "Live Support",
+        "logout": "Logout"
+    },
+    "user_setting": {
+        "account": "Account",
+        "offers": "Offers",
+        "preferences": "Preferences",
+        "security": "Security",
+        "verification": "Verification"
+    },
+    "user_transactions": {
+        "deposits": "Deposits",
+        "withdrawals": "Withdrawals"
+    },
+    "user_my_bets": {
+        "casino": "Casino",
+        "sports": "Sports",
+        "archive": "Archive"
+    },
+    "admin": {
+        "dashboard": "Dashboard",
+        "configuration": "Configuration", 
+        "sportsbook": "Sportsbook",
+        "bet_settlement": "Bet Settlement",
+        "smtp": "SMTP",
+        "payment_provider": "Payment Providers",
+        "kyc": "KYC",
+        "communication": "Communication",
+        "currency": "Currency",
+        "role": "Role"
+
+    },
+    "root": {
+        "casino": "Casino",
+        "sport": "Sports"
+    }
+}

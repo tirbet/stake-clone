@@ -27,7 +27,7 @@ export function AppSidebar({ children, show = true, ...props }: AppSidebarProps)
                             {open && show && (
                                 <div className="flex items-center gap-1 h-full">
                                     <Link
-                                        href={'/sport'}
+                                        href={'/sports'}
                                         className={cn(
                                             "inline-flex items-center justify-center",
                                             "bg-transparent text-sidebar-foreground",
@@ -70,6 +70,7 @@ export function AppSidebar({ children, show = true, ...props }: AppSidebarProps)
                     {children}
                 </ScrollArea>
             </SidebarContent>
+            <SidebarRail />
         </Sidebar>
     );
 }

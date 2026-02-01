@@ -2,6 +2,10 @@ import type { NextConfig } from "next";
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
+  experimental: {
+    authInterrupts: true,
+    browserDebugInfoInTerminal: true,
+  },
   allowedDevOrigins: ['*'],
   async headers() {
     return [

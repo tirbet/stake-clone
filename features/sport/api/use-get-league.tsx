@@ -1,32 +1,35 @@
 import { useQuery } from "@tanstack/react-query";
-import { client } from "@/lib/hono";
 import { useLocale } from "next-intl";
+import { apiClient } from "@/lib/api-client";
+import slugify from "slugify";
 
 type Props = {
     type: "live" | "upcoming";
-    id: number;
-    leagueId: number;
+    sport: string;
+    league: string;
 };
 
-export const useGetLeague = ({ type, id, leagueId }: Props) => {
-    const lng = useLocale();
+export const useGetLeague = ({ type, sport, league }: Props) => {
+    const locale = useLocale();
     const query = useQuery({
-        queryKey: ["sport-league", [lng, type, id, leagueId]],
+        queryKey: ["sport-league", [locale, type, sport, league]],
         queryFn: async () => {
-            const url = type === "live" ? client.api.sports.live[':id']['leagues'][':leagueId'].$get({
-                param: { id: id.toString(), leagueId: leagueId.toString() },
-                query: { lng }
-            }) : client.api.sports.upcoming[':id']['leagues'][':leagueId'].$get({
-                param: { id: id.toString(), leagueId: leagueId.toString() },
-                query: { lng }
-            });
-            const response = await url;
-            if (!response.ok) {
-                throw new Error("Failed to fetch league data");
+            const { data, error } = await apiClient.GET('/sports/{status}/{sport}/{league}', {
+                params: {
+                    query: {
+                        locale: locale as any
+                    },
+                    path: {
+                        status: type,
+                        sport: slugify(sport, { lower: true, strict: true }),
+                        league
+                    }
+                }
+            })
+            if (error) {
+                console.log(error.error)
             }
-            const { data } = await response.json();
-
-            return data;
+            return data?.data
         },
         refetchInterval: type === "live" ? 15000 : 30000,
     })

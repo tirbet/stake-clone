@@ -1,0 +1,22 @@
+{
+    "auth": {
+        "login": "लॉगिन",
+        "register": "रजिस्टर"
+    },
+    "user": {
+        "wallet": "वॉलेट",
+        "vault": "तिजोरी",
+        "vip": "वीआईपी",
+        "affiliate": "सहयोगी",
+        "statistics": "आंकड़े",
+        "transactions": "लेन-देन",
+        "my_bets": "मेरी शर्तें",
+        "settings": "सेटिंग्स",
+        "live_support": "लाइव सपोर्ट",
+        "logout": "लॉगआउट"
+    },
+    "root": {
+        "casino": "कसीनो",
+        "sport": "खेल"
+    }
+}

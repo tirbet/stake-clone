@@ -1,0 +1,58 @@
+model User {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Required fields
+  name  String
+  email String @unique
+
+  // Verification fields
+  emailVerified       Boolean  @default(false)
+  twoFactorEnabled    Boolean? @default(false)
+  phoneNumber         String?
+  phoneNumberVerified Boolean? @default(false)
+
+  // Profile
+  image String?
+
+  // User type and role
+  role       String?
+  banned     Boolean?
+  banReason  String?
+  banExpires DateTime?
+
+  // Referral system
+  referredById String?
+  referredBy   User?   @relation("Referrals", fields: [referredById], references: [id])
+  referrals    User[]  @relation("Referrals")
+
+  // ========= RELATIONS =========
+  // Authentication
+  sessions        Session[]
+  accounts        Account[]
+  twofactors      TwoFactor[]
+
+  // Financial
+  wallets      Wallet[]
+  vaults       Vault[]
+  deposits     Deposit[]
+  withdrawals  Withdrawal[]
+  transactions Transaction[]
+
+  // KYC & Verification
+  kyc     Kyc?
+  address UserAddress?
+
+  // Promotions
+  Promo Promo[]
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@index([email])
+  @@index([phoneNumber])
+  @@index([referredById])
+  @@index([createdAt])
+  @@map("user")
+}

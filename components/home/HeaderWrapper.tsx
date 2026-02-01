@@ -6,19 +6,17 @@ import Welcome from "./Welcome";
 import AuthenticatedCard from "./AuthenticatedCard";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Search } from "../search";
-import { User } from "@/types/auth";
 import Image from "next/image";
+import { useUserStore } from "@/store/user-store";
 
-type Props = {
-    user: User | undefined;
-};
 
-export default function HeaderWrapper({ user }: Props) {
 
+export default function HeaderWrapper() {
+    const { user } = useUserStore()
     const isMobile = useIsMobile();
     return (
         <>
-            <div className="relative flex justify-center py-4 md:py-6 w-full min-h-[400px] overflow-hidden pt-15">
+            <div className="relative flex justify-center py-4 md:py-6 w-full min-h-100 overflow-hidden pt-15">
                 <Image
                     src="/assets/header-bg.png"
                     alt="Casino and Sports background"
@@ -26,9 +24,9 @@ export default function HeaderWrapper({ user }: Props) {
                     priority
                     className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/80" />
+                <div className="absolute inset-0 bg-linear-to-b from-black/30 to-black/80" />
 
-                <div className="relative mt-16 md:mt-20 max-w-screen-xl mx-auto flex w-full items-center justify-between px-4">
+                <div className="relative mt-16 md:mt-20 max-w-7xl mx-auto flex w-full items-center justify-between px-4">
                     <div className="grid w-full gap-8 text-white md:grid-cols-[40%_1fr] items-center">
                         {user ? (
                             <AuthenticatedCard />
@@ -63,8 +61,8 @@ export default function HeaderWrapper({ user }: Props) {
                 </div>
             </div>
             {isMobile && (
-                <div className="max-w-screen-xl mx-auto flex w-full items-center justify-between px-4">
-                    <div className="relative w-full max-w-full text-white grid items-center gap-8 grid-cols-1 md:gap-0 md:justify-between md:[grid-template-columns:40%_55%]">
+                <div className="max-w-7xl mx-auto flex w-full items-center justify-between px-4">
+                    <div className="relative w-full max-w-full text-white grid items-center gap-8 grid-cols-1 md:gap-0 md:justify-between md:grid-cols-[40%_55%]">
                         <Search />
                         {/* Mobile cards */}
                         <span className="flex items-center gap-1 text-[1.12rem] text-white font-bold">

@@ -1,0 +1,26 @@
+model Configuration {
+  id        String            @id @default(uuid())
+  type      ConfigurationType
+  value     Json
+  isActive  Boolean           @default(true)
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+
+  @@map("configuration")
+}
+
+enum ConfigurationType {
+  Jwt
+  ApiKey
+  kyc
+  SportsBook
+  Sports
+  Leagues
+  Markets
+  Matches
+  WebSite
+  Domain
+  Payment
+  Smtp
+  AuthAttempt
+}

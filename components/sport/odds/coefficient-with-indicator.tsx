@@ -6,10 +6,9 @@ import React, { useState, useEffect } from 'react';
 type Props = {
     currentValue: number;
     isSuspended: boolean;
-    outcomeKey: string;
 };
 
-const CoefficientWithIndicator: React.FC<Props> = ({ currentValue, isSuspended, outcomeKey }) => {
+const CoefficientWithIndicator: React.FC<Props> = ({ currentValue, isSuspended }) => {
     const [previousValue, setPreviousValue] = useState<number | undefined>(undefined);
     const [changeDirection, setChangeDirection] = useState<'up' | 'down' | null>(null);
 
@@ -58,7 +57,7 @@ const CoefficientWithIndicator: React.FC<Props> = ({ currentValue, isSuspended, 
                 </div>
 
                 {/* Coefficient value with enhanced visual feedback */}
-                <span className={cn("font-bold transition-all duration-300")}>
+                <span className={cn("font-bold transition-all pr-1 duration-300")} suppressHydrationWarning>
                     {currentValue.toFixed(2)}
                 </span>
             </div>

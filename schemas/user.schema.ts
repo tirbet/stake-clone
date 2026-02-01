@@ -1,13 +1,10 @@
-import { UserType } from "@prisma/client/edge";
 import z from "zod";
 
 export const userSchema = z.object({
   name: z.string(), 
   email: z.email(),
   password: z.string(),
-  roleId: z.uuid(),
-  currencyId: z.uuid().optional(),
-  userType: z.enum(UserType)
+  currency: z.uuid().optional(),
 });
 
 export const userIdSchema = z.object({

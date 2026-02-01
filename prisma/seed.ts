@@ -1,7 +1,13 @@
-import { PrismaClient, Prisma } from '@prisma/client';
-import { client } from "@/lib/hono";
+import { PrismaClient, Prisma } from '@/prisma/generated/prisma/client';
+import { PrismaPg } from '@prisma/adapter-pg'
+import { auth } from '@/lib/auth';
+import { SystemRole } from '@/lib/constants/roles';
 
-const prisma = new PrismaClient();
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! })
+const prisma = new PrismaClient({
+    log: ['error', 'info', 'query', 'warn'],
+    adapter
+})
 
 const currencies: Prisma.CurrencyCreateInput[] = [
     {
@@ -34,29 +40,7 @@ const currencies: Prisma.CurrencyCreateInput[] = [
     }
 ];
 
-const roles: Prisma.RoleCreateInput[] = [
-    {
-        name: "Admin",
-    },
-    {
-        name: 'Player'
-    },
-    {
-        name: 'Satff'
-    },
-    {
-        name: "Super Admin"
-    },
-    {
-        name: 'System Admin',
-        permissions: {
-            create: {
-                resource: 'MANAGE_ROLE',
-                actions: ['CREATE', 'READ', 'DELETE', 'UPDATE']
-            }
-        }
-    }
-];
+
 
 const superAdminUser = {
     email: "superadmin@example.com",
@@ -64,51 +48,62 @@ const superAdminUser = {
     name: "Super Admin",
 }
 
+
 const main = async () => {
     try {
 
+        console.log("🔌 Testing database connection...");
+        await prisma.$connect();
+        console.log("✅ Database connected successfully!");
+
+        console.log("🗑 Clearing existing database data...");
+
+        // Clear data in correct order (respecting foreign key constraints)
+        await prisma.configuration.deleteMany();
+        console.log("✅ Configurations cleared");
+
+        await prisma.user.deleteMany();
+        console.log("✅ Users cleared");
+
+
+        await prisma.currency.deleteMany();
+        console.log("✅ Currencies cleared");
+
+        console.log("✨ Database cleared!");
+
+        // Create currencies
+        console.log("💰 Creating currencies...");
         for (const currency of currencies) {
-            await prisma.currency.upsert({
-                where: { code: currency.code },
-                update: {
-                    name: currency.name,
-                    symbol: currency.symbol,
-                    useRate: currency.useRate,
-                },
-                create: {
-                    code: currency.code,
-                    name: currency.name,
-                    symbol: currency.symbol,
-                    useRate: currency.useRate,
-                },
-            })
-            console.log(`✅ Upserted currency: ${currency.code}`)
+            await prisma.currency.create({ data: currency });
+            console.log(`✅ Created currency: ${currency.code}`);
         }
 
-        for (const role of roles) {
-            await prisma.role.upsert({
-                where: { name: role.name },
-                update: {},
-                create: role,
-            })
-            console.log(`✅ Upserted role: ${role.name}`)
-        }
+        // Create configuration
+        console.log("⚙️ Creating configuration...");
+        await prisma.configuration.create({
+            data: {
+                type: 'Sports',
+                isActive: true,
+                value: [1, 4, 3, 2, 6, 29, 10, 66, 13, 40, 28, 16, 278, 5, 25, 36, 9, 21, 308, 216, 67, 26, 14, 80, 41, 68, 151, 8, 44, 132, 126, 48, 82, 56, 31, 18, 49, 202, 314, 307, 281, 7, 30, 87, 102, 69, 92, 133, 20, 189, 17, 22, 19, 23, 24, 138, 180, 287]
+            }
+        });
+        console.log("✅ Configuration created");
 
-        const role = await prisma.role.findUnique({
-            where: { name: roles[3].name },
-        })
-        if (!role) {
+
+        const currency = await prisma.currency.findFirst();
+
+        if (!currency) {
             throw new Error("Super Admin role not found!")
         }
-        await client.api.admin.users.$post({
-            json: {
+        await auth.api.createUser({
+            body: {
                 email: superAdminUser.email,
-                name: superAdminUser.name,
                 password: superAdminUser.password,
-                roleId: role.id,
-                userType: 'SUPER_ADMIN'
+                name: superAdminUser.name,
+                role: SystemRole.ULTIMATE_BENEFICIAL_OWNER
             }
         })
+
 
         console.log(`✅ Super Admin user created: ${superAdminUser.email}`)
 

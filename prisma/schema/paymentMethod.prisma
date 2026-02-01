@@ -1,0 +1,42 @@
+enum PaymentMethodType {
+    CRYPTO        @map("crypto")
+    MOBILE_MONEY  @map("mobile_money")
+    BANK_TRANSFER @map("bank_transfer")
+    CARD          @map("card")
+    E_WALLET      @map("e_wallet")
+}
+
+model PaymentMethod {
+    id   String            @id @default(uuid())
+    name String
+    type PaymentMethodType
+
+    // Stored as a string because it varies (e.g., 'BTC' for crypto vs 'Stripe' for card)
+    provider String
+
+    isActive Boolean @default(false)
+
+    // This column holds the distinct configuration for each provider (wallet address, API keys, etc.)
+    settings Json
+
+    displayOrder Int     @default(0)
+    icon         String?
+    description  String?
+
+    // Use Decimal for financial precision, never Float
+    minAmount     Decimal? @db.Decimal(18, 2)
+    maxAmount     Decimal? @db.Decimal(18, 2)
+    feePercentage Decimal  @default(0) @db.Decimal(5, 2)
+    feeFixed      Decimal  @default(0) @db.Decimal(18, 2)
+
+    // Relation:
+    withdrawals Withdrawal[]
+    deposits    Deposit[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([type])
+    @@index([isActive])
+    @@map("payment_methods")
+}

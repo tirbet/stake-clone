@@ -1,3 +1,93 @@
-import { createAuthClient } from 'better-auth/react'
+import { createAuthClient } from 'better-auth/react';
+import { emailOTPClient, twoFactorClient, phoneNumberClient, inferAdditionalFields, adminClient } from "better-auth/client/plugins";
+import { type auth } from '@/lib/auth';
+import { SystemRole } from '@/lib/constants/roles';
 
-export const { signIn, signUp, signOut, useSession } = createAuthClient()
+import {
+    ac,
+    customerSupportAgentRole,
+    customerSupportSupervisorRole,
+    paymentProcessorRole,
+    settlementAgentRole,
+    tradingOperatorRole,
+    riskAnalystRole,
+    riskManagerRole,
+    amlAnalystRole,
+    complianceOfficerRole,
+    securityAnalystRole,
+    uboRole,
+    ceoRole,
+    mlroRole,
+    chiefRiskOfficerRole,
+    technicalSuperAdminRole,
+    platformAdministratorRole,
+    complianceDirectorRole,
+    riskDirectorRole,
+    operationsManagerRole,
+    financeAdministratorRole,
+    securityAdministratorRole,
+    systemAdministratorRole,
+    supervisorRole,
+    fraudInvestigatorRole,
+    auditorRole,
+    promotionManagerRole,
+    promotionOperatorRole,
+    productManagerRole,
+    productOperatorRole,
+    contentManagerRole,
+    contentEditorRole,
+} from "@/lib/permissions";
+
+export const {
+    signIn,
+    signUp,
+    signOut,
+    useSession,
+    emailOtp,
+    twoFactor,
+    phoneNumber,
+    admin,
+} = createAuthClient({
+    plugins: [
+        inferAdditionalFields<typeof auth>(),
+        emailOTPClient(),
+        twoFactorClient(),
+        phoneNumberClient(),
+        adminClient({
+            ac,
+            roles: {
+                [SystemRole.CUSTOMER_SUPPORT_AGENT]: customerSupportAgentRole,
+                [SystemRole.CUSTOMER_SUPPORT_SUPERVISOR]: customerSupportSupervisorRole,
+                [SystemRole.PAYMENT_PROCESSOR]: paymentProcessorRole,
+                [SystemRole.SETTLEMENT_AGENT]: settlementAgentRole,
+                [SystemRole.TRADING_OPERATOR]: tradingOperatorRole,
+                [SystemRole.RISK_ANALYST]: riskAnalystRole,
+                [SystemRole.RISK_MANAGER]: riskManagerRole,
+                [SystemRole.AML_ANALYST]: amlAnalystRole,
+                [SystemRole.COMPLIANCE_OFFICER]: complianceOfficerRole,
+                [SystemRole.SECURITY_ANALYST]: securityAnalystRole,
+                [SystemRole.CONTENT_EDITOR]: contentEditorRole,
+                [SystemRole.CONTENT_MANAGER]: contentManagerRole,
+                [SystemRole.PRODUCT_OPERATOR]: productOperatorRole,
+                [SystemRole.PRODUCT_MANAGER]: productManagerRole,
+                [SystemRole.PROMOTION_OPERATOR]: promotionOperatorRole,
+                [SystemRole.PROMOTION_MANAGER]: promotionManagerRole,
+                [SystemRole.AUDITOR]: auditorRole,
+                [SystemRole.FRAUD_INVESTIGATOR]: fraudInvestigatorRole,
+                [SystemRole.SUPERVISOR]: supervisorRole,
+                [SystemRole.SYSTEM_ADMINISTRATOR]: systemAdministratorRole,
+                [SystemRole.SECURITY_ADMINISTRATOR]: securityAdministratorRole,
+                [SystemRole.FINANCE_ADMINISTRATOR]: financeAdministratorRole,
+                [SystemRole.OPERATIONS_MANAGER]: operationsManagerRole,
+                [SystemRole.RISK_DIRECTOR]: riskDirectorRole,
+                [SystemRole.COMPLIANCE_DIRECTOR]: complianceDirectorRole,
+                [SystemRole.PLATFORM_ADMINISTRATOR]: platformAdministratorRole,
+                [SystemRole.TECHNICAL_SUPER_ADMIN]: technicalSuperAdminRole,
+                [SystemRole.CHIEF_RISK_OFFICER]: chiefRiskOfficerRole,
+                [SystemRole.MONEY_LAUNDERING_REPORTING_OFFICER]: mlroRole,
+                [SystemRole.CHIEF_EXECUTIVE_OFFICER]: ceoRole,
+                [SystemRole.ULTIMATE_BENEFICIAL_OWNER]: uboRole,
+            }
+        })
+    ]
+})

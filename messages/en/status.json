@@ -1,0 +1,17 @@
+{
+    "active": "Active",
+    "inactive": "Inactive",
+    "deactive": "Deactive",
+    "verified": "Verified",
+    "unverified": "Unverified",
+    "pending": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "expired": "Expired",
+    "suspended": "Suspended",
+    "banned": "Banned",
+    "upcoming": "Upcoming",
+    "live": "Live"
+}

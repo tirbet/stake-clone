@@ -1,0 +1,15 @@
+{
+    "active": "সক্রিয়",
+    "inactive": "নিষ্ক্রিয়",
+    "deactive": "নিষ্ক্রিয়কৃত",
+    "verified": "যাচাইকৃত",
+    "unverified": "অযাচাইকৃত",
+    "pending": "মুলতুবি",
+    "approved": "অনুমোদিত",
+    "rejected": "প্রত্যাখ্যাত",
+    "completed": "সম্পন্ন",
+    "cancelled": "বাতিল",
+    "expired": "মেয়াদোত্তীর্ণ",
+    "suspended": "স্থগিত",
+    "banned": "নিষিদ্ধ"
+}

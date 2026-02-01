@@ -1,9 +1,7 @@
 'use client';
 import { useMountedState } from "react-use";
-import { NewRoleSheet } from "@/features/role/components/new-role-sheet";
-import { EditRoleSheet } from "@/features/role/components/edit-role-sheet";
-import { NewUserSheet } from "@/features/user/components/new-user-sheet";
-import { EditUserSheet } from "@/features/user/components/edit-user-sheet";
+import { NewCurrencySheet } from "@/features/currency/components/new-currency-sheet";
+import { EditCurrencySheet } from "@/features/currency/components/edit-currency-sheet";
 
 
 export const SheetProvider = () => {
@@ -11,14 +9,9 @@ export const SheetProvider = () => {
     if (!isMounted) return null;
     return (
         <>
-            {/* Role */}
-            <NewRoleSheet />
-            <EditRoleSheet />
-
-            {/* User */}
-            <NewUserSheet />
-            <EditUserSheet />
-
+            {/* Currency */}
+            <NewCurrencySheet />
+            <EditCurrencySheet />
         </>
     );
 }

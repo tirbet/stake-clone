@@ -3,5 +3,5 @@ import {routing} from '@/i18n/routing';
  
 // Lightweight wrappers around Next.js' navigation
 // APIs that consider the routing configuration
-export const {Link, redirect, usePathname, useRouter, getPathname} =
+export const {Link, redirect, usePathname, useRouter, getPathname, permanentRedirect} =
   createNavigation(routing);

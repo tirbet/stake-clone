@@ -1,0 +1,39 @@
+model Promotion {
+  id           String                 @id @default(cuid())
+  key          String                 @unique
+  category     String
+  startAt      DateTime
+  endAt        DateTime
+  isFeatured   Boolean                @default(false)
+  status       PromotionStatus        @default(PUBLISHED)
+  createdAt    DateTime               @default(now())
+  updatedAt    DateTime               @updatedAt
+  translations PromotionTranslation[]
+
+  @@index([category])
+  @@index([status])
+}
+
+model PromotionTranslation {
+  id           String    @id @default(cuid())
+  promotionId  String
+  locale       String
+  slug         String
+  title        String
+  excerpt      String?
+  bodyMd       String
+  heroImageUrl String?
+  cardImageUrl String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  promotion    Promotion @relation(fields: [promotionId], references: [id], onDelete: Cascade)
+
+  @@unique([promotionId, locale])
+  @@unique([locale, slug])
+}
+
+enum PromotionStatus {
+  DRAFT
+  PUBLISHED
+  HIDDEN
+}

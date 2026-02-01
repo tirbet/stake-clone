@@ -1,4 +1,7 @@
 "use client";
+import { ChevronRightIcon } from "lucide-react";
+import { Link, usePathname } from "@/i18n/navigation";
+import { iconMap, IconName } from '@/lib/icons';
 import {
   SidebarGroup,
   SidebarMenu,
@@ -8,69 +11,69 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem
 } from "@/components/ui/sidebar";
-import { getIconComponent, IconName } from '@/lib/data';
 
-import { ChevronRight } from "lucide-react";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { RenderIcon } from "../icon";
-import { AdminNavigationSubItem } from "@/types/website-settings";
+import { useGetConfig } from "@/features/config/api/use-get-config";
+import { useTranslations } from "next-intl";
 
 export default function AdminSideBar() {
-  const { config } = usePage<SharedData>().props;
-  const { url } = usePage();
-  const { navigation } = config;
-  const { admin_navigation } = navigation;
-  const currentPath = new URL(url, window.location.origin).pathname;
+  const pathname = usePathname();
+  const { data, isLoading } = useGetConfig();
+  const t = useTranslations();
 
-  const isActive = (href: string, subItems: AdminNavigationSubItem[] | null) => {
-    const itemPath = new URL(href, window.location.origin).pathname;
-
-    if (subItems?.some(sub => currentPath.startsWith(new URL(sub.href, window.location.origin).pathname))) {
-      return true;
-    }
-
-    return currentPath.startsWith(itemPath);
-  };
-  // usePoll(5000)
+  const adminSidebarItems = data?.navigation.admin || [];
   return (
     <SidebarGroup className="px-2 py-0">
       <SidebarMenu>
-        {admin_navigation?.map((item) => {
-          const active = isActive(item.href, item.subItems);
+        {adminSidebarItems.map((item, index) => {
+
+          const isParentActive = pathname.startsWith(item.url);
+          const IconComponent = iconMap[item.icon as IconName];
           return (
-            <Collapsible key={item.key} asChild defaultOpen={active} className="group/collapsible">
+            <Collapsible
+              key={index}
+              asChild
+              defaultOpen={isParentActive}
+              className="group/collapsible"
+            >
               <SidebarMenuItem>
+
                 <CollapsibleTrigger asChild>
-                  <SidebarMenuButton tooltip={item.name} isActive={active}
+                  <SidebarMenuButton
+                    tooltip={`${t.rich(item.name)}`}
+                    isActive={isParentActive}   // 🔥 FIXED
                   >
-                    <RenderIcon item={item.icon} />
-                    <Link href={item.href} preserveScroll preserveState>
-                      <span>{item.name}</span>
+                    <IconComponent className="w-4 h-4 mr-2" />
+                    <Link href={`${item.url}`} className="flex gap-1 items-center justify-center">
+
+                      <span>{`${t.rich(item.name)}`}</span>
                     </Link>
-                    {item.subItems?.length ? (
-                      <ChevronRight
+
+                    {item.items?.length ? (
+                      <ChevronRightIcon
                         className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"
-                        aria-hidden
                       />
                     ) : null}
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
 
-                {item.subItems?.length ? (
+                {item.items?.length ? (
                   <CollapsibleContent>
                     <SidebarMenuSub>
-                      {item.subItems.map((subItem) => {
-                        const subActive = currentPath.startsWith(new URL(subItem.href, window.location.origin).pathname);
+                      {item.items.map((subItem, index) => {
+                        const isChildActive = pathname === subItem.url;
                         return (
-                          <SidebarMenuSubItem key={subItem.key}>
-                            <SidebarMenuSubButton asChild isActive={subActive}>
-                              <Link href={subItem.href} preserveScroll preserveState className="flex items-center gap-2">
-                                <RenderIcon item={subItem.icon} />
-                                <span>{subItem.name}</span>
+                          <SidebarMenuSubItem key={index}>
+                            <SidebarMenuSubButton
+                              asChild
+                              isActive={isChildActive}
+                            >
+                              <Link href={`${subItem.url}`} className="flex items-center gap-2">
+                                <span>{`${t.rich(subItem.name)}`}</span>
                               </Link>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>
@@ -79,11 +82,12 @@ export default function AdminSideBar() {
                     </SidebarMenuSub>
                   </CollapsibleContent>
                 ) : null}
+
               </SidebarMenuItem>
             </Collapsible>
           );
         })}
       </SidebarMenu>
     </SidebarGroup>
-  )
+  );
 }

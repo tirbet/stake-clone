@@ -1,0 +1,22 @@
+{
+    "auth": {
+        "login": "লগইন",
+        "register": "রেজিস্টার"
+    },
+    "user": {
+        "wallet": "ওয়ালেট",
+        "vault": "ভল্ট",
+        "vip": "ভি.আই.পি",
+        "affiliate": "অ্যাফিলিয়েট",
+        "statistics": "পরিসংখ্যান",
+        "transactions": "লেনদেন",
+        "my_bets": "আমার বেট",
+        "settings": "সেটিংস",
+        "live_support": "লাইভ সাপোর্ট",
+        "logout": "লগ আউট"
+    },
+    "root": {
+        "casino": "ক্যাসিনো",
+        "sport": "খেলাধুলা"
+    }
+}

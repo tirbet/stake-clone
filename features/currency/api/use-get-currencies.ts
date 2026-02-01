@@ -1,3 +1,4 @@
+'use client';
 import { useQuery } from "@tanstack/react-query";
 import { client } from "@/lib/hono";
 
@@ -9,9 +10,9 @@ export const useGetCurrencies = () => {
             if (!response.ok) {
                 throw new Error("Failed to fetch currencies");
             }
-            const { currencies } = await response.json();
+            const data = await response.json();
 
-            return currencies;
+            return data;
         }
     })
 

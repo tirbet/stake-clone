@@ -25,7 +25,7 @@ export default function SportBreadcrumb({ back, items }: Props) {
     const visibleItems = items ? (isMobile ? items?.slice(-1) : items) : items;
 
     return (
-        <div className="flex mb-2">
+        <div className="flex mb-2" aria-label="Breadcrumb">
             <div className="mr-1 bg-sidebar max-h-11 rounded-sm">
                 <Link
                     href={'#'}

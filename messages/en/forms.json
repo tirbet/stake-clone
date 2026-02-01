@@ -1,0 +1,31 @@
+{
+    "settings": {
+        "account": {
+            "email": {
+                "name": "Email",
+                "current_email": "Current Email",
+                "verified_description": "Your email is verified and secure",
+                "unverified_description": "Verify your email to secure your account",
+                "send_verification_code": "Send Verification Code",
+                "sending_code": "Sending Code...",
+                "enter_otp": "Enter Verification Code",
+                "otp_sent_message": "A 6-digit verification code has been sent to your email",
+                "otp_sent_success": "Verification code sent successfully!",
+                "otp_sent_error": "Failed to send verification code",
+                "otp_hint": "Enter the 6-digit code sent to your email",
+                "otp_invalid": "Invalid verification code",
+                "verification_success": "Email verified successfully!",
+                "verifying": "Verifying",
+                "didnt_receive_code": "Didn't receive the code?",
+                "resend_code": "Resend Code",
+                "resend_in": "Resend in {time}",
+                "sending": "Sending...",
+                "wait_to_resend": "Please wait {seconds} seconds before resending",
+                "code_expires_in": "Code expires in",
+                "last_verified": "Last verified",
+                "status": "Status: {status}",
+                "confirm": "Confirm Email"
+            }
+        }
+    }
+}

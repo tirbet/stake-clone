@@ -1,5 +1,5 @@
 import { RegisterForm } from "@/components/register-from";
-import { currencies } from "@/server/actions/currency.action";
+import { currencyService } from "@/lib/services/currency.service";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default async function RegisterPage() {
-  const items = await currencies(true);
+  const items = await currencyService.listActive();
   return (
     <RegisterForm currencies={items}/>
   );

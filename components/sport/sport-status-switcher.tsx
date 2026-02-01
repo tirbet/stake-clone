@@ -1,9 +1,11 @@
+"use client";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
+import { useSportStatus } from "@/store/sport-status";
 
 
-export function SportStatusSwitcher({ open, type }: { open: boolean, type: 'live' | 'upcoming' }) {
-
+export function SportStatusSwitcher({ open }: { open: boolean }) {
+        const {status, setStatus} = useSportStatus();
     return (
         <div
             className={cn(
@@ -12,10 +14,11 @@ export function SportStatusSwitcher({ open, type }: { open: boolean, type: 'live
             )}
         >
             <Link
-                href={'/sport/live'}
+                href={'#'}
+                onClick={() => setStatus('live')}
                 className={cn(
                     "flex-1 rounded-lg px-4 py-2 text-center text-sm font-medium transition",
-                    type === "live"
+                    status === "live"
                         ? "bg-primary text-primary-foreground shadow"
                         : "text-muted-foreground hover:bg-muted/60"
                 )}
@@ -24,10 +27,11 @@ export function SportStatusSwitcher({ open, type }: { open: boolean, type: 'live
             </Link>
 
             <Link
-                href={"/sport/upcoming"}
+                href={"#"}
+                onClick={() => setStatus('upcoming')}
                 className={cn(
                     "flex-1 rounded-lg px-4 py-2 text-center text-sm font-medium transition",
-                    type === "upcoming"
+                    status === "upcoming"
                         ? "bg-primary text-primary-foreground shadow"
                         : "text-muted-foreground hover:bg-muted/60"
                 )}

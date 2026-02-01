@@ -1,0 +1,17 @@
+{
+    "LocaleSwitcher": {
+        "label": "Language",
+        "locale": "{locale, select, en {English} bn {Bangla} hi {Hindi}}"
+    },
+    "settings": "Settings",
+    "transactions": "Transactions",
+    "my_bets": "My Bets",
+    "unverified": "Unverified",
+    "verified": "Verified",
+    "pending_verification": "Pending Verification",
+    "admin": {
+        "kyc": {
+            "label": "Label {number}"
+        }
+    }
+}

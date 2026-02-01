@@ -20,9 +20,9 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { login } from "@/server/actions/auth-action"
 import { toast } from "sonner"
 import { useRouter } from "@/i18n/navigation"
+import { signIn } from "@/lib/auth-client"
 
 // Zod schema
 const loginSchema = z.object({
@@ -45,15 +45,18 @@ export function LoginForm() {
   })
 
   const onSubmit = async (values: LoginFormValues) => {
-
-    const res = await login({ data: values })
-    if (res.success) {
-      router.refresh();
-      router.push('/');
-      toast.success(res.message);
+     const {data, error } = await signIn.email({
+      email: values.email,
+      password: values.password,
+    })
+    if (error) {
+      toast.error(error.message || "Something went wrong")
     } else {
-      toast.error(res.message || "Something went wrong")
+      toast.success("Logged in successfully")
+      router.push('/');
+      router.refresh();
     }
+    
   }
 
   return (

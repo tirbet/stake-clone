@@ -21,7 +21,6 @@ export default async function AuthLayout({
     }
     return (
         <AppLayout
-            user={data?.user}
             sidebarItem={[]}
         >
             {children}

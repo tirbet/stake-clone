@@ -1,31 +1,33 @@
 import { useQuery } from "@tanstack/react-query";
-import { client } from "@/lib/hono";
 import { useLocale } from "next-intl";
-
+import slugify from "slugify";
+import { apiClient, ApiPaths } from "@/lib/api-client";
 type Props = {
     type: "live" | "upcoming";
-    id: number;
+    sport: string;
 };
+export type GetSportsResponse = ApiPaths['/sports/{status}/{sport}']['get']['responses']['200']['content']['application/json']['data'];
 
-export const useGetSport = ({ type, id }: Props) => {
-    const lng = useLocale();
+export const useGetSport = ({ type, sport }: Props) => {
+    const locale = useLocale();
     const query = useQuery({
-        queryKey: ["sport", [lng, type, id]],
+        queryKey: ["sport", [locale, type, sport]],
         queryFn: async () => {
-            const url = type === "live" ? client.api.sports.live[':id'].$get({                
-                param: { id: id.toString() },
-                query: { lng }
-            }) : client.api.sports.upcoming[':id'].$get({
-                param: { id: id.toString() },
-                query: { lng }
-            });
-            const response = await url;
-            if (!response.ok) {
-                throw new Error("Failed to fetch upcoming sport");
+            const { data, error } = await apiClient.GET('/sports/{status}/{sport}', {
+                params: {
+                    query: {
+                        locale: locale as any
+                    },
+                    path: {
+                        status: type,
+                        sport:  slugify(sport, { lower: true, strict: true })
+                    }
+                }
+            })
+            if (error) {
+                console.log(error.error)
             }
-            const { data } = await response.json();
-
-            return data;
+            return data?.data
         },
         refetchInterval: type === "live" ? 15000 : 30000,
         networkMode: 'online',

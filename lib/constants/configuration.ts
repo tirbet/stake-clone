@@ -1,0 +1,2 @@
+export const kycFields = ['firstName', 'lastName', 'birthDate', 'country', 'idType', 'idNumber', 'idFrontPath', 'idBackPath', 'selfieWithIdPath', 'paymentMethod', 'paymentProofPath', 'bankStatementPath'] as const;
+export type KycField = typeof kycFields[number];
