@@ -35,7 +35,7 @@ export function AppSidebar({ children, show = true, ...props }: AppSidebarProps)
                                             "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                                             "active:bg-sidebar-primary active:text-sidebar-primary-foreground",
                                             "w-22 h-10 text-sm font-medium",
-                                            "rounded-[var(--radius-sm)]",
+                                            "rounded-sm",
                                             "transition-colors",
                                             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring",
                                         )}
@@ -51,7 +51,7 @@ export function AppSidebar({ children, show = true, ...props }: AppSidebarProps)
                                             "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                                             "active:bg-sidebar-primary active:text-sidebar-primary-foreground",
                                             "w-24 h-10 text-sm font-medium",
-                                            "rounded-[var(--radius-sm)]",
+                                            "rounded-sm",
                                             "transition-colors",
                                             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring",
                                         )}

@@ -1,5 +1,4 @@
 import { GetSportsResponse } from "@/features/sport/api/use-get-sport";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 export const groupEventsByCountryAndLeague = (
   events: GetSportsResponse
@@ -21,7 +20,7 @@ export const groupEventsByCountryAndLeague = (
   >();
 
   for (const event of events) {
-    const countryId = event.country.id;
+    const countryId = event.country?.id || 33;
     const leagueId = event.league.id;
 
     // init country
@@ -64,15 +63,12 @@ export const getDisplayName = (type: 'live' | 'upcoming'): string => {
 export const truncate = (str: string = "", len = 20) => str.length > len ? str.slice(0, len) : str;
 
 export const useTeamsDisplayName = (team?: GetSportsResponse[number]["team"]): string => {
-    const isMobile = useIsMobile();
 
-    if (!team) return "home vs away";
+    if (!team) return "home - away";
 
     const { home, away } = team;
 
-    return isMobile
-        ? `${truncate(home.name, 10)} - ${truncate(away.name, 10)}`
-        : `${home.name} vs ${away.name}`;
+    return `${truncate(home.name, 3).toUpperCase()} - ${truncate(away.name, 3).toUpperCase()}`
 };
 
 export const formatTime = (seconds: number): string => {

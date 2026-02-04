@@ -23,10 +23,10 @@ export function AppSidebarHeader({ user }: { user?: User }) {
                 'sticky top-0 z-10 flex h-15 shrink-0 items-center justify-between gap-4',
 
                 // background and border
-                'bg-background border-b border-sidebar-border/50',
+                'bg-[#1a2c38] border-b border-sidebar-border/50',
 
                 // backdrop blur and support check
-                'backdrop-blur-lg supports-backdrop-filter:bg-background/80',
+                'backdrop-blur-lg supports-backdrop-filter:bg-[#1a2c38]/80',
 
                 // padding and transition
                 'px-4 transition-all duration-200 ease-in-out',
@@ -72,12 +72,12 @@ export function AppSidebarHeader({ user }: { user?: User }) {
                         </>) : (
                             <div className='flex flex-row gap-2'>
                                 <Link href={'/login'}>
-                                    <Button size="lg" className={''}>
+                                    <Button size="lg" className={cn('bg-gray-600 hover:bg-gray-700 text-white')}>
                                         Login
                                     </Button>
                                 </Link>
                                 <Link href={'/register'}>
-                                    <Button size="lg" className={''}>
+                                    <Button size="lg" className={cn('bg-blue-600 hover:bg-blue-700 text-white')}>
                                         Register
                                     </Button>
                                 </Link>

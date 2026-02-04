@@ -45,7 +45,6 @@
 
 @layer base {
   :root {
-    --breakpoint-xl: 1200px;
     --radius: 0.625rem;
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
@@ -123,4 +122,24 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Firefox */
+.thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-grey-400) transparent;
+}
+
+/* Chromium / WebKit */
+.thin-scrollbar::-webkit-scrollbar {
+  height: 6px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-grey-400);
+  border-radius: 9999px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
 }

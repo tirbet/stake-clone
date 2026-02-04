@@ -28,14 +28,14 @@ const PromotionItem = React.memo(function PromotionItem({
       <Card
         className={cn(
           "snap-start p-0 m-0 overflow-hidden",
-          "[container-type:inline-size] [container-name:card-size]",
+          "@container [container-name:card-size]",
           "flex flex-col relative text-white bg-[#213743]",
         )}
       >
         <CardContent className="p-0.5 m-0">
           <Link href={buttonHref} className="block h-full mb-1.5"  aria-label={`Action: ${buttonText} for ${title}`}>
             <div className="grid grid-cols-[45%_55%] relative h-48 overflow-hidden scale-[1]">
-              <div className="flex flex-col p-3 z-[1]">
+              <div className="flex flex-col p-3 z-1">
                 <div className="flex flex-col h-full gap-y-0.5">
                   <div className="mb-1.5">
                     <Badge variant="white">{badgeText}</Badge>
@@ -53,7 +53,7 @@ const PromotionItem = React.memo(function PromotionItem({
               <div className="relative">
                 <div className="absolute flex items-center justify-end h-full w-full">
                   <img
-                    className="object-cover w-full h-full md:p-3 max-w-[220px] max-h-[220px] aspect-square"
+                    className="object-cover w-full h-full md:p-3 max-w-55 max-h-55 aspect-square"
                     src={imageUrl}
                     alt={title}
                     loading="lazy"
@@ -64,7 +64,7 @@ const PromotionItem = React.memo(function PromotionItem({
             </div>
           </Link>
 
-          <div className="absolute mt-auto w-fit bg-[#213743] bottom-[12px] left-[12px] md:bottom-[16px] md:left-[16px]">
+          <div className="absolute mt-auto w-fit bg-[#213743] bottom-3 left-3 md:bottom-4 md:left-4">
             <Link
               href={buttonHref}
               className={cn(
@@ -80,7 +80,7 @@ const PromotionItem = React.memo(function PromotionItem({
                 "hover:bg-gray-400 hover:text-white",
                 "border border-solid border-white",
                 "text-sm leading-none",
-                "py-[0.8125rem] px-[1rem]"
+                "py-3.25 px-4"
               )}
             >
               {buttonText}

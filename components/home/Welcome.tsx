@@ -46,10 +46,10 @@ type WelcomeProps = {
 
 export default function Welcome({ title, register, socail, orText }: WelcomeProps) {
     return (
-        <div className="grid grid-flow-row grid-rows-[1fr_auto] gap-y-3 md:gap-y-8 lg:max-w-[478px] w-full items-center">
+        <div className="grid grid-flow-row grid-rows-[1fr_auto] gap-y-3 md:gap-y-8 lg:max-w-119.5 w-full items-center">
             <div>
                 <div className="p-3 sm:px-24 md:px-0 lg:pr-20">
-                    <h1 className="text-3xl sm:text-2xl md:text-4xl font-bold leading-tight items-center md:items-start">
+                    <h1 className="text-xl sm:text-2xl md:text-3xl font-bold leading-tight items-center md:items-start">
                         {title}
                     </h1>
                 </div>

@@ -160,7 +160,7 @@ export function EventInfo({
     className
 }: EventInfoProps) {
     const locale = useLocale();
-    const { status, team, scoreContext, markets, startTime, slug } = event;
+    const { status, team, ec, scoreContext, markets, startTime, slug } = event;
 
     // Use custom hooks for derived state
     const formattedStartTime = useFormattedStartTime(startTime, locale);
@@ -195,13 +195,13 @@ export function EventInfo({
                     </div>
                     <div className="md:hidden">
                         <Link onClick={() => {}} href={slug} className="grid place-items-center w-full h-full">
-                            {markets && (<Badge variant={"verified"}>{markets.length > 0 ? `+` : ''}{markets.length}</Badge>) }
+                            {ec && (<Badge variant={"verified"}>{ec > 0 ? `+` : ''}{ec}</Badge>) }
                         </Link>
                     </div>
                 </div>
 
                 {/* Teams and Scores */}
-                <div className="flex flex-col">
+                <Link href={slug} className="flex flex-col">
                     <TeamScore
                         team={homeTeam}
                         score={showScores ? scoreContext?.fullScore?.home : undefined}
@@ -211,7 +211,7 @@ export function EventInfo({
                         team={awayTeam}
                         score={showScores ? scoreContext?.fullScore?.away : undefined}
                     />
-                </div>
+                </Link>
 
             </div>
         </div>

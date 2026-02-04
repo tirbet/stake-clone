@@ -6,6 +6,7 @@ type Props = {
 };
 
 export default function Promotion({children}: Props) {
+    
     return (
         <Carousel className="w-full overflow-hidden md:overflow-visible sm:overflow-visible mt-2">
             <CarouselContent className="-ml-1">{children}</CarouselContent>

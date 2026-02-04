@@ -4,6 +4,7 @@ import configRoute from './configRoute';
 import authRoute from './authRoute';
 import userRoute from './userRoute';
 import adminRoute from './adminRoute';
+import sportRoute from './sportRoute';
 
 const app = new Hono().basePath("/api");
 const routes = app
@@ -11,6 +12,7 @@ const routes = app
   .route("/auth", authRoute)
   .route('/user', userRoute)
   .route('/admin', adminRoute)
+  .route('/sports', sportRoute)
 
 export const GET = handle(app);
 export const POST = handle(app);

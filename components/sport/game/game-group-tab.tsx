@@ -40,7 +40,7 @@ export function GameGroupTab({ groups, marketTypes }: { groups: Groups, marketTy
             <div className="flex gap-0.5 px-2 py-1 w-full max-w-5xl">
                 {/* Groups Select */}
 
-                <Select defaultValue={defaultValue} onValueChange={(slug) => router.push(slug)}>
+                <Select defaultValue={defaultValue} onValueChange={(slug) => router.push(slug, {scroll: false})}>
                     <SelectTrigger className="w-48"  aria-label="Select group">
                         <SelectValue placeholder="Select a group" />
                     </SelectTrigger>

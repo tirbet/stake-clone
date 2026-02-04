@@ -1,12 +1,12 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useLocale } from "next-intl";
-import { apiClient, ApiPaths } from "@/lib/api-client";
+import { ApiPaths } from "@/lib/api-client";
 import slugify from "slugify";
 import { useParams, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import { groupEventsByCountryAndLeague } from "@/lib/sport/sport-helper";
 import { useSportStatus } from "@/store/sport-status";
-
+import { client } from "@/lib/hono";
 type Status = "live" | "upcoming";
 type Locale = "en" | "bn" | "hi";
 
@@ -17,21 +17,19 @@ export const useGetSports = () => {
     return useSuspenseQuery({
         queryKey: ["sports", [locale, status]],
         queryFn: async () => {
-            const { data, error } = await apiClient.GET('/sports/{status}', {
-                params: {
-                    query: {
-                        locale
-                    },
-                    path: {
-                        status
-                    }
+            const res = await client.api.sports[":status"].$get({
+                param: {
+                    status
+                },
+                query: {
+                    locale
                 }
             })
-            if (error) {
-                console.log(error.error)
+            if (!res.ok) {
+                throw new Error('some worong')
             }
-            return data?.data
-
+            const { data } = await res.json();
+            return data.data
         },
         select: (data) => {
             return data || []
@@ -69,30 +67,17 @@ export const useGetGame = () => {
         ],
 
         queryFn: async () => {
-            const { data, error } = await apiClient.GET(
-                "/sports/{status}/{sport}/{league}/{game}",
-                {
-                    params: {
-                        query: {
-                            locale,
-                            marketType,
-                        },
-                        path: {
-                            status: params.status,
-                            sport: sportSlug,
-                            league: params.league,
-                            game: params.game,
-                        },
-                    },
+            const res = await client.api.sports[":status"][":sport"][":league"][":game"].$get({
+                param: { ...params },
+                query: {
+                    locale
                 }
-            );
-
-            if (error) {
-                // Let React Query handle error boundaries
-                throw new Error(error.error ?? "Failed to fetch game");
+            })
+            if (!res.ok) {
+                throw new Error('some worong')
             }
-
-            return data?.data;
+            const { data } = await res.json();
+            return data.data
         },
         refetchInterval: params.status === "live" ? 15_000 : 30_000,
         staleTime: params.status === "live" ? 0 : 10_000,
@@ -121,21 +106,16 @@ export const useGetLeague = () => {
             params.game,
         ],
         queryFn: async () => {
-            const { data, error } = await apiClient.GET('/sports/{status}/{sport}/{league}', {
-                params: {
-                    query: {
-                        locale
-                    },
-                    path: {
-                        status: params.status,
-                        sport: sportSlug,
-                        league: params.league,
-                    }
+            const res = await client.api.sports[":status"][":sport"][":league"].$get({
+                param: { ...params },
+                query: {
+                    locale
                 }
             })
-            if (error) {
-                console.log(error.error)
+            if (!res.ok) {
+                throw new Error('some worong')
             }
+            const { data } = await res.json();
             return data
         },
         select: (data) => {
@@ -166,20 +146,16 @@ export const useGetSport = () => {
             sportSlug,
         ],
         queryFn: async () => {
-            const { data, error } = await apiClient.GET('/sports/{status}/{sport}', {
-                params: {
-                    query: {
-                        locale
-                    },
-                    path: {
-                        status: params.status,
-                        sport: sportSlug,
-                    }
+            const res = await client.api.sports[":status"][":sport"].$get({
+                param: { ...params },
+                query: {
+                    locale
                 }
             })
-            if (error) {
-                console.log(error.error)
+            if (!res.ok) {
+                throw new Error('some worong')
             }
+            const { data } = await res.json();
             return data
         },
         select: (data) => {
@@ -189,5 +165,31 @@ export const useGetSport = () => {
         },
         refetchInterval: params.status === "live" ? 15_000 : 30_000,
         staleTime: params.status === "live" ? 0 : 10_000,
+    })
+}
+
+export const useGetTopGame = ({ status }: { status: Status }) => {
+    const locale = useLocale() as Locale;
+    return useSuspenseQuery({
+        queryKey: ["sport", "get-top-game"],
+        queryFn: async () => {
+            const res = await client.api.sports["top"][":status"].$get({
+                param: { status },
+                query: {
+                    locale
+                }
+            })
+            if (!res.ok) {
+                throw new Error('some worong')
+            }
+            const { data } = await res.json();
+            return data
+        },
+        select: (data) => {
+            const items = data?.data || []
+            return items
+        },
+        refetchInterval: status === "live" ? 15_000 : 30_000,
+        staleTime: status === "live" ? 0 : 10_000,
     })
 }

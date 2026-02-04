@@ -25,16 +25,10 @@ import { useGetSports } from "@/features/sport/api/use-get-game";
 import FlagIcon from "@/components/icons/flag";
 
 
-type SportSideBarProps = {
-  type: "live" | "upcoming";
-
-};
-
-export default function SportSideBar({ type }: SportSideBarProps) {
+export default function SportSideBar() {
 
   const { open } = useSidebar()
   const { data } = useGetSports();
-  const router = useRouter();
   return (
     <React.Fragment>
       <SportStatusSwitcher open={open} />
@@ -45,7 +39,7 @@ export default function SportSideBar({ type }: SportSideBarProps) {
             data.map((sport, index) => (
               <Collapsible asChild className="group/collapsible" key={index}>
                 <SidebarMenuItem>
-                  <CollapsibleTrigger asChild onChange={() => { console.log(sport.id) }}>
+                  <CollapsibleTrigger asChild>
                     <SidebarMenuButton
                       tooltip={sport.name}
                     >
@@ -54,7 +48,7 @@ export default function SportSideBar({ type }: SportSideBarProps) {
                         href={sport.slug}>
                         <span className="truncate">
                           {sport.name}
-                          <span className="text-muted-foreground ml-1">({sport.gc})</span>
+                          <span className="text-muted-foreground ml-1" >({sport.gc})</span>
                         </span>
                       </Link>
                       <ChevronRightIcon
@@ -94,7 +88,7 @@ export default function SportSideBar({ type }: SportSideBarProps) {
                                         href={league.slug}
                                         className="flex items-center w-full"
                                       >
-                                        <span className="flex max-w-[160px] truncate">
+                                        <span className="flex max-w-40 truncate">
                                           <span className="truncate">{league.name}</span>
                                           <span className="text-muted-foreground ml-1">
                                             ({league.gc})

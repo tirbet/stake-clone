@@ -37,11 +37,12 @@ export const topSports = async (
   status: "live" | "upcoming"
 ): Promise<TopSportEvent[]> => {
   const lng = await getLocale();
-  const preUrl = `LineFeed/Get1x2_VZip?count=10&lng=${lng}&mode=4&country=19&top=true&partner=152&virtualSports=true`;
-  const liveUrl = `LiveFeed/Get1x2_VZip?count=10&lng=${lng}&mode=4&country=19&top=true&partner=152&virtualSports=true&noFilterBlockEvent=true`;
+  //https://betwinner.com/service-api/LiveFeed/Get1x2_VZip?sports=1,2,3,4,6,10,66,85,235,287&champs=12821,88637,96463,110163,118663,127733,1327023,2173179,2663586,2950958&count=100&lng=en&mode=4&country=19&partner=152&getEmpty=true&isRecommendations=true
+  const liveUrl = `LiveFeed/Get1x2_VZip?sports=1,2,3,4,6,10,66,85,235,287&champs=12821,88637,96463,110163,118663,127733,1327023,2173179,2663586,2950958&count=100&lng=${lng}&mode=4&country=19&partner=152&getEmpty=true&isRecommendations=true`;
+  const preUrl = `LiveFeed/Get1x2_VZip?count=10&lng=${lng}&mode=4&country=19&top=true&partner=152&virtualSports=true&noFilterBlockEvent=true`;
 
   const url = `${API_URL}/${status === "live" ? liveUrl : preUrl}`;
-  const req = await fetch(url, {cache: 'no-store'});
+  const req = await fetch(url, { next: { revalidate: status === 'live' ? 10 : 15 } });
   const data: TopSportsResponse = await req.json();
   const items = data?.Value || [];
 
@@ -51,7 +52,7 @@ export const topSports = async (
     description: `${item.O1} vs ${item.O2}`,
     imageUrl: `/sports/${item.SI}.jpg`,
     buttonText: "Bet Now",
-    buttonHref: `${item.KI === 1 ? "/sport/live" : "/sport/upcoming"
+    buttonHref: `${item.KI === 1 ? "/sports/live" : "/sports/upcoming"
       }/${slugify(item.SE || item.SN || "", { lower: true, strict: true })}/${item.LI
       }-${slugify(item.LE || item.L || "", { lower: true, strict: true })}/${item.I
       }-${slugify(item.O1E || item.O1 || "", { lower: true, strict: true })}-vs-${slugify(

@@ -15,81 +15,56 @@ export default function HeaderWrapper() {
     const { user } = useUserStore()
     const isMobile = useIsMobile();
     return (
-        <>
-            <div className="relative flex justify-center py-4 md:py-6 w-full min-h-100 overflow-hidden pt-15">
-                <Image
-                    src="/assets/header-bg.png"
-                    alt="Casino and Sports background"
-                    fill
-                    priority
-                    className="object-cover"
-                />
-                <div className="absolute inset-0 bg-linear-to-b from-black/30 to-black/80" />
+        <div
+            className="w-full bg-cover bg-center bg-no-repeat py-8"
+            style={{
+                backgroundImage: `
+      -webkit-image-set(
+        url("/assets/header-bg.png?auto=format&q=70&w=1680&dpr=1") 1x,
+        url("/assets/header-bg.png?auto=format&q=70&w=1680&dpr=2") 2x
+      ),
+      image-set(
+        url("/assets/header-bg.png?auto=format&q=70&w=1680&dpr=1") 1x,
+        url("/assets/header-bg.png?auto=format&q=70&w=1680&dpr=2") 2x
+      )
+    `,
+            }}
+        >
+            <div className="mx-auto max-w-7xl px-4 flex items-center">
+                <div className="grid w-full gap-8 text-white grid-cols-1 md:grid-cols-[40%_60%] items-center">
 
-                <div className="relative mt-16 md:mt-20 max-w-7xl mx-auto flex w-full items-center justify-between px-4">
-                    <div className="grid w-full gap-8 text-white md:grid-cols-[40%_1fr] items-center">
-                        {user ? (
-                            <AuthenticatedCard />
-                        ) : (
-                            <Welcome
-                                title="World's Largest Online Casino and Sportsbook"
-                                register="Register"
-                                orText="Or sign up with"
-                                socail={{ facebook: true, google: false, line: false, twitch: true }}
-                            />
-                        )}
+                    {user ? (
+                        <AuthenticatedCard />
+                    ) : (
+                        <Welcome
+                            title="World's Largest Online Casino and Sportsbook"
+                            register="Register"
+                            orText="Or sign up with"
+                            socail={{ facebook: true, google: false, line: false, twitch: true }}
+                        />
+                    )}
 
-                        {!isMobile && (
-                            <div className="flex gap-4 justify-end">
-                                <Card
-                                    title="Casino"
-                                    href="casino"
-                                    imageUrl="https://mediumrare.imgix.net/stake-casino-home-18-jul-25-en.png?w=350&h=230&fit=min&auto=format"
-                                    viewers={46108}
-                                    icon={Dice5}
-                                />
-                                <Card
-                                    title="Sports"
-                                    href="sport"
-                                    imageUrl="https://mediumrare.imgix.net/stake-sports-home-18-jul-25-en.png?w=350&h=230&fit=min&auto=format"
-                                    viewers={21372}
-                                    icon={Trophy}
-                                />
-                            </div>
-                        )}
+                    <div className="flex gap-4 justify-start md:justify-end">
+                        <Card
+                            title="Casino"
+                            href="casino"
+                            imageUrl="https://mediumrare.imgix.net/stake-casino-home-18-jul-25-en.png?w=350&h=230&fit=min&auto=format"
+                            viewers={46108}
+                            icon={Dice5}
+                        />
+                        <Card
+                            title="Sports"
+                            href="sports"
+                            imageUrl="https://mediumrare.imgix.net/stake-sports-home-18-jul-25-en.png?w=350&h=230&fit=min&auto=format"
+                            viewers={21372}
+                            icon={Trophy}
+                        />
                     </div>
+
                 </div>
             </div>
-            {isMobile && (
-                <div className="max-w-7xl mx-auto flex w-full items-center justify-between px-4">
-                    <div className="relative w-full max-w-full text-white grid items-center gap-8 grid-cols-1 md:gap-0 md:justify-between md:grid-cols-[40%_55%]">
-                        <Search />
-                        {/* Mobile cards */}
-                        <span className="flex items-center gap-1 text-[1.12rem] text-white font-bold">
-                            <Play className="bg-white rounded-2xl text-black p-1 h-[1.12rem] w-[1.12rem]" />
-                            Start Playing
-                        </span>
-                        <div className="flex gap-1.5 md:gap-4 xl:gap-2.5 justify-end">
-                            <Card
-                                title="Casino"
-                                href={'casino'}
-                                imageUrl="https://mediumrare.imgix.net/stake-casino-home-18-jul-25-en.png?w=350&h=230&fit=min&auto=format"
-                                viewers={46108}
-                                icon={Dice5}
-                            />
-                            <Card
-                                title="Sports"
-                                href={'sport'}
-                                imageUrl="https://mediumrare.imgix.net/stake-sports-home-18-jul-25-en.png?w=350&h=230&fit=min&auto=format"
-                                viewers={21372}
-                                icon={Trophy}
-                            />
-                        </div>
-                    </div>
-                </div>
+        </div>
 
-            )}
-        </>
     )
 }
 

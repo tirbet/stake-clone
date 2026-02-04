@@ -13,7 +13,7 @@ export async function AppContent({ children, ...props }: ComponentProps<'main'>)
         <SidebarInset className='md:peer-data-[variant=inset]:m-0 bg-muted' {...props}>
             <AppSidebarHeader user={user} />
             {/* max-w-7xl  */}
-            <main className="mx-auto flex h-full w-full flex-1 flex-col gap-4 rounded-xl md:pb-0" {...props}>
+            <main className="mx-auto bg-[#1a2c38] flex h-full w-full flex-1 flex-col gap-4 rounded-xl md:pb-0" {...props}>
                 {/* Add this wrapper div for mobile content */}
                 <div className="flex-1 pb-28 md:pb-0">
                     {children}

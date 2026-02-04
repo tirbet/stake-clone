@@ -24,6 +24,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/sports/recommendations/{status}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get recommendation games */
+        get: operations["getRecommendationGame"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/sports/top/{status}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get top games */
+        get: operations["getTopGame"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/sports/coupon": {
         parameters: {
             query?: never;
@@ -190,6 +224,1200 @@ export interface operations {
             };
             /** @description Validation error */
             422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example true */
+                        success: boolean;
+                        error: string;
+                        issues: {
+                            path: string[];
+                            message: string;
+                        }[];
+                    };
+                };
+            };
+            /** @description Internal server error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example true */
+                        success: boolean;
+                        error: string;
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    getRecommendationGame: {
+        parameters: {
+            query?: {
+                /** @description Response language (en, bn, hi, etc.) */
+                locale?: "en" | "bn" | "hi";
+            };
+            header?: never;
+            path: {
+                /** @description Filter sports by event status */
+                status: "live" | "upcoming";
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of recommendation games */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example true */
+                        success: boolean;
+                        /**
+                         * Format: uuid
+                         * @example 6f8a7c3e-1f2a-4d8e-b9a1-9c3b6a2c8f11
+                         */
+                        requestId: string;
+                        data: {
+                            /**
+                             * @description Match identifier
+                             * @example 987654
+                             */
+                            id: number | null;
+                            /**
+                             * @description Category identifier
+                             * @example 4353456
+                             */
+                            ci?: number | null;
+                            /** @description Match teams (home vs away) */
+                            team: {
+                                /**
+                                 * @description Home team
+                                 * @example {
+                                 *       "id": 12345,
+                                 *       "name": "Manchester United",
+                                 *       "slug": "manchester-united",
+                                 *       "countryId": 44,
+                                 *       "logo": "https://cdn.example.com/teams/manchester-united.png"
+                                 *     }
+                                 */
+                                home: {
+                                    /**
+                                     * @description Unique team identifier
+                                     * @example 12345
+                                     */
+                                    id: number;
+                                    /**
+                                     * @description Team display name
+                                     * @example Manchester United
+                                     */
+                                    name: string;
+                                    /**
+                                     * @description URL-friendly team identifier
+                                     * @example manchester-united
+                                     */
+                                    slug: string;
+                                    /**
+                                     * @description Country identifier where the team is registered
+                                     * @example 44
+                                     */
+                                    countryId: number;
+                                    /**
+                                     * @description Team logo URL
+                                     * @example https://cdn.example.com/teams/manchester-united.png
+                                     */
+                                    logo?: string | null;
+                                };
+                                /**
+                                 * @description Away team
+                                 * @example {
+                                 *       "id": 67890,
+                                 *       "name": "Liverpool",
+                                 *       "slug": "liverpool",
+                                 *       "countryId": 44,
+                                 *       "logo": "https://cdn.example.com/teams/liverpool.png"
+                                 *     }
+                                 */
+                                away: {
+                                    /**
+                                     * @description Unique team identifier
+                                     * @example 12345
+                                     */
+                                    id: number;
+                                    /**
+                                     * @description Team display name
+                                     * @example Manchester United
+                                     */
+                                    name: string;
+                                    /**
+                                     * @description URL-friendly team identifier
+                                     * @example manchester-united
+                                     */
+                                    slug: string;
+                                    /**
+                                     * @description Country identifier where the team is registered
+                                     * @example 44
+                                     */
+                                    countryId: number;
+                                    /**
+                                     * @description Team logo URL
+                                     * @example https://cdn.example.com/teams/manchester-united.png
+                                     */
+                                    logo?: string | null;
+                                };
+                            };
+                            /**
+                             * @description League information
+                             * @example {
+                             *       "id": 1,
+                             *       "name": "Premier League",
+                             *       "slug": "premier-league"
+                             *     }
+                             */
+                            league: {
+                                /**
+                                 * @description Unique league identifier
+                                 * @example 1
+                                 */
+                                id: number;
+                                /**
+                                 * @description League display name
+                                 * @example Premier League
+                                 */
+                                name: string;
+                                /**
+                                 * @description URL-friendly league identifier
+                                 * @example premier-league
+                                 */
+                                slug: string;
+                            };
+                            /**
+                             * @description Country information
+                             * @example {
+                             *       "id": 44,
+                             *       "name": "England"
+                             *     }
+                             */
+                            country?: {
+                                /**
+                                 * @description Unique country identifier
+                                 * @example 44
+                                 */
+                                id: number;
+                                /**
+                                 * @description Country name
+                                 * @example England
+                                 */
+                                name: string;
+                            };
+                            /**
+                             * @description Match status
+                             * @example live
+                             * @enum {string}
+                             */
+                            status: "live" | "upcoming";
+                            /**
+                             * @description Unix timestamp (UTC)
+                             * @example 1768651200
+                             */
+                            startTime: number;
+                            /**
+                             * @description event count
+                             * @example 134
+                             */
+                            ec: number;
+                            sport: {
+                                /**
+                                 * @description Unique sport identifier
+                                 * @example 1
+                                 */
+                                id: number;
+                                /**
+                                 * @description Sport display name
+                                 * @example Football
+                                 */
+                                name: string;
+                                /**
+                                 * @description URL-friendly sport identifier
+                                 * @example football
+                                 */
+                                slug: string;
+                            };
+                            gameTypeId?: number;
+                            period?: number;
+                            periodName: string;
+                            /**
+                             * @description Transformed GE markets
+                             * @example [
+                             *       {
+                             *         "id": 6,
+                             *         "name": "Total Goals",
+                             *         "gs": 1,
+                             *         "outcomes": [
+                             *           [
+                             *             {
+                             *               "id": 83,
+                             *               "name": "(2.5) Over",
+                             *               "coefficient": 1.9,
+                             *               "suspended": false,
+                             *               "point": 2.5
+                             *             },
+                             *             {
+                             *               "id": 84,
+                             *               "name": "(2.5) Under",
+                             *               "coefficient": 1.9,
+                             *               "suspended": false,
+                             *               "point": 2.5
+                             *             }
+                             *           ]
+                             *         ]
+                             *       }
+                             *     ]
+                             */
+                            markets?: {
+                                /**
+                                 * @description Market id
+                                 * @example 6
+                                 */
+                                id: number;
+                                /**
+                                 * @description Localized market name
+                                 * @example Total Goals
+                                 */
+                                name: string;
+                                /**
+                                 * @description Market game status
+                                 * @example 1
+                                 */
+                                gs: number;
+                                /**
+                                 * @description Grouped outcomes (2D array)
+                                 * @example [
+                                 *       [
+                                 *         {
+                                 *           "id": 83,
+                                 *           "name": "(2.5) Over",
+                                 *           "coefficient": 1.9,
+                                 *           "suspended": false,
+                                 *           "point": 2.5
+                                 *         },
+                                 *         {
+                                 *           "id": 84,
+                                 *           "name": "(2.5) Under",
+                                 *           "coefficient": 1.9,
+                                 *           "suspended": false,
+                                 *           "point": 2.5
+                                 *         }
+                                 *       ]
+                                 *     ]
+                                 */
+                                outcomes: {
+                                    /**
+                                     * @description Outcome id
+                                     * @example 83
+                                     */
+                                    id: number;
+                                    /**
+                                     * @description Localized outcome name
+                                     * @example (2.5) Over
+                                     */
+                                    name: string;
+                                    /**
+                                     * @description Odds coefficient
+                                     * @example 1.9
+                                     */
+                                    coefficient: number;
+                                    /**
+                                     * @description Outcome suspended status
+                                     * @example false
+                                     */
+                                    suspended?: boolean;
+                                    /**
+                                     * @description Handicap / line value
+                                     * @example 2.5
+                                     */
+                                    point?: number;
+                                    /** @description Player/participant info (if applicable) */
+                                    pl?: {
+                                        /**
+                                         * @description Player/participant id
+                                         * @example 1
+                                         */
+                                        I: number;
+                                        /**
+                                         * @description Player/participant name
+                                         * @example Player Name
+                                         */
+                                        N: string;
+                                    };
+                                }[][];
+                            }[];
+                            groups?: {
+                                id: number;
+                                name: string;
+                                slug: string;
+                            }[];
+                            marketType?: {
+                                id: number;
+                                name: string;
+                                count: number;
+                                key: string;
+                            }[];
+                            /** @description Additional match metadata from provider */
+                            matchInfo?: {
+                                /**
+                                 * @description Match venue or location
+                                 * @example Old Trafford, Manchester
+                                 */
+                                location?: string;
+                                /**
+                                 * @description Tournament stage
+                                 * @example Semi Final
+                                 */
+                                stage?: string;
+                                /**
+                                 * @description Match format
+                                 * @example Regular Time
+                                 */
+                                format?: string;
+                            };
+                            /** @description Live scoring context; present only when match is live */
+                            scoreContext?: {
+                                /**
+                                 * @description Current period number
+                                 * @example 2
+                                 */
+                                currentPeriod?: number;
+                                /**
+                                 * @description Stage live status
+                                 * @example LIVE
+                                 */
+                                stageLiveStatus?: string;
+                                /**
+                                 * @description Current period string
+                                 * @example 2nd Half
+                                 */
+                                currentPeriodString?: string;
+                                /** @description Full score */
+                                fullScore?: {
+                                    /**
+                                     * @description Home team full score
+                                     * @example 2
+                                     */
+                                    home?: number;
+                                    /**
+                                     * @description Home team full score
+                                     * @example 2
+                                     */
+                                    away?: number;
+                                };
+                                /**
+                                 * @description Additional live match information
+                                 * @example Match in progress
+                                 */
+                                info?: string;
+                                /**
+                                 * @description Current play (example cricket)
+                                 * @example 1
+                                 */
+                                currentPlay?: number;
+                                /**
+                                 * @description Scores per period
+                                 * @example [
+                                 *       {
+                                 *         "Key": 1,
+                                 *         "Value": {
+                                 *           "NF": "1st Half",
+                                 *           "S1": 1,
+                                 *           "S2": 0
+                                 *         }
+                                 *       }
+                                 *     ]
+                                 */
+                                periodScores?: {
+                                    /**
+                                     * @description Period key
+                                     * @example 1
+                                     */
+                                    Key: number;
+                                    Value: {
+                                        /**
+                                         * @description Normalized period label
+                                         * @example HT
+                                         */
+                                        NF: string;
+                                        /**
+                                         * @description Home score for this period
+                                         * @example 1
+                                         */
+                                        S1?: number;
+                                        /**
+                                         * @description Away score for this period
+                                         * @example 0
+                                         */
+                                        S2?: number;
+                                    };
+                                }[];
+                                setScore?: {
+                                    S1: string;
+                                    S2: string;
+                                };
+                                /**
+                                 * @description Timeout remaining (seconds)
+                                 * @example 60
+                                 */
+                                timeoutRemaining?: number;
+                                /**
+                                 * @description Match time elapsed in seconds
+                                 * @example 3420
+                                 */
+                                timeSeconds?: number;
+                                /** @description Match statistics */
+                                matchStatistics?: {
+                                    /**
+                                     * @description Statistics group key
+                                     * @example 1
+                                     */
+                                    Key: number;
+                                    Value: {
+                                        /**
+                                         * @description Statistic identifier
+                                         * @example 101
+                                         */
+                                        ID: number;
+                                        /**
+                                         * @description Statistic name
+                                         * @example Possession
+                                         */
+                                        N: string;
+                                        /**
+                                         * @description Home team value
+                                         * @example 55%
+                                         */
+                                        S1: string;
+                                        /**
+                                         * @description Away team value
+                                         * @example 45%
+                                         */
+                                        S2: string;
+                                    }[];
+                                }[];
+                                inningsData?: {
+                                    /** @example Team1Scores */
+                                    Key: string;
+                                    /** @example 75/4 */
+                                    Value: string | number | {
+                                        [key: string]: unknown;
+                                    };
+                                }[];
+                            };
+                            weather?: {
+                                /**
+                                 * @description Air temperature
+                                 * @example +7°C
+                                 */
+                                temperature?: string;
+                                /**
+                                 * @description Cloud coverage percentage
+                                 * @example 69
+                                 */
+                                cloudLevel?: string;
+                                /**
+                                 * @description Cloud / weather condition description
+                                 * @example Cloudy, rain
+                                 */
+                                cloudDescription?: string;
+                                /**
+                                 * @description UV index level
+                                 * @example 3
+                                 */
+                                uvIndex?: string;
+                                /**
+                                 * @description Wind speed
+                                 * @example 1.7
+                                 */
+                                windSpeed?: string;
+                                /**
+                                 * @description Wind direction
+                                 * @example S
+                                 */
+                                windDirection?: string;
+                                /**
+                                 * @description Wind speed unit
+                                 * @example m/s
+                                 */
+                                windUnit?: string;
+                                /** @description Atmospheric pressure */
+                                pressure?: {
+                                    /**
+                                     * @description Numeric value as string
+                                     * @example 750
+                                     */
+                                    value?: string;
+                                    /**
+                                     * @description Measurement unit
+                                     * @example mmHg
+                                     */
+                                    unit?: string;
+                                };
+                                /** @description Humidity information */
+                                humidity?: {
+                                    /**
+                                     * @description Numeric value as string
+                                     * @example 750
+                                     */
+                                    value?: string;
+                                    /**
+                                     * @description Measurement unit
+                                     * @example mmHg
+                                     */
+                                    unit?: string;
+                                };
+                                /** @description Precipitation probability */
+                                precipitation?: {
+                                    /**
+                                     * @description Numeric value as string
+                                     * @example 750
+                                     */
+                                    value?: string;
+                                    /**
+                                     * @description Measurement unit
+                                     * @example mmHg
+                                     */
+                                    unit?: string;
+                                };
+                            };
+                            probability?: {
+                                /**
+                                 * @description Probability of home team winning (percentage)
+                                 * @example 0.44
+                                 */
+                                home?: number;
+                                /**
+                                 * @description Probability of a draw (percentage)
+                                 * @example 0.26
+                                 */
+                                draw?: number;
+                                /**
+                                 * @description Probability of away team winning (percentage)
+                                 * @example 0.5
+                                 */
+                                away?: number;
+                            };
+                            /**
+                             * @description SEO-friendly match slug
+                             * @example manchester-united-vs-liverpool
+                             */
+                            slug: string;
+                        }[];
+                    };
+                };
+            };
+            /** @description Validation error */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example true */
+                        success: boolean;
+                        error: string;
+                        issues: {
+                            path: string[];
+                            message: string;
+                        }[];
+                    };
+                };
+            };
+            /** @description Internal server error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example true */
+                        success: boolean;
+                        error: string;
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    getTopGame: {
+        parameters: {
+            query?: {
+                /** @description Response language (en, bn, hi, etc.) */
+                locale?: "en" | "bn" | "hi";
+            };
+            header?: never;
+            path: {
+                /** @description Filter sports by event status */
+                status: "live" | "upcoming";
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description List of top games */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example true */
+                        success: boolean;
+                        /**
+                         * Format: uuid
+                         * @example 6f8a7c3e-1f2a-4d8e-b9a1-9c3b6a2c8f11
+                         */
+                        requestId: string;
+                        data: {
+                            /**
+                             * @description Match identifier
+                             * @example 987654
+                             */
+                            id: number | null;
+                            /**
+                             * @description Category identifier
+                             * @example 4353456
+                             */
+                            ci?: number | null;
+                            /** @description Match teams (home vs away) */
+                            team: {
+                                /**
+                                 * @description Home team
+                                 * @example {
+                                 *       "id": 12345,
+                                 *       "name": "Manchester United",
+                                 *       "slug": "manchester-united",
+                                 *       "countryId": 44,
+                                 *       "logo": "https://cdn.example.com/teams/manchester-united.png"
+                                 *     }
+                                 */
+                                home: {
+                                    /**
+                                     * @description Unique team identifier
+                                     * @example 12345
+                                     */
+                                    id: number;
+                                    /**
+                                     * @description Team display name
+                                     * @example Manchester United
+                                     */
+                                    name: string;
+                                    /**
+                                     * @description URL-friendly team identifier
+                                     * @example manchester-united
+                                     */
+                                    slug: string;
+                                    /**
+                                     * @description Country identifier where the team is registered
+                                     * @example 44
+                                     */
+                                    countryId: number;
+                                    /**
+                                     * @description Team logo URL
+                                     * @example https://cdn.example.com/teams/manchester-united.png
+                                     */
+                                    logo?: string | null;
+                                };
+                                /**
+                                 * @description Away team
+                                 * @example {
+                                 *       "id": 67890,
+                                 *       "name": "Liverpool",
+                                 *       "slug": "liverpool",
+                                 *       "countryId": 44,
+                                 *       "logo": "https://cdn.example.com/teams/liverpool.png"
+                                 *     }
+                                 */
+                                away: {
+                                    /**
+                                     * @description Unique team identifier
+                                     * @example 12345
+                                     */
+                                    id: number;
+                                    /**
+                                     * @description Team display name
+                                     * @example Manchester United
+                                     */
+                                    name: string;
+                                    /**
+                                     * @description URL-friendly team identifier
+                                     * @example manchester-united
+                                     */
+                                    slug: string;
+                                    /**
+                                     * @description Country identifier where the team is registered
+                                     * @example 44
+                                     */
+                                    countryId: number;
+                                    /**
+                                     * @description Team logo URL
+                                     * @example https://cdn.example.com/teams/manchester-united.png
+                                     */
+                                    logo?: string | null;
+                                };
+                            };
+                            /**
+                             * @description League information
+                             * @example {
+                             *       "id": 1,
+                             *       "name": "Premier League",
+                             *       "slug": "premier-league"
+                             *     }
+                             */
+                            league: {
+                                /**
+                                 * @description Unique league identifier
+                                 * @example 1
+                                 */
+                                id: number;
+                                /**
+                                 * @description League display name
+                                 * @example Premier League
+                                 */
+                                name: string;
+                                /**
+                                 * @description URL-friendly league identifier
+                                 * @example premier-league
+                                 */
+                                slug: string;
+                            };
+                            /**
+                             * @description Country information
+                             * @example {
+                             *       "id": 44,
+                             *       "name": "England"
+                             *     }
+                             */
+                            country?: {
+                                /**
+                                 * @description Unique country identifier
+                                 * @example 44
+                                 */
+                                id: number;
+                                /**
+                                 * @description Country name
+                                 * @example England
+                                 */
+                                name: string;
+                            };
+                            /**
+                             * @description Match status
+                             * @example live
+                             * @enum {string}
+                             */
+                            status: "live" | "upcoming";
+                            /**
+                             * @description Unix timestamp (UTC)
+                             * @example 1768651200
+                             */
+                            startTime: number;
+                            /**
+                             * @description event count
+                             * @example 134
+                             */
+                            ec: number;
+                            sport: {
+                                /**
+                                 * @description Unique sport identifier
+                                 * @example 1
+                                 */
+                                id: number;
+                                /**
+                                 * @description Sport display name
+                                 * @example Football
+                                 */
+                                name: string;
+                                /**
+                                 * @description URL-friendly sport identifier
+                                 * @example football
+                                 */
+                                slug: string;
+                            };
+                            gameTypeId?: number;
+                            period?: number;
+                            periodName: string;
+                            /**
+                             * @description Transformed GE markets
+                             * @example [
+                             *       {
+                             *         "id": 6,
+                             *         "name": "Total Goals",
+                             *         "gs": 1,
+                             *         "outcomes": [
+                             *           [
+                             *             {
+                             *               "id": 83,
+                             *               "name": "(2.5) Over",
+                             *               "coefficient": 1.9,
+                             *               "suspended": false,
+                             *               "point": 2.5
+                             *             },
+                             *             {
+                             *               "id": 84,
+                             *               "name": "(2.5) Under",
+                             *               "coefficient": 1.9,
+                             *               "suspended": false,
+                             *               "point": 2.5
+                             *             }
+                             *           ]
+                             *         ]
+                             *       }
+                             *     ]
+                             */
+                            markets?: {
+                                /**
+                                 * @description Market id
+                                 * @example 6
+                                 */
+                                id: number;
+                                /**
+                                 * @description Localized market name
+                                 * @example Total Goals
+                                 */
+                                name: string;
+                                /**
+                                 * @description Market game status
+                                 * @example 1
+                                 */
+                                gs: number;
+                                /**
+                                 * @description Grouped outcomes (2D array)
+                                 * @example [
+                                 *       [
+                                 *         {
+                                 *           "id": 83,
+                                 *           "name": "(2.5) Over",
+                                 *           "coefficient": 1.9,
+                                 *           "suspended": false,
+                                 *           "point": 2.5
+                                 *         },
+                                 *         {
+                                 *           "id": 84,
+                                 *           "name": "(2.5) Under",
+                                 *           "coefficient": 1.9,
+                                 *           "suspended": false,
+                                 *           "point": 2.5
+                                 *         }
+                                 *       ]
+                                 *     ]
+                                 */
+                                outcomes: {
+                                    /**
+                                     * @description Outcome id
+                                     * @example 83
+                                     */
+                                    id: number;
+                                    /**
+                                     * @description Localized outcome name
+                                     * @example (2.5) Over
+                                     */
+                                    name: string;
+                                    /**
+                                     * @description Odds coefficient
+                                     * @example 1.9
+                                     */
+                                    coefficient: number;
+                                    /**
+                                     * @description Outcome suspended status
+                                     * @example false
+                                     */
+                                    suspended?: boolean;
+                                    /**
+                                     * @description Handicap / line value
+                                     * @example 2.5
+                                     */
+                                    point?: number;
+                                    /** @description Player/participant info (if applicable) */
+                                    pl?: {
+                                        /**
+                                         * @description Player/participant id
+                                         * @example 1
+                                         */
+                                        I: number;
+                                        /**
+                                         * @description Player/participant name
+                                         * @example Player Name
+                                         */
+                                        N: string;
+                                    };
+                                }[][];
+                            }[];
+                            groups?: {
+                                id: number;
+                                name: string;
+                                slug: string;
+                            }[];
+                            marketType?: {
+                                id: number;
+                                name: string;
+                                count: number;
+                                key: string;
+                            }[];
+                            /** @description Additional match metadata from provider */
+                            matchInfo?: {
+                                /**
+                                 * @description Match venue or location
+                                 * @example Old Trafford, Manchester
+                                 */
+                                location?: string;
+                                /**
+                                 * @description Tournament stage
+                                 * @example Semi Final
+                                 */
+                                stage?: string;
+                                /**
+                                 * @description Match format
+                                 * @example Regular Time
+                                 */
+                                format?: string;
+                            };
+                            /** @description Live scoring context; present only when match is live */
+                            scoreContext?: {
+                                /**
+                                 * @description Current period number
+                                 * @example 2
+                                 */
+                                currentPeriod?: number;
+                                /**
+                                 * @description Stage live status
+                                 * @example LIVE
+                                 */
+                                stageLiveStatus?: string;
+                                /**
+                                 * @description Current period string
+                                 * @example 2nd Half
+                                 */
+                                currentPeriodString?: string;
+                                /** @description Full score */
+                                fullScore?: {
+                                    /**
+                                     * @description Home team full score
+                                     * @example 2
+                                     */
+                                    home?: number;
+                                    /**
+                                     * @description Home team full score
+                                     * @example 2
+                                     */
+                                    away?: number;
+                                };
+                                /**
+                                 * @description Additional live match information
+                                 * @example Match in progress
+                                 */
+                                info?: string;
+                                /**
+                                 * @description Current play (example cricket)
+                                 * @example 1
+                                 */
+                                currentPlay?: number;
+                                /**
+                                 * @description Scores per period
+                                 * @example [
+                                 *       {
+                                 *         "Key": 1,
+                                 *         "Value": {
+                                 *           "NF": "1st Half",
+                                 *           "S1": 1,
+                                 *           "S2": 0
+                                 *         }
+                                 *       }
+                                 *     ]
+                                 */
+                                periodScores?: {
+                                    /**
+                                     * @description Period key
+                                     * @example 1
+                                     */
+                                    Key: number;
+                                    Value: {
+                                        /**
+                                         * @description Normalized period label
+                                         * @example HT
+                                         */
+                                        NF: string;
+                                        /**
+                                         * @description Home score for this period
+                                         * @example 1
+                                         */
+                                        S1?: number;
+                                        /**
+                                         * @description Away score for this period
+                                         * @example 0
+                                         */
+                                        S2?: number;
+                                    };
+                                }[];
+                                setScore?: {
+                                    S1: string;
+                                    S2: string;
+                                };
+                                /**
+                                 * @description Timeout remaining (seconds)
+                                 * @example 60
+                                 */
+                                timeoutRemaining?: number;
+                                /**
+                                 * @description Match time elapsed in seconds
+                                 * @example 3420
+                                 */
+                                timeSeconds?: number;
+                                /** @description Match statistics */
+                                matchStatistics?: {
+                                    /**
+                                     * @description Statistics group key
+                                     * @example 1
+                                     */
+                                    Key: number;
+                                    Value: {
+                                        /**
+                                         * @description Statistic identifier
+                                         * @example 101
+                                         */
+                                        ID: number;
+                                        /**
+                                         * @description Statistic name
+                                         * @example Possession
+                                         */
+                                        N: string;
+                                        /**
+                                         * @description Home team value
+                                         * @example 55%
+                                         */
+                                        S1: string;
+                                        /**
+                                         * @description Away team value
+                                         * @example 45%
+                                         */
+                                        S2: string;
+                                    }[];
+                                }[];
+                                inningsData?: {
+                                    /** @example Team1Scores */
+                                    Key: string;
+                                    /** @example 75/4 */
+                                    Value: string | number | {
+                                        [key: string]: unknown;
+                                    };
+                                }[];
+                            };
+                            weather?: {
+                                /**
+                                 * @description Air temperature
+                                 * @example +7°C
+                                 */
+                                temperature?: string;
+                                /**
+                                 * @description Cloud coverage percentage
+                                 * @example 69
+                                 */
+                                cloudLevel?: string;
+                                /**
+                                 * @description Cloud / weather condition description
+                                 * @example Cloudy, rain
+                                 */
+                                cloudDescription?: string;
+                                /**
+                                 * @description UV index level
+                                 * @example 3
+                                 */
+                                uvIndex?: string;
+                                /**
+                                 * @description Wind speed
+                                 * @example 1.7
+                                 */
+                                windSpeed?: string;
+                                /**
+                                 * @description Wind direction
+                                 * @example S
+                                 */
+                                windDirection?: string;
+                                /**
+                                 * @description Wind speed unit
+                                 * @example m/s
+                                 */
+                                windUnit?: string;
+                                /** @description Atmospheric pressure */
+                                pressure?: {
+                                    /**
+                                     * @description Numeric value as string
+                                     * @example 750
+                                     */
+                                    value?: string;
+                                    /**
+                                     * @description Measurement unit
+                                     * @example mmHg
+                                     */
+                                    unit?: string;
+                                };
+                                /** @description Humidity information */
+                                humidity?: {
+                                    /**
+                                     * @description Numeric value as string
+                                     * @example 750
+                                     */
+                                    value?: string;
+                                    /**
+                                     * @description Measurement unit
+                                     * @example mmHg
+                                     */
+                                    unit?: string;
+                                };
+                                /** @description Precipitation probability */
+                                precipitation?: {
+                                    /**
+                                     * @description Numeric value as string
+                                     * @example 750
+                                     */
+                                    value?: string;
+                                    /**
+                                     * @description Measurement unit
+                                     * @example mmHg
+                                     */
+                                    unit?: string;
+                                };
+                            };
+                            probability?: {
+                                /**
+                                 * @description Probability of home team winning (percentage)
+                                 * @example 0.44
+                                 */
+                                home?: number;
+                                /**
+                                 * @description Probability of a draw (percentage)
+                                 * @example 0.26
+                                 */
+                                draw?: number;
+                                /**
+                                 * @description Probability of away team winning (percentage)
+                                 * @example 0.5
+                                 */
+                                away?: number;
+                            };
+                            /**
+                             * @description SEO-friendly match slug
+                             * @example manchester-united-vs-liverpool
+                             */
+                            slug: string;
+                        }[];
+                    };
+                };
+            };
+            /** @description Validation error */
+            400: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -630,7 +1858,7 @@ export interface operations {
                              *       "name": "England"
                              *     }
                              */
-                            country: {
+                            country?: {
                                 /**
                                  * @description Unique country identifier
                                  * @example 44
@@ -849,10 +2077,10 @@ export interface operations {
                                  */
                                 info?: string;
                                 /**
-                                 * @description Current period (used in cricket)
+                                 * @description Current play (example cricket)
                                  * @example 1
                                  */
-                                period?: number;
+                                currentPlay?: number;
                                 /**
                                  * @description Scores per period
                                  * @example [
@@ -890,7 +2118,10 @@ export interface operations {
                                         S2?: number;
                                     };
                                 }[];
-                                setScore?: unknown;
+                                setScore?: {
+                                    S1: string;
+                                    S2: string;
+                                };
                                 /**
                                  * @description Timeout remaining (seconds)
                                  * @example 60
@@ -931,6 +2162,107 @@ export interface operations {
                                         S2: string;
                                     }[];
                                 }[];
+                                inningsData?: {
+                                    /** @example Team1Scores */
+                                    Key: string;
+                                    /** @example 75/4 */
+                                    Value: string | number | {
+                                        [key: string]: unknown;
+                                    };
+                                }[];
+                            };
+                            weather?: {
+                                /**
+                                 * @description Air temperature
+                                 * @example +7°C
+                                 */
+                                temperature?: string;
+                                /**
+                                 * @description Cloud coverage percentage
+                                 * @example 69
+                                 */
+                                cloudLevel?: string;
+                                /**
+                                 * @description Cloud / weather condition description
+                                 * @example Cloudy, rain
+                                 */
+                                cloudDescription?: string;
+                                /**
+                                 * @description UV index level
+                                 * @example 3
+                                 */
+                                uvIndex?: string;
+                                /**
+                                 * @description Wind speed
+                                 * @example 1.7
+                                 */
+                                windSpeed?: string;
+                                /**
+                                 * @description Wind direction
+                                 * @example S
+                                 */
+                                windDirection?: string;
+                                /**
+                                 * @description Wind speed unit
+                                 * @example m/s
+                                 */
+                                windUnit?: string;
+                                /** @description Atmospheric pressure */
+                                pressure?: {
+                                    /**
+                                     * @description Numeric value as string
+                                     * @example 750
+                                     */
+                                    value?: string;
+                                    /**
+                                     * @description Measurement unit
+                                     * @example mmHg
+                                     */
+                                    unit?: string;
+                                };
+                                /** @description Humidity information */
+                                humidity?: {
+                                    /**
+                                     * @description Numeric value as string
+                                     * @example 750
+                                     */
+                                    value?: string;
+                                    /**
+                                     * @description Measurement unit
+                                     * @example mmHg
+                                     */
+                                    unit?: string;
+                                };
+                                /** @description Precipitation probability */
+                                precipitation?: {
+                                    /**
+                                     * @description Numeric value as string
+                                     * @example 750
+                                     */
+                                    value?: string;
+                                    /**
+                                     * @description Measurement unit
+                                     * @example mmHg
+                                     */
+                                    unit?: string;
+                                };
+                            };
+                            probability?: {
+                                /**
+                                 * @description Probability of home team winning (percentage)
+                                 * @example 0.44
+                                 */
+                                home?: number;
+                                /**
+                                 * @description Probability of a draw (percentage)
+                                 * @example 0.26
+                                 */
+                                draw?: number;
+                                /**
+                                 * @description Probability of away team winning (percentage)
+                                 * @example 0.5
+                                 */
+                                away?: number;
                             };
                             /**
                              * @description SEO-friendly match slug
@@ -1127,7 +2459,7 @@ export interface operations {
                              *       "name": "England"
                              *     }
                              */
-                            country: {
+                            country?: {
                                 /**
                                  * @description Unique country identifier
                                  * @example 44
@@ -1346,10 +2678,10 @@ export interface operations {
                                  */
                                 info?: string;
                                 /**
-                                 * @description Current period (used in cricket)
+                                 * @description Current play (example cricket)
                                  * @example 1
                                  */
-                                period?: number;
+                                currentPlay?: number;
                                 /**
                                  * @description Scores per period
                                  * @example [
@@ -1387,7 +2719,10 @@ export interface operations {
                                         S2?: number;
                                     };
                                 }[];
-                                setScore?: unknown;
+                                setScore?: {
+                                    S1: string;
+                                    S2: string;
+                                };
                                 /**
                                  * @description Timeout remaining (seconds)
                                  * @example 60
@@ -1428,6 +2763,107 @@ export interface operations {
                                         S2: string;
                                     }[];
                                 }[];
+                                inningsData?: {
+                                    /** @example Team1Scores */
+                                    Key: string;
+                                    /** @example 75/4 */
+                                    Value: string | number | {
+                                        [key: string]: unknown;
+                                    };
+                                }[];
+                            };
+                            weather?: {
+                                /**
+                                 * @description Air temperature
+                                 * @example +7°C
+                                 */
+                                temperature?: string;
+                                /**
+                                 * @description Cloud coverage percentage
+                                 * @example 69
+                                 */
+                                cloudLevel?: string;
+                                /**
+                                 * @description Cloud / weather condition description
+                                 * @example Cloudy, rain
+                                 */
+                                cloudDescription?: string;
+                                /**
+                                 * @description UV index level
+                                 * @example 3
+                                 */
+                                uvIndex?: string;
+                                /**
+                                 * @description Wind speed
+                                 * @example 1.7
+                                 */
+                                windSpeed?: string;
+                                /**
+                                 * @description Wind direction
+                                 * @example S
+                                 */
+                                windDirection?: string;
+                                /**
+                                 * @description Wind speed unit
+                                 * @example m/s
+                                 */
+                                windUnit?: string;
+                                /** @description Atmospheric pressure */
+                                pressure?: {
+                                    /**
+                                     * @description Numeric value as string
+                                     * @example 750
+                                     */
+                                    value?: string;
+                                    /**
+                                     * @description Measurement unit
+                                     * @example mmHg
+                                     */
+                                    unit?: string;
+                                };
+                                /** @description Humidity information */
+                                humidity?: {
+                                    /**
+                                     * @description Numeric value as string
+                                     * @example 750
+                                     */
+                                    value?: string;
+                                    /**
+                                     * @description Measurement unit
+                                     * @example mmHg
+                                     */
+                                    unit?: string;
+                                };
+                                /** @description Precipitation probability */
+                                precipitation?: {
+                                    /**
+                                     * @description Numeric value as string
+                                     * @example 750
+                                     */
+                                    value?: string;
+                                    /**
+                                     * @description Measurement unit
+                                     * @example mmHg
+                                     */
+                                    unit?: string;
+                                };
+                            };
+                            probability?: {
+                                /**
+                                 * @description Probability of home team winning (percentage)
+                                 * @example 0.44
+                                 */
+                                home?: number;
+                                /**
+                                 * @description Probability of a draw (percentage)
+                                 * @example 0.26
+                                 */
+                                draw?: number;
+                                /**
+                                 * @description Probability of away team winning (percentage)
+                                 * @example 0.5
+                                 */
+                                away?: number;
                             };
                             /**
                              * @description SEO-friendly match slug
@@ -1477,7 +2913,7 @@ export interface operations {
                 /** @description Response language (en, bn, hi, etc.) */
                 locale?: "en" | "bn" | "hi";
                 /** @description Market type filter */
-                marketType?: "all_markets" | "popular" | "total" | "handicap" | "players" | "goals" | "intervals" | "other" | "points" | "games" | "result_plus_total" | "asian_markets" | "period" | "special";
+                marketType?: "all_markets" | "popular" | "total" | "handicap" | "players" | "goals" | "intervals" | "other" | "points" | "games" | "result_plus_total" | "asian_markets" | "tie_break" | "period" | "special";
             };
             header?: never;
             path: {
@@ -1628,7 +3064,7 @@ export interface operations {
                              *       "name": "England"
                              *     }
                              */
-                            country: {
+                            country?: {
                                 /**
                                  * @description Unique country identifier
                                  * @example 44
@@ -1847,10 +3283,10 @@ export interface operations {
                                  */
                                 info?: string;
                                 /**
-                                 * @description Current period (used in cricket)
+                                 * @description Current play (example cricket)
                                  * @example 1
                                  */
-                                period?: number;
+                                currentPlay?: number;
                                 /**
                                  * @description Scores per period
                                  * @example [
@@ -1888,7 +3324,10 @@ export interface operations {
                                         S2?: number;
                                     };
                                 }[];
-                                setScore?: unknown;
+                                setScore?: {
+                                    S1: string;
+                                    S2: string;
+                                };
                                 /**
                                  * @description Timeout remaining (seconds)
                                  * @example 60
@@ -1929,6 +3368,107 @@ export interface operations {
                                         S2: string;
                                     }[];
                                 }[];
+                                inningsData?: {
+                                    /** @example Team1Scores */
+                                    Key: string;
+                                    /** @example 75/4 */
+                                    Value: string | number | {
+                                        [key: string]: unknown;
+                                    };
+                                }[];
+                            };
+                            weather?: {
+                                /**
+                                 * @description Air temperature
+                                 * @example +7°C
+                                 */
+                                temperature?: string;
+                                /**
+                                 * @description Cloud coverage percentage
+                                 * @example 69
+                                 */
+                                cloudLevel?: string;
+                                /**
+                                 * @description Cloud / weather condition description
+                                 * @example Cloudy, rain
+                                 */
+                                cloudDescription?: string;
+                                /**
+                                 * @description UV index level
+                                 * @example 3
+                                 */
+                                uvIndex?: string;
+                                /**
+                                 * @description Wind speed
+                                 * @example 1.7
+                                 */
+                                windSpeed?: string;
+                                /**
+                                 * @description Wind direction
+                                 * @example S
+                                 */
+                                windDirection?: string;
+                                /**
+                                 * @description Wind speed unit
+                                 * @example m/s
+                                 */
+                                windUnit?: string;
+                                /** @description Atmospheric pressure */
+                                pressure?: {
+                                    /**
+                                     * @description Numeric value as string
+                                     * @example 750
+                                     */
+                                    value?: string;
+                                    /**
+                                     * @description Measurement unit
+                                     * @example mmHg
+                                     */
+                                    unit?: string;
+                                };
+                                /** @description Humidity information */
+                                humidity?: {
+                                    /**
+                                     * @description Numeric value as string
+                                     * @example 750
+                                     */
+                                    value?: string;
+                                    /**
+                                     * @description Measurement unit
+                                     * @example mmHg
+                                     */
+                                    unit?: string;
+                                };
+                                /** @description Precipitation probability */
+                                precipitation?: {
+                                    /**
+                                     * @description Numeric value as string
+                                     * @example 750
+                                     */
+                                    value?: string;
+                                    /**
+                                     * @description Measurement unit
+                                     * @example mmHg
+                                     */
+                                    unit?: string;
+                                };
+                            };
+                            probability?: {
+                                /**
+                                 * @description Probability of home team winning (percentage)
+                                 * @example 0.44
+                                 */
+                                home?: number;
+                                /**
+                                 * @description Probability of a draw (percentage)
+                                 * @example 0.26
+                                 */
+                                draw?: number;
+                                /**
+                                 * @description Probability of away team winning (percentage)
+                                 * @example 0.5
+                                 */
+                                away?: number;
                             };
                             /**
                              * @description SEO-friendly match slug

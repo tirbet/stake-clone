@@ -7,7 +7,7 @@ import FlagIcon from "@/components/icons/flag";
 
 export const CountrySection = ({ data }: {
     data: {
-        country: {
+        country?: {
             id: number;
             name: string;
         };
@@ -25,20 +25,20 @@ export const CountrySection = ({ data }: {
             type="single"
             collapsible
             className="w-full"
-            defaultValue={data[0].country.name}
+            defaultValue={data[0].country?.name}
         >
             {data.map(item => (
 
-                <AccordionItem key={item.country.id} value={item.country.name} className="bg-[rgb(7,29,42)] rounded-sm mb-1 md:mb-2">
+                <AccordionItem key={item.country?.id} value={item.country?.name || 'gf'} className="bg-[rgb(7,29,42)] rounded-sm mb-1 md:mb-2">
                     <AccordionTrigger className={cn(
                         "[&[data-state=open]>svg]:rotate-180 flex w-full",
                         "items-center justify-between hover:no-underline",
                         "p-1.5 md:p-3",
                     )}>
                         <div className="flex-1 text-left inline-flex items-center gap-1">
-                            <FlagIcon countryCode={item.country.id}/>                            
+                            <FlagIcon countryCode={item.country?.id || 2}/>                            
                             <span className="text-gray-200 text-sm font-semibold">
-                                {item.country.name}
+                                {item.country?.name}
                             </span>
                         </div>
                     </AccordionTrigger>

@@ -32,7 +32,7 @@ export function MobileBottomNav({ onItemClick }: MobileBottomNavProps) {
 
   const navItems: NavItem[] = [
     { label: 'Home', icon: <Home size={24} />, href: '/' },
-    { label: navT('sport'), icon: <Activity size={24} />, href: '/sport' },
+    { label: navT('sport'), icon: <Activity size={24} />, href: '/sports' },
     { label: navT('casino'), icon: <PlayCircle size={24} />, href: '/casino' },
     { label: 'Account', icon: <User size={24} />, href: '/account' },
   ];
