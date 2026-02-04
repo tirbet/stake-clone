@@ -1,7 +1,8 @@
 import * as https from "https";
 import { Telegraf, Markup, Context, session } from "telegraf";
 import { InlineKeyboardButton } from "telegraf/types";
-const token = "8406611660:AAGcKlNzaGypMtQUXj0qpuBrGGhIpDV2GcE";
+import { TELEGRAF_TOKEN } from "./config";
+
 
 // ---- Types ----
 interface Agent {
@@ -38,7 +39,7 @@ interface SessionData {
 }
 
 // ---- Bot Setup ----
-export const bot = new Telegraf<Context & { session: SessionData }>(token, {
+export const bot = new Telegraf<Context & { session: SessionData }>(TELEGRAF_TOKEN, {
 
     telegram: {
         agent: new https.Agent({
