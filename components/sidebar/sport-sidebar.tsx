@@ -28,7 +28,6 @@ import { useMountedState } from "react-use";
 
 export default function SportSideBar() {
   const isMounted = useMountedState();
-
   const { open } = useSidebar()
   const { data } = useGetSports();
   if (!isMounted) return null;
@@ -61,24 +60,20 @@ export default function SportSideBar() {
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
 
-                  <CollapsibleContent className="-ml-5.5 py-1">
+                  <CollapsibleContent className="-ml-5">
                     <SidebarMenuSub>
                       {sport.countries.map((country, index) => (
                         <Collapsible asChild className="group/collapsible" key={index}>
                           <SidebarMenuSubItem>
                             <CollapsibleTrigger asChild>
                               <SidebarMenuSubButton>
-                                <span className="flex gap-2">
+                                <span className="flex gap-0.5">
                                   <FlagIcon countryCode={country.id} />
                                   {country.name}
                                   <span className="text-muted-foreground ml-1">
                                     ({country.leagues.map(league => league.gc).reduce((a, b) => a + b, 0)})
                                   </span>
-                                </span>
-                                <ChevronRightIcon
-                                  className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"
-                                  aria-hidden
-                                />
+                                </span>                               
                               </SidebarMenuSubButton>
                             </CollapsibleTrigger>
 

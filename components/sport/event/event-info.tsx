@@ -27,8 +27,8 @@ const STATUS_CONFIG = {
 // Sub-components
 const LiveDot = () => (
     <span className="relative flex h-3 w-3" data-testid="live-dot">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-        <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-3 w-3 bg-green-600"></span>
     </span>
 );
 
@@ -43,7 +43,13 @@ const TeamScore = ({
     score,
     isHome = false
 }: {
-    team: { name: string };
+    team: {
+        id: number;
+        name: string;
+        slug: string;
+        countryId: number;
+        logo?: string | null | undefined;
+    };
     score?: string | number;
     isHome?: boolean;
 }) => (
@@ -51,12 +57,17 @@ const TeamScore = ({
         "flex items-center justify-between py-1",
         isHome ? "border-b border-gray-600" : ""
     )}>
-        <span className={cn(
-            "text-sm",
-            isHome ? "font-medium" : "text-gray-300"
-        )}>
-            {team.name}
-        </span>
+        <div className="flex items-center justify-center gap-0.5">
+            <div className="flex items-center justify-center shrink-0 rounded-full w-4 h-4 border">
+                <img className="rounded-full object-contain size-full" alt={team.name || 'Home'} src={`https://v3.traincdn.com/resized/size16/sfiles/logo_teams/${team.logo}`} loading="lazy" />
+            </div>
+            <span className={cn(
+                "text-sm",
+                isHome ? "font-medium" : "text-gray-300"
+            )}>
+                {team.name}
+            </span>
+        </div>
         {score && (
             <span className="text-sm font-bold ml-2">
                 {score}
@@ -194,8 +205,8 @@ export function EventInfo({
                         </span>
                     </div>
                     <div className="md:hidden">
-                        <Link onClick={() => {}} href={slug} className="grid place-items-center w-full h-full">
-                            {ec && (<Badge variant={"verified"}>{ec > 0 ? `+` : ''}{ec}</Badge>) }
+                        <Link onClick={() => { }} href={slug} className="grid place-items-center w-full h-full">
+                            {ec && (<Badge variant={"verified"}>{ec > 0 ? `+` : ''}{ec}</Badge>)}
                         </Link>
                     </div>
                 </div>
@@ -203,12 +214,12 @@ export function EventInfo({
                 {/* Teams and Scores */}
                 <Link href={slug} className="flex flex-col">
                     <TeamScore
-                        team={homeTeam}
+                        team={team.home}
                         score={showScores ? scoreContext?.fullScore?.home : undefined}
                         isHome
                     />
                     <TeamScore
-                        team={awayTeam}
+                        team={team.away}
                         score={showScores ? scoreContext?.fullScore?.away : undefined}
                     />
                 </Link>

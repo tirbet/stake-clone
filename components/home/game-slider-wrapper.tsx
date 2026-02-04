@@ -151,7 +151,7 @@ export const SliderItem = ({ href, image, title, count, players }: Readonly<Slid
                 </div>
 
                 {count && (
-                    <div className="absolute left-0 top-4 bg-muted text-white px-2 py-1 rounded">
+                    <div className="absolute left-0 top-4  bg-[#2f4553] text-white px-2 py-1 rounded-r-md">
                         <span className="text-sm font-semibold" suppressHydrationWarning>{count}</span>
                     </div>
                 )}

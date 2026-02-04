@@ -127,7 +127,7 @@ export default function ScoreInfo({ data }: Readonly<Props>) {
                     </div>
                 )}
 
-                {/* TODO: ProbabilityBar WP */}
+                {/* ProbabilityBar WP */}
                 <div className="bg-[rgb(26,44,56)] w-2xs md:w-full  p-2 rounded-md text-xs  overflow-x-auto">
                     {probability && team && (
                         <ProbabilityBar title="Probability of winning" items={generateProbabilityItems(probability, team)} />

@@ -4,7 +4,7 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const nextConfig: NextConfig = {
   experimental: {
     authInterrupts: true,
-    browserDebugInfoInTerminal: true,
+    browserDebugInfoInTerminal: false,
   },
   allowedDevOrigins: ['*'],
   async headers() {

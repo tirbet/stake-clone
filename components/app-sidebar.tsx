@@ -65,8 +65,8 @@ export function AppSidebar({ children, show = true, ...props }: AppSidebarProps)
                 </SidebarMenu>
             </SidebarHeader>
 
-            <SidebarContent className={cn(open ? 'bg-muted' : 'bg-sidebar')}>
-                <ScrollArea className="h-full w-full">
+            <SidebarContent className={cn(open ? 'bg-[#1a2c38] rounded-md' : 'bg-[#0f212e]')}>
+                <ScrollArea className="h-full w-full p-2">
                     {children}
                 </ScrollArea>
             </SidebarContent>

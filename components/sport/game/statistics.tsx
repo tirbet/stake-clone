@@ -14,8 +14,8 @@ const Statistic = ({ data }: Readonly<Props>) => {
         <TooltipProvider delayDuration={150}>
             <div className="min-w-62.5 md:min-w-87.5 max-w-full w-auto rounded-sm bg-[rgb(26,44,56)]">
                 <div className="flex p-1 items-center justify-between bg-sidebar overflow-auto w-full rounded-sm shadow-md">
-                    <TeamStat name={data?.team.home.name} isHome={true} />
-                    <TeamStat name={data?.team.away.name} isHome={false} />
+                    <TeamStat team={data?.team.home} />
+                    <TeamStat team={data?.team.away} />
                 </div>
                 <ScrollArea className="h-28 md:max-h-full">
                     <div className="flex flex-col gap-0.5 md:gap-1 p-2">
@@ -40,7 +40,7 @@ const Statistic = ({ data }: Readonly<Props>) => {
                                 <TooltipContent
                                     side="bottom"
                                     align="center"
-                                     className="w-48 rounded-md  px-3 py-2 shadow-lg">
+                                    className="w-48 rounded-md  px-3 py-2 shadow-lg">
 
                                     {/* Stat title */}
                                     <div className="text-xs font-semibold mb-1 text-center">
@@ -48,7 +48,7 @@ const Statistic = ({ data }: Readonly<Props>) => {
                                     </div>
 
                                     {/* Divider */}
-                                    <Separator  />
+                                    <Separator />
 
                                     {/* Home team */}
                                     <div className="flex items-center justify-between text-xs">
@@ -76,23 +76,30 @@ const Statistic = ({ data }: Readonly<Props>) => {
 
 export default Statistic;
 type TeamStatProps = {
-    name?: string;
-    isHome?: boolean;
+    team?: {
+        id: number;
+        name: string;
+        slug: string;
+        countryId: number;
+        logo?: string | null | undefined;
+    };
 }
-const TeamStat = ({ name, isHome }: TeamStatProps) => {
+const TeamStat = ({ team }: TeamStatProps) => {
     return (
         <Tooltip>
             <TooltipTrigger asChild>
                 <div className="flex items-center gap-1">
-                    <ShieldCheckIcon className={cn("w-3.5 h-3.5 md:w-4 md:h-4", isHome ? 'text-orange-400' : 'text-orange-900')} />
+                    <div className="flex items-center justify-center shrink-0 rounded-full w-4 h-4 border">
+                        <img className="rounded-full object-contain size-full" alt={team?.name || 'Home'} src={`https://v3.traincdn.com/resized/size16/sfiles/logo_teams/${team?.logo}`} loading="lazy" />
+                    </div>
                     <span className="text-sm font-bold">
-                        {(name ?? "").slice(0, 3).toUpperCase()}
+                        {(team?.name ?? "").slice(0, 3).toUpperCase()}
                     </span>
                 </div>
             </TooltipTrigger>
             <TooltipContent side="bottom">
                 <div className="text-xs font-medium">
-                    {name}
+                    {team?.name}
                 </div>
                 {/* <div className="text-[10px] text-muted-foreground">
                     team
