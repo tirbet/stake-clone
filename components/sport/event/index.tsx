@@ -9,26 +9,14 @@ import { CountrySection } from "./country-section";
 
 
 
-export function EventList({ iniData }: Readonly<{ iniData: GetSportsResponse }>) {
+export function EventList() {
     const t = useTranslations('status');
 
     const { data } = useGetSport();
 
     return (
         <>
-            <SportBreadcrumb
-                back={`/sports`}
-                items={[
-                    {
-                        name: t(`${data[0].leagues[0].items[0].status}`),
-                        url: `/sports/${data[0].leagues[0].items[0].status}`,
-                    },
-                    {
-                        name: data[0].leagues[0].items[0].sport.name,
-                        url: data[0].leagues[0].items[0].sport.slug,
-                    }
-                ]}
-            />
+        
             <CountrySection data={data} />
         </>
     )

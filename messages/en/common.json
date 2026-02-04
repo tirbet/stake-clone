@@ -13,5 +13,6 @@
         "kyc": {
             "label": "Label {number}"
         }
-    }
+    },
+    "lobby": "Lobby"
 }

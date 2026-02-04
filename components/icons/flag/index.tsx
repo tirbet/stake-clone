@@ -139,6 +139,7 @@ const MAP_ID_TO_FLAG: Record<number, string> = {
     197: 'fi',
     198: 'fr',
     201: 'hr',
+    202: 'td',
     203: 'me',
     204: 'cz',
     205: 'cl',

@@ -171,7 +171,7 @@ export const useGetSport = () => {
 export const useGetTopGame = ({ status }: { status: Status }) => {
     const locale = useLocale() as Locale;
     return useSuspenseQuery({
-        queryKey: ["sport", "get-top-game"],
+        queryKey: ["sport", "get-top-game", status],
         queryFn: async () => {
             const res = await client.api.sports["top"][":status"].$get({
                 param: { status },
@@ -187,7 +187,45 @@ export const useGetTopGame = ({ status }: { status: Status }) => {
         },
         select: (data) => {
             const items = data?.data || []
-            return items
+            return items.filter((item) =>
+                item.markets?.some(
+                    (m) =>
+                        (m.id === 1 || m.id === 8) &&
+                        m.outcomes?.some((o) => o.length > 0)
+                )
+            );
+        },
+        refetchInterval: status === "live" ? 15_000 : 30_000,
+        staleTime: status === "live" ? 0 : 10_000,
+    })
+}
+
+export const useGetRecommendationGame = ({ status }: { status: Status }) => {
+    const locale = useLocale() as Locale;
+    return useSuspenseQuery({
+        queryKey: ["sport", "get-recommendatio-game", status],
+        queryFn: async () => {
+            const res = await client.api.sports["recommendations"][":status"].$get({
+                param: { status },
+                query: {
+                    locale
+                }
+            })
+            if (!res.ok) {
+                throw new Error('some worong')
+            }
+            const { data } = await res.json();
+            return data
+        },
+        select: (data) => {
+            const items = data?.data || []
+            return items.filter((item) =>
+                item.markets?.some(
+                    (m) =>
+                        (m.id === 1 || m.id === 8) &&
+                        m.outcomes?.some((o) => o.length > 0)
+                )
+            );
         },
         refetchInterval: status === "live" ? 15_000 : 30_000,
         staleTime: status === "live" ? 0 : 10_000,

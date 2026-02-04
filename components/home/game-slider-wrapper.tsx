@@ -5,6 +5,7 @@ import { MingcuteBasketballFill, SportIcon } from "@/components/icon";
 import { ArrowLeftIcon, ArrowRightIcon, Clock2Icon, Gamepad2Icon } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselApi } from "../ui/carousel";
 import { cn } from "@/lib/utils";
+import { Skeleton } from "../ui/skeleton";
 
 
 type Props = {
@@ -115,7 +116,7 @@ export const GameSliderWrapper = ({ headder, content }: Readonly<Props>) => {
                 </div>
 
                 <CarouselContent className="-ml-2 mt-3  flex snap-x snap-mandatory">
-                            {content}
+                    {content}
                 </CarouselContent>
             </div>
         </Carousel>
@@ -151,7 +152,7 @@ export const SliderItem = ({ href, image, title, count, players }: Readonly<Slid
 
                 {count && (
                     <div className="absolute left-0 top-4 bg-muted text-white px-2 py-1 rounded">
-                        <span className="text-sm font-semibold">{count}</span>
+                        <span className="text-sm font-semibold" suppressHydrationWarning>{count}</span>
                     </div>
                 )}
 
@@ -176,3 +177,52 @@ export const SliderItem = ({ href, image, title, count, players }: Readonly<Slid
         </CarouselItem>
     );
 }
+
+export const GameSliderWrapperSkeleton = ({ badge }: { badge: boolean }) => {
+    return (
+        <div className="max-w-7xl mx-auto mt-3.5 flex w-full items-center justify-between">
+            <div className="flex flex-col w-full overflow-x-hidden">
+                <div className="flex items-center justify-between">
+                    <span className="content-center">
+                        <Link
+                            href=""
+                            className="inline-flex relative items-center gap-2 justify-center rounded-md font-semibold whitespace-nowrap ring-offset-background transition disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-[0.98] bg-transparent text-white hover:bg-transparent hover:text-white focus-visible:outline-none text-[1.25rem] leading-none [&_svg]:text-gray-200 [&:hover>svg]:text-white"
+                        >
+                            <Skeleton className="w-6 h-6 rounded-full bg-white" />
+
+                            <Skeleton className="w-25 sm:w-35 h-6  bg-white" />
+                        </Link>
+                    </span>
+                    {/* arrows */}
+                    <Skeleton className="inline-flex w-24 h-10 rounded-full border border-[#2f4553] bg-[#1a2c38]" />
+
+                </div>
+
+                <div className="-ml-2 mt-3  flex snap-x snap-mandatory">
+                    {Array.from({ length: 12 }).map((_, index) => (
+                        <SliderItemSkeleton key={index} badge={badge} />
+
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export const SliderItemSkeleton = ({ badge }: { badge: boolean }) => {
+    return (
+        <div className="basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-1/8 shrink-0 px-2">
+            <div className="relative block w-full pointer-events-none animate-pulse">
+                {/* IMAGE */}
+                <div className="relative aspect-134/182 overflow-hidden rounded-lg bg-white/10" />
+
+                {/* COUNT BADGE */}
+                {badge && (
+                    <div className="absolute left-0 top-4 bg-white/20 px-2 py-1 rounded">
+                        <div className="h-4 w-6 bg-white/30 rounded" />
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+};

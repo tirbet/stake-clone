@@ -23,12 +23,15 @@ import { Link, useRouter } from "@/i18n/navigation";
 import { SportStatusSwitcher } from "../sport/sport-status-switcher";
 import { useGetSports } from "@/features/sport/api/use-get-game";
 import FlagIcon from "@/components/icons/flag";
+import { useMountedState } from "react-use";
 
 
 export default function SportSideBar() {
+  const isMounted = useMountedState();
 
   const { open } = useSidebar()
   const { data } = useGetSports();
+  if (!isMounted) return null;
   return (
     <React.Fragment>
       <SportStatusSwitcher open={open} />
@@ -46,10 +49,10 @@ export default function SportSideBar() {
                       <SportIcon id={sport.id} />
                       <Link
                         href={sport.slug}>
-                        <span className="truncate">
+                        <div className="truncate" suppressHydrationWarning>
                           {sport.name}
-                          <span className="text-muted-foreground ml-1" >({sport.gc})</span>
-                        </span>
+                          <span className="text-muted-foreground ml-1" suppressHydrationWarning>({sport.gc})</span>
+                        </div>
                       </Link>
                       <ChevronRightIcon
                         className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"

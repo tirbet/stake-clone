@@ -1,31 +1,20 @@
-import React from "react";
-import Promotion from "@/components/home/Promotion";
-import PromotionItem from "@/components/home/PromotionItem";
-import { topSports } from "@/lib/sport/top-sports";
+import React, { Suspense } from "react";
+
 import { SportHomeMenu } from "@/components/home/sport/sport-home-menu";
-import TopMatchCard, { MatchCardWrapper } from "@/components/home/sport/match-card-wrapper";
-import { GameSliderWrapper, SliderItem } from "@/components/home/game-slider-wrapper";
-import { apiClient } from "@/lib/api-client";
-import GetTopGame from "@/features/sport/components/get-top-game";
+
+import GetTopGame, { GetTopGameSkeleton } from "@/features/sport/components/get-top-game";
+import GetRecommendationGame, { GetRecommendationGameSkeleton } from "@/features/sport/components/get-recommendation-game";
+import { GetSportListSlider } from "@/features/sport/components/get-sport-list-slider";
+import { GameSliderWrapperSkeleton } from "@/components/home/game-slider-wrapper";
 
 
-export default async function Home() {
+export default function Home() {
 
-  const promotions = await topSports('upcoming');
-  const sports = await apiClient.GET('/sports/{status}', {
-    params: {
-      query: {
-        locale: 'en'
-      },
-      path: {
-        status: 'upcoming'
-      }
-    }
-  }).then(res => res.data?.data || []);
+
 
   return (
     <React.Fragment>
-      <Promotion>
+      {/* <Promotion>
         {promotions.map((event, index) => (
           <PromotionItem
             key={index}
@@ -37,12 +26,23 @@ export default async function Home() {
             buttonHref={event.buttonHref}
           />
         ))}
-      </Promotion>
+      </Promotion> */}
       {/* sports home menu */}
       <SportHomeMenu />
-      <GetTopGame status={'live'} />
+      {/* top matches */}
+      <Suspense fallback={<GetTopGameSkeleton />}>
+        <GetTopGame status={'live'} />
+      </Suspense>
 
-      <GameSliderWrapper
+      <Suspense fallback={<GameSliderWrapperSkeleton badge={true} />}>
+        <GetSportListSlider status="upcoming" />
+      </Suspense>
+
+      <Suspense fallback={<GetRecommendationGameSkeleton />}>
+        <GetRecommendationGame status={'upcoming'} />
+      </Suspense>
+
+      {/* <GameSliderWrapper
         headder={{ href: '/sports', icon: 'trending_sport', title: 'Top Sports' }}
         content={sports.map((item, index) => (
           <SliderItem key={index}
@@ -51,7 +51,7 @@ export default async function Home() {
             count={item.gc}
           />
         ))}
-      />
+      /> */}
     </React.Fragment>
   );
 }

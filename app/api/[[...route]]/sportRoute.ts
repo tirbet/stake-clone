@@ -20,7 +20,34 @@ const app = new Hono({ strict: false })
                         locale
                     },
                     path: { ...param }
-                }
+                },
+                next: { revalidate: param.status === 'live' ? 10 : 20 }
+            })
+            if (error) {
+                return c.json({
+                    error: error.error
+                }, 422)
+            }
+            return c.json({ data })
+        })
+    .get('/recommendations/:status',
+        zValidator('param', z.object({
+            status: z.enum(['live', 'upcoming'])
+        })),
+        zValidator('query', z.object({
+            locale: z.enum(['en', 'bn', 'hi']).default('en').optional()
+        })),
+        async (c) => {
+            const param = c.req.valid('param');
+            const { locale } = c.req.valid('query');
+            const { data, error } = await apiClient.GET('/sports/recommendations/{status}', {
+                params: {
+                    query: {
+                        locale
+                    },
+                    path: { ...param }
+                },
+                next: { revalidate: param.status === 'live' ? 10 : 20 }
             })
             if (error) {
                 return c.json({
@@ -45,7 +72,8 @@ const app = new Hono({ strict: false })
                         locale
                     },
                     path: { ...param }
-                }
+                },
+                next: { revalidate: param.status === 'live' ? 10 : 20 }
             })
             if (error) {
                 return c.json({
@@ -71,7 +99,8 @@ const app = new Hono({ strict: false })
                         locale
                     },
                     path: { ...param }
-                }
+                },
+                next: { revalidate: param.status === 'live' ? 10 : 20 }
             })
             if (error) {
                 return c.json({
@@ -98,7 +127,8 @@ const app = new Hono({ strict: false })
                         locale
                     },
                     path: { ...param }
-                }
+                },
+                next: { revalidate: param.status === 'live' ? 10 : 20 }
             })
             if (error) {
                 return c.json({
@@ -126,7 +156,8 @@ const app = new Hono({ strict: false })
                         locale
                     },
                     path: { ...param }
-                }
+                },
+                next: { revalidate: param.status === 'live' ? 10 : 20 }
             })
             if (error) {
                 return c.json({

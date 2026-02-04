@@ -2,5 +2,6 @@
     "LocaleSwitcher": {
         "label": "भाषा", 
         "locale": "{locale, select, en {अंग्रेज़ी} bn {बांग्ला} hi {हिन्दी}}"
-    }
+    },
+    "lobby": "लॉबी"
 }

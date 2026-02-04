@@ -11,5 +11,7 @@
     "cancelled": "বাতিল",
     "expired": "মেয়াদোত্তীর্ণ",
     "suspended": "স্থগিত",
-    "banned": "নিষিদ্ধ"
+    "banned": "নিষিদ্ধ",
+    "upcoming": "আসন্ন",
+    "live": "লাইভ"
 }
