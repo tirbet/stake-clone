@@ -1,6 +1,7 @@
 import AppLayout from "@/components/layouts/app-layout";
 import SportSideBar from "@/components/sidebar/sport-sidebar";
 import BetSlip from "@/components/sport/BetSlip";
+import CouponInterval from "@/components/sport/coupon-interval";
 import React, { Suspense } from "react";
 
 type Props = {
@@ -8,6 +9,8 @@ type Props = {
 };
 
 export default function Layout({ children }: Readonly<Props>) {
+
+
     return (
         <AppLayout sidebarItem={<>
             <Suspense fallback={<>Loding...</>}>
@@ -17,6 +20,7 @@ export default function Layout({ children }: Readonly<Props>) {
             <div className="max-w-7xl mx-auto flex flex-col w-full px-1.5 mt-0.5 md:px-4 md:mt-2">
                 {children}
                 <BetSlip />
+                <CouponInterval />
             </div>
         </AppLayout >
 

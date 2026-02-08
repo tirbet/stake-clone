@@ -4,6 +4,6 @@ export const useSportStatus = create<{
     status: "live" | "upcoming";
     setStatus: (s: "live" | "upcoming") => void;
 }>((set) => ({
-    status: "live",
+    status: "upcoming",
     setStatus: (s) => set({ status: s }),
 }));

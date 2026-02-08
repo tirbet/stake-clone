@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { useLocale } from "next-intl";
 import { ApiPaths } from "@/lib/api-client";
 import slugify from "slugify";
@@ -170,7 +170,7 @@ export const useGetSport = () => {
 
 export const useGetTopGame = ({ status }: { status: Status }) => {
     const locale = useLocale() as Locale;
-    return useSuspenseQuery({
+    return useQuery({
         queryKey: ["sport", "get-top-game", status],
         queryFn: async () => {
             const res = await client.api.sports["top"][":status"].$get({
@@ -187,13 +187,17 @@ export const useGetTopGame = ({ status }: { status: Status }) => {
         },
         select: (data) => {
             const items = data?.data || []
-            return items.filter((item) =>
+            const filterData = items.filter((item) =>
                 item.markets?.some(
                     (m) =>
                         (m.id === 1 || m.id === 8) &&
                         m.outcomes?.some((o) => o.length > 0)
                 )
             );
+            return {
+                title: "Top Game",
+                data: filterData
+            }
         },
         refetchInterval: status === "live" ? 15_000 : 30_000,
         staleTime: status === "live" ? 0 : 10_000,
@@ -202,7 +206,7 @@ export const useGetTopGame = ({ status }: { status: Status }) => {
 
 export const useGetRecommendationGame = ({ status }: { status: Status }) => {
     const locale = useLocale() as Locale;
-    return useSuspenseQuery({
+    return useQuery({
         queryKey: ["sport", "get-recommendatio-game", status],
         queryFn: async () => {
             const res = await client.api.sports["recommendations"][":status"].$get({
@@ -219,13 +223,17 @@ export const useGetRecommendationGame = ({ status }: { status: Status }) => {
         },
         select: (data) => {
             const items = data?.data || []
-            return items.filter((item) =>
+            const filterData = items.filter((item) =>
                 item.markets?.some(
                     (m) =>
                         (m.id === 1 || m.id === 8) &&
                         m.outcomes?.some((o) => o.length > 0)
                 )
             );
+            return {
+                title: "Recommendation Matches",
+                data: filterData
+            }
         },
         refetchInterval: status === "live" ? 15_000 : 30_000,
         staleTime: status === "live" ? 0 : 10_000,

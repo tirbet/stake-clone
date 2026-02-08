@@ -38,7 +38,7 @@ const CoefficientWithIndicator: React.FC<Props> = ({ currentValue, isSuspended }
     }
 
     return (
-        <div className="flex items-center justify-end min-w-[3.5rem]">
+        <div className="flex items-center justify-end min-w-14">
             <div className="relative flex items-center">
                 {/* Arrow indicators with smooth entrance/exit animations */}
                 <div className="absolute -left-5 top-1/2 transform -translate-y-1/2">

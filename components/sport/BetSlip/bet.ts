@@ -1,3 +1,5 @@
+import { CouponItem } from "@/store/coupon-store"
+
 export interface Bet {
   id: string
   event: string
@@ -13,7 +15,7 @@ export interface BetSlipProps {
 }
 
 export interface BetCardProps {
-  bet: Bet
+  bet: CouponItem
   onRemove: (id: string) => void
   onStakeChange: (id: string, stake: number) => void
 }

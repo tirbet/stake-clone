@@ -4,7 +4,7 @@ import { Odds } from "@/components/sport/odds";
 import { useGetGame } from "@/features/sport/api/use-get-game";
 
 export default function Market() {
-    
+
     const game = useGetGame()
 
     const markets = game.data.markets;
@@ -15,7 +15,14 @@ export default function Market() {
     return (
         <>
             {markets.map((market, index) => (
-                <Odds key={index} market={market} index={index} eventId={1}/>
+                <Odds 
+                    key={index} 
+                    market={market} 
+                    index={index} 
+                    gameId={game.data.id} 
+                    status={game.data.status}
+                    team={game.data.team}
+                    />
             ))}
         </>
     );

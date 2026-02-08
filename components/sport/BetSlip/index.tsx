@@ -9,16 +9,14 @@ import QuickStake from './quick-stake'
 import BetCard from './bet-card'
 import BetSummary from './bet-summary'
 import { cn } from '@/lib/utils'
+import { useCouponStore } from '@/store/coupon-store'
 
 export default function BetSlip() {
-
-    const [isOpen, setIsOpen] = useState(false)
+    const coupons = useCouponStore(s => s.coupons);
+    const isOpen = useCouponStore(s => s.isOpen);
     const [maxHeight, setMaxHeight] = useState(0)
     const [bets, setBets] = useState<Bet[]>([])
-    const [bookingCode, setBookingCode] = useState('')
     const [quickStakes] = useState([10, 25, 50, 100])
-    const [totalStake, setTotalStake] = useState(0)
-    const [totalPotentialWin, setTotalPotentialWin] = useState(0)
     const slipRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -28,34 +26,6 @@ export default function BetSlip() {
         return () => window.removeEventListener('resize', updateHeight)
     }, [])
 
-    useEffect(() => {
-        const stake = bets.reduce((s, b) => s + b.stake, 0)
-        const potential = bets.reduce((s, b) => s + b.potentialWin, 0)
-        setTotalStake(stake)
-        setTotalPotentialWin(potential)
-    }, [bets])
-
-    const addMockBet = () => {
-        const newBet: Bet = {
-            id: Date.now().toString(),
-            event: 'Manchester United vs Liverpool',
-            market: 'Match Winner',
-            selection: 'Manchester United',
-            odds: 2.5,
-            stake: 0,
-            potentialWin: 0,
-        }
-        setBets([...bets, newBet])
-    }
-
-    const removeBet = (id: string) => setBets(bets.filter((b) => b.id !== id))
-
-    const updateStake = (id: string, stake: number) =>
-        setBets(
-            bets.map((b) =>
-                b.id === id ? { ...b, stake, potentialWin: stake * b.odds } : b
-            )
-        )
 
     const handleQuickStake = (amount: number) =>
         setBets(
@@ -66,20 +36,7 @@ export default function BetSlip() {
             }))
         )
 
-    const loadBookedBet = () => {
-        if (bookingCode.trim()) {
-            addMockBet()
-            setBookingCode('')
-        }
-    }
 
-    const clearAllBets = () => setBets([])
-
-    const handlePlaceBet = () => {
-        // Handle bet placement logic here
-        console.log('Placing bet:', { bets, totalStake, totalPotentialWin })
-        // You can add API call or other logic here
-    }
 
     return (
         <div
@@ -91,12 +48,7 @@ export default function BetSlip() {
                 isOpen ? "sm:bottom-0" : ""
             )}
         >
-            <BetSlipHeader
-                isOpen={isOpen}
-                betCount={bets.length}
-                onToggle={() => setIsOpen(!isOpen)}
-                onClearAll={clearAllBets}
-            />
+            <BetSlipHeader />
 
             <AnimatePresence initial={false}>
                 {isOpen && (
@@ -110,38 +62,26 @@ export default function BetSlip() {
                     >
                         <div className="flex flex-col h-full">
                             <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-[#3a3a3a] scrollbar-track-transparent">
-                                {bets.length === 0 ? (
-                                    <EmptyBetSlip
-                                        onAddMockBet={addMockBet}
-                                        bookingCode={bookingCode}
-                                        onBookingCodeChange={setBookingCode}
-                                        onLoadBookedBet={loadBookedBet}
-                                    />
+                                {coupons.length === 0 ? (
+                                    <EmptyBetSlip />
                                 ) : (
                                     <div className="p-4 space-y-4">
-                                        <QuickStake
+                                        {/* <QuickStake
                                             stakes={quickStakes}
                                             onStakeSelect={handleQuickStake}
-                                        />
+                                        /> */}
 
-                                        {bets.map((bet) => (
+                                        {coupons.map((bet, index) => (
                                             <BetCard
-                                                key={bet.id}
+                                                key={`${bet.GameId} ${index}`}
                                                 bet={bet}
-                                                onRemove={removeBet}
-                                                onStakeChange={updateStake}
                                             />
                                         ))}
                                     </div>
                                 )}
                             </div>
 
-                            <BetSummary
-                                totalStake={totalStake}
-                                totalPotentialWin={totalPotentialWin}
-                                betCount={bets.length}
-                                onPlaceBet={handlePlaceBet}
-                            />
+                            <BetSummary />
                         </div>
                     </motion.div>
                 )}

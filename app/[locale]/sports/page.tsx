@@ -2,8 +2,8 @@ import React, { Suspense } from "react";
 
 import { SportHomeMenu } from "@/components/home/sport/sport-home-menu";
 
-import GetTopGame, { GetTopGameSkeleton } from "@/features/sport/components/get-top-game";
-import GetRecommendationGame, { GetRecommendationGameSkeleton } from "@/features/sport/components/get-recommendation-game";
+import GetTopGame from "@/features/sport/components/get-top-game";
+import GetRecommendationGame from "@/features/sport/components/get-recommendation-game";
 import { GetSportListSlider } from "@/features/sport/components/get-sport-list-slider";
 import { GameSliderWrapperSkeleton } from "@/components/home/game-slider-wrapper";
 
@@ -30,28 +30,16 @@ export default function Home() {
       {/* sports home menu */}
       <SportHomeMenu />
       {/* top matches */}
-      <Suspense fallback={<GetTopGameSkeleton />}>
-        <GetTopGame status={'live'} />
-      </Suspense>
+
+      <GetTopGame status={'live'} />
 
       <Suspense fallback={<GameSliderWrapperSkeleton badge={true} />}>
         <GetSportListSlider status="upcoming" />
       </Suspense>
 
-      <Suspense fallback={<GetRecommendationGameSkeleton />}>
-        <GetRecommendationGame status={'upcoming'} />
-      </Suspense>
+      <GetRecommendationGame status={'upcoming'} />
 
-      {/* <GameSliderWrapper
-        headder={{ href: '/sports', icon: 'trending_sport', title: 'Top Sports' }}
-        content={sports.map((item, index) => (
-          <SliderItem key={index}
-            href={item.slug}
-            image={`/sports/thum/${item.id}.png`}
-            count={item.gc}
-          />
-        ))}
-      /> */}
+      
     </React.Fragment>
   );
 }

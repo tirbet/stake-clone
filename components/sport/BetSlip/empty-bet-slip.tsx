@@ -1,12 +1,7 @@
 import { Plus } from 'lucide-react'
 import { EmptyStateProps } from './bet'
 
-export default function EmptyBetSlip({
-    onAddMockBet,
-    bookingCode,
-    onBookingCodeChange,
-    onLoadBookedBet
-}: EmptyStateProps) {
+export default function EmptyBetSlip() {
     return (
         <div className="flex flex-col items-center justify-center text-center px-4 py-10">
             <div className="w-16 h-16 bg-[#1f1f1f] rounded-full flex items-center justify-center mb-4 border border-[#2c2c2c]">
@@ -19,14 +14,9 @@ export default function EmptyBetSlip({
                 Add selections to start betting
             </p>
 
-            <button
-                onClick={onAddMockBet}
-                className="bg-gradient-to-r from-[#d68a1a] to-[#e09e2e] text-black font-semibold py-2 px-6 rounded-md text-sm hover:from-[#e09e2e] hover:to-[#f0b94a] transition-all mb-6"
-            >
-                Add Demo Bet
-            </button>
+            
 
-            <div className="w-full">
+            {/* <div className="w-full">
                 <label className="text-sm text-gray-400 block mb-2 text-left">
                     Load Booked Bet
                 </label>
@@ -46,7 +36,7 @@ export default function EmptyBetSlip({
                         Load
                     </button>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

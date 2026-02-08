@@ -23,6 +23,7 @@ export const GameSliderWrapper = ({ headder, content }: Readonly<Props>) => {
     const [canScrollPrev, setCanScrollPrev] = useState(false);
     const [canScrollNext, setCanScrollNext] = useState(false);
 
+
     useEffect(() => {
         if (!emblaApi) return;
 

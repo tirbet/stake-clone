@@ -5,13 +5,18 @@ import { ChevronDownIcon, ChevronUpIcon, LockIcon } from 'lucide-react';
 
 import { MarketOutcomeButton } from './market-outcome-button';
 import { GetSportsResponse } from '@/features/sport/api/use-get-sport';
+import { useCouponStore } from '@/store/coupon-store';
+type Team = GetSportsResponse[number]['team'];
 export type Market = NonNullable<GetSportsResponse[number]['markets']>[number];
 export type OutcomesMatrix = Market['outcomes'];
 export type Outcome = Market['outcomes'][number][number];
 type OddsProps = {
     market: Market;
     index: number;
-    eventId: number;
+    gameId: number | null;
+    status: "live" | "upcoming"
+    team: Team;
+
 };
 
 const getGridColsClass = (len: number) => {
@@ -30,8 +35,10 @@ const getGridColsClass = (len: number) => {
 };
 
 
-export function Odds({ market, index, eventId }: OddsProps) {
-  
+export function Odds({ market, index, gameId, status, team }: OddsProps) {
+    if (!gameId) return;
+    const addItem = useCouponStore(state => state.addItem);
+    const isSelectedFn = useCouponStore(s => s.isSelected);
     const [isOpen, setIsOpen] = useState(index < 3);
     const [flyItem, setFlyItem] = useState<{
         cursor: { x: number; y: number };
@@ -43,7 +50,18 @@ export function Odds({ market, index, eventId }: OddsProps) {
 
 
     const handleOutcomeClick = (outcome: Outcome, cursor: { x: number; y: number }) => {
-       
+        const { coefficient, id, name, point } = outcome;
+        addItem({
+            Coef: coefficient,
+            GameId: gameId,
+            Kind: status === 'live' ? 1 : 3,
+            Type: id,
+            marketId: market.id,
+            Param: point || 0,
+            name,
+            marketName: market.name,
+            team
+        });
         setFlyItem({
             cursor,
             label: outcome.name,
@@ -77,14 +95,17 @@ export function Odds({ market, index, eventId }: OddsProps) {
                             )}>
                                 {market.outcomes.map((column, colIndex) => (
                                     <div key={`column-${colIndex}`} className="flex flex-col gap-2">
-                                        {column.map((outcome, rowIndex) => (
-                                            <MarketOutcomeButton
-                                                key={`${market.id}-${outcome.id}-${rowIndex}`}
-                                                item={outcome}
-                                                eventId={eventId}
-                                                onClick={handleOutcomeClick}
-                                            />
-                                        ))}
+                                        {column.map((outcome, rowIndex) => {
+                                            const selectedKey = `${gameId}-${market.id ?? 0}-${outcome.id ?? 0}-${outcome.point ?? 0}`
+                                            return (
+                                                <MarketOutcomeButton
+                                                    key={`${market.id}-${outcome.id}-${rowIndex}`}
+                                                    item={outcome}
+                                                    onClick={handleOutcomeClick}
+                                                    selectedKey={selectedKey}
+                                                />
+                                            )
+                                        })}
                                     </div>
                                 ))}
                             </div>

@@ -1,4 +1,13 @@
 import { Hono } from 'hono';
+import {
+    deleteCookie,
+    getCookie,
+    getSignedCookie,
+    setCookie,
+    setSignedCookie,
+    generateCookie,
+    generateSignedCookie,
+} from 'hono/cookie'
 import { zValidator } from '@hono/zod-validator';
 import z from 'zod';
 import { apiClient } from '@/lib/api-client';
@@ -166,5 +175,37 @@ const app = new Hono({ strict: false })
             }
             return c.json({ data })
         })
+
+    .post('/',
+        zValidator('json', z.object({
+            coupon: z.array(z.object({
+                GameId: z.number(),
+                Type: z.number(),
+                Coef: z.number(),
+                Param: z.number().default(0),
+                PV: z.number().nullable().default(0),
+                PlayerId: z.number().default(0),
+                Kind: z.number(),
+                InstrumentId: z.number().default(0),
+                Seconds: z.number().default(0),
+                Price: z.number().default(0),
+                Expired: z.number().default(0),
+                PlayersDuel: z.array(z.any()).default([])
+            }))
+        })),
+        async (c) => {
+            const body = c.req.valid('json');
+            const { data, error } = await apiClient.POST('/sports/coupon', {
+                body: {
+                    Events: body.coupon
+                }
+            });
+            if (error) {
+                return c.json(error.error, 422);
+            }
+            setCookie(c, 'sport_coupon', JSON.stringify(data.data))
+            return c.json(data)
+        })
+
 
 export default app;

@@ -62,13 +62,13 @@ export const getDisplayName = (type: 'live' | 'upcoming'): string => {
 
 export const truncate = (str: string = "", len = 20) => str.length > len ? str.slice(0, len) : str;
 
-export const useTeamsDisplayName = (team?: GetSportsResponse[number]["team"]): string => {
+export const useTeamsDisplayName = (team?: GetSportsResponse[number]["team"], len=3): string => {
 
     if (!team) return "home - away";
 
     const { home, away } = team;
 
-    return `${truncate(home.name, 3).toUpperCase()} - ${truncate(away.name, 3).toUpperCase()}`
+    return `${truncate(home.name, len).toUpperCase()} - ${truncate(away.name, len).toUpperCase()}`
 };
 
 export const formatTime = (seconds: number): string => {

@@ -1,5 +1,5 @@
 "use client"
-import TopMatchCard, { MatchCardWrapper, TopMatchCardSkeleton } from "@/components/home/sport/match-card-wrapper"
+import { MatchCardWrapper, MatchCardWrapperSkeleton } from "@/components/home/sport/match-card-wrapper"
 import { useGetRecommendationGame } from "../api/use-get-game"
 
 type Props = {
@@ -7,22 +7,12 @@ type Props = {
 }
 
 export default function GetRecommendationGame({ status }: Readonly<Props>) {
-    const { data } = useGetRecommendationGame({ status })
+    const { data, isLoading } = useGetRecommendationGame({ status })
+    if (isLoading) {
+        return (<MatchCardWrapperSkeleton />)
+    }
     return (
-        <MatchCardWrapper
-            title="Recommendation Matches"
-            content={data.map((item, index) => (
-                <TopMatchCard key={index} item={item} />
-            ))} />
+        <MatchCardWrapper data={data} />
     )
 }
 
-export const GetRecommendationGameSkeleton = () => {
-    return (
-        <MatchCardWrapper
-            title="Recommendation Matches"
-            content={Array.from({ length: 5 }).map((_, index) => (
-                <TopMatchCardSkeleton key={index} />
-            ))} />
-    )
-}
